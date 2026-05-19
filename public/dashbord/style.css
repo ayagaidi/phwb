@@ -517,7 +517,7 @@ p {
     padding: 1rem 2rem;
     font-size: 0.9375rem;
     font-weight: 900;
-    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 8px 24px rgba(61, 206, 182, 0.17);
 }
 
 .btn-orange:hover {
@@ -1852,7 +1852,7 @@ textarea.field-input {
     width: 60%;
     height: 60%;
     border-radius: 50%;
-    background: rgba(249, 115, 22, 0.2);
+    background: rgba(61, 206, 182, 0.17);
     filter: blur(100px);
     animation: blob-pulse 4s ease-in-out infinite;
 }
@@ -2009,7 +2009,7 @@ textarea.field-input {
     font-size: 1.0625rem;
     font-weight: 700;
     font-family: var(--font);
-    box-shadow: 0 8px 20px rgba(255, 149, 0, 0.25);
+    box-shadow: 0 8px 20px rgba(54, 47, 102, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3747,7 +3747,7 @@ textarea.field-input {
     border-radius: 22px;
     padding: 1.5rem;
     color: #fff;
-    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 8px 24px rgba(61, 206, 182, 0.17);
     position: relative;
     overflow: hidden;
 }

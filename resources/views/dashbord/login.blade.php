@@ -24,9 +24,9 @@
 
         <div class="login-logo-wrap">
           <div aria-hidden="true">
-            <img src="{{ asset('logo.png') }}" alt="صيادلة بلا حدود" style="width: 70px; height: 70px; object-fit: contain;">
+            <img src="{{ asset('logo.png') }}" alt="صيادلة بلا حدود">
           </div>
-          <h1>صيادلة بلا حدود</h1>
+
           <p>سجل الدخول للمتابعة إلى لوحة التحكم</p>
         </div>
 
@@ -39,6 +39,7 @@
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
               <input class="login-input" type="email" name="email" placeholder="البريد الإلكتروني" required />
+              <span class="error-text" id="email-error"></span>
             </div>
 
             <div class="login-field">
@@ -47,6 +48,7 @@
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
               <input class="login-input" type="password" name="password" placeholder="كلمة المرور" required />
+              <span class="error-text" id="password-error"></span>
             </div>
           </div>
 
@@ -80,7 +82,17 @@
           Swal.fire({icon:'success', title:'نجاح', text:data.message, timer:1200, showConfirmButton:false})
             .then(() => window.location.href = data.redirect);
         } else {
-          Swal.fire({icon:'error', title:'خطأ', text:data.message});
+          // Clear previous errors
+          document.getElementById('email-error').innerText = '';
+          document.getElementById('password-error').innerText = '';
+
+          // Show error under fields
+          if (data.message.includes('البريد')) {
+            document.getElementById('email-error').innerText = data.message;
+          } else {
+            document.getElementById('password-error').innerText = data.message;
+          }
+
           btn.innerHTML = '<span>دخول</span>';
           btn.disabled = false;
         }

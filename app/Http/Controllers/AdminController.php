@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class OwnerController extends Controller
+class AdminController extends Controller
 {
     public function showLogin()
     {
-        return view('dashbord.view.login');
+        return view('dashbord.login');
     }
 
     public function login(Request $request)
@@ -49,7 +49,7 @@ class OwnerController extends Controller
         if (!Auth::check()) {
             return redirect()->route('admin.login');
         }
-        return view('dashbord.view.dashboard');
+        return view('dashbord.dashboard');
     }
 
     public function logout(Request $request)

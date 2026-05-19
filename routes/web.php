@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,11 +9,11 @@ Route::get('/', function () {
 
 // Admin Control Panel Routes (under dashbord)
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [OwnerController::class, 'showLogin'])->name('admin.login');
-    Route::post('/login', [OwnerController::class, 'login'])->name('admin.login.post');
-    Route::post('/logout', [OwnerController::class, 'logout'])->name('admin.logout');
+    Route::get('/login', [AdminController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     
     Route::middleware('auth')->group(function () {
-        Route::get('/dashboard', [OwnerController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     });
 });

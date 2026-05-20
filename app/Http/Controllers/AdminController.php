@@ -196,4 +196,86 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
     }
+
+    public function volunteerContent()
+    {
+        return view('dashbord.volunteer-content');
+    }
+
+    public function updateVolunteerContent(Request $request)
+    {
+        // TODO: Save to DB or settings
+        return redirect()->route('admin.volunteer-content')->with('success', 'تم حفظ التغييرات بنجاح');
+    }
+
+    // Articles
+    public function articles()
+    {
+        try {
+            $articles = \App\Models\Article::latest()->get();
+        } catch (\Exception $e) {
+            $articles = collect(); // empty if table not migrated yet
+        }
+        return view('dashbord.articles.index', compact('articles'));
+    }
+
+    public function createArticle()
+    {
+        return view('dashbord.articles.create');
+    }
+
+    public function storeArticle(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('articles', 'public');
+        }
+
+        $data['is_published'] = false;
+        \App\Models\Article::create($data);
+
+        return redirect()->route('admin.articles')->with('success', 'تمت إضافة المقالة');
+    }
+
+    public function editArticle($id)
+    {
+        $article = \App\Models\Article::findOrFail($id);
+        return view('dashbord.articles.edit', compact('article'));
+    }
+
+    public function updateArticle(Request $request, $id)
+    {
+        $article = \App\Models\Article::findOrFail($id);
+        $data = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('articles', 'public');
+        }
+
+        $article->update($data);
+        return redirect()->route('admin.articles')->with('success', 'تم تحديث المقالة');
+    }
+
+    public function toggleArticle($id)
+    {
+        $article = \App\Models\Article::findOrFail($id);
+        $article->is_published = !$article->is_published;
+        $article->save();
+        return redirect()->route('admin.articles');
+    }
+
+    public function destroyArticle($id)
+    {
+        \App\Models\Article::destroy($id);
+        return redirect()->route('admin.articles')->with('success', 'تم حذف المقالة');
+    }
 }

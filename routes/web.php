@@ -35,5 +35,18 @@ Route::prefix('admin')->group(function () {
         Route::patch('/programs/{id}/toggle', [AdminController::class, 'toggleProgram'])->name('admin.programs.toggle');
         Route::delete('/programs/{id}', [AdminController::class, 'destroyProgram'])->name('admin.programs.destroy');
         Route::delete('/programs/{id}/image', [AdminController::class, 'deleteProgramImage'])->name('admin.programs.delete-image');
+
+        // Volunteer Page Content
+        Route::get('/volunteer-content', [AdminController::class, 'volunteerContent'])->name('admin.volunteer-content');
+        Route::post('/volunteer-content', [AdminController::class, 'updateVolunteerContent'])->name('admin.volunteer-content.update');
+
+        // Articles & News
+        Route::get('/articles', [AdminController::class, 'articles'])->name('admin.articles');
+        Route::get('/articles/create', [AdminController::class, 'createArticle'])->name('admin.articles.create');
+        Route::post('/articles', [AdminController::class, 'storeArticle'])->name('admin.articles.store');
+        Route::get('/articles/{id}/edit', [AdminController::class, 'editArticle'])->name('admin.articles.edit');
+        Route::put('/articles/{id}', [AdminController::class, 'updateArticle'])->name('admin.articles.update');
+        Route::patch('/articles/{id}/toggle', [AdminController::class, 'toggleArticle'])->name('admin.articles.toggle');
+        Route::delete('/articles/{id}', [AdminController::class, 'destroyArticle'])->name('admin.articles.destroy');
     });
 });

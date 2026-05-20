@@ -9,6 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('dashbord/style.css') }}" />
   @stack('styles')
+  <style>
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      display: none; position: absolute; left: 0; top: 100%;
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1); min-width: 220px; z-index: 1000; padding: 8px 0;
+    }
+    .dropdown.active .dropdown-menu { display: block; }
+    .dropdown-header { padding: 12px 16px; border-bottom: 1px solid #eee; }
+    .dropdown-item { display: flex; align-items: center; gap: 8px; padding: 10px 16px; color: #333; text-decoration: none; font-size: 0.875rem; }
+    .dropdown-item:hover { background: #f8f9fa; }
+    .text-red { color: #e11d48; }
+  </style>
 </head>
 <body class="dashboard-body">
 
@@ -17,8 +30,7 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-logo">D</div>
-        <span class="sidebar-brand">صيادلة بلا حدود</span>
+        <img src="{{ asset('logo.png') }}" alt="صيادلة بلا حدود" >
       </div>
 
       <nav class="sidebar-nav">
@@ -50,17 +62,63 @@
       <header class="toolbar">
         <h2 class="toolbar-title">@yield('page-title', 'لوحة التحكم')</h2>
         <div class="toolbar-actions">
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" placeholder="بحث..." />
+          <!-- Search -->
+          <div class="toolbar-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="global-search" placeholder="بحث..." />
           </div>
-          <button class="icon-btn">
-            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
-            <span class="badge"></span>
-          </button>
-          <div class="user-avatar">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+
+          <!-- Notifications -->
+          <div class="toolbar-notifications dropdown">
+            <button class="toolbar-icon-btn" type="button" aria-label="الإشعارات">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="notif-badge">3</span>
+            </button>
           </div>
+
+          <!-- Avatar -->
+          <div class="toolbar-avatar dropdown" aria-hidden="true">
+            <button class="toolbar-avatar-btn" type="button" aria-label="القائمة الشخصية">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </button>
+            <div class="dropdown-menu">
+              <div class="dropdown-header">
+                <strong>Admin</strong>
+                <small>admin@pharmacy.com</small>
+              </div>
+              <div class="dropdown-divider"></div>
+              <a href="{{ route('admin.dashboard') }}" class="dropdown-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                الرئيسية
+              </a>
+              <div class="dropdown-divider"></div>
+              <button style="background-color: #f5f5f7; border: 1px #f5f5f7;" type="button" class="dropdown-item text-red" onclick="document.getElementById('dropdown-logout-form').submit();">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <polyline points="16 17 21 12 16 7" />
+                  <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                تسجيل الخروج
+              </button>
+            </div>
+          </div>
+          <form id="dropdown-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
         </div>
       </header>
 
@@ -73,5 +131,46 @@
   </div>
 
   @stack('scripts')
+
+  <script>
+    // Dropdown functionality (same as facility.blade.php)
+    function initDropdowns() {
+      document.querySelectorAll('.toolbar-avatar-btn, .toolbar-icon-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopImmediatePropagation();
+          const dropdown = this.closest('.dropdown');
+          if (!dropdown) return;
+
+          // Close other dropdowns
+          document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (d !== dropdown) d.classList.remove('active');
+          });
+
+          dropdown.classList.toggle('active');
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', function(e) {
+        document.querySelectorAll('.dropdown.active').forEach(dropdown => {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initDropdowns);
+
+    // Sidebar Toggle
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+      });
+    }
+  </script>
 </body>
 </html>

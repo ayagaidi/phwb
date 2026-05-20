@@ -17,9 +17,9 @@
     --sub: #48484A;
     --border: rgba(0, 0, 0, 0.05);
     --border-gray: #E5E5EA;
-    --accent: #F97316;
-    --accent-h: #EA580C;
-    --accent-light: rgba(249, 115, 22, 0.10);
+    --accent: #29225c;
+    --accent-h: #29225C;
+    --accent-light: #1cc6aa30;
     --green: #34C759;
     --green-light: rgba(52, 199, 89, 0.12);
     --red: #FF3B30;
@@ -143,7 +143,7 @@ p {
 .sidebar-logo {
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, #fb923c, #ea580c);
+    background: linear-gradient(135deg, #fb923c, #29225C);
     border-radius: 8px;
     display: grid;
     place-items: center;
@@ -206,7 +206,7 @@ p {
 .nav-item.active {
     background: var(--accent);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+    box-shadow: 0 4px 12px rgba(41, 34, 92, 0.39);
 }
 
 .nav-item svg {
@@ -645,8 +645,8 @@ p {
 }
 
 .icon-orange {
-    background: #fff7ed;
-    color: #f97316;
+    background: #1cc6aa1a;
+    color: #29225c;
 }
 
 .icon-blue {
@@ -741,7 +741,7 @@ p {
 }
 
 .stat-box-icon.orange {
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
 }
 
@@ -1148,7 +1148,7 @@ p {
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
     display: flex;
     align-items: center;
@@ -1333,7 +1333,7 @@ p {
 }
 
 .icon-btn-edit:hover {
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
 }
 
@@ -1454,7 +1454,7 @@ p {
 .form-preview-icon {
     width: 72px;
     height: 72px;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     border-radius: 24px;
     display: flex;
     align-items: center;
@@ -1490,7 +1490,7 @@ p {
 }
 
 .preview-stat.orange {
-    background: #fff7ed;
+    background: #1cc6aa1a;
 }
 
 .preview-stat p:first-child {
@@ -1538,7 +1538,7 @@ p {
 
 .form-section-hdr-icon {
     padding: 0.5rem;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
     border-radius: 8px;
     display: flex;
@@ -1610,7 +1610,7 @@ textarea.field-input {
     align-items: flex-start;
     gap: 0.75rem;
     padding: 1rem;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     border: 1px solid #fed7aa;
     border-radius: 12px;
     margin-top: 1rem;
@@ -2248,7 +2248,7 @@ textarea.field-input {
     font-size: 0.875rem;
     font-weight: 900;
     color: #fff;
-    background: #ea580c;
+    background: #29225C;
     border: none;
     border-radius: 0.75rem;
     box-shadow: 0 10px 30px rgba(249, 115, 22, 0.25);
@@ -2360,7 +2360,7 @@ textarea.field-input {
 
 .form-section-icon {
     padding: 0.5rem;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
     border-radius: 0.5rem;
     display: flex;
@@ -2446,7 +2446,7 @@ textarea.field-input {
 .form-note {
     margin-top: 1.25rem;
     padding: 1rem;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     border: 1px solid #fed7aa;
     border-radius: 0.85rem;
     display: flex;
@@ -2546,7 +2546,7 @@ textarea.field-input {
     width: 5rem;
     height: 5rem;
     margin: 0 auto 1.25rem;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     border-radius: 1.5rem;
     display: flex;
     align-items: center;
@@ -2565,7 +2565,7 @@ textarea.field-input {
     margin: 0 auto 1rem;
     border: 2px dashed rgba(249, 115, 22, 0.35);
     border-radius: 2rem;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2665,7 +2665,7 @@ textarea.field-input {
 }
 
 .stat-card-users .ic.orange {
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
 }
 
@@ -2922,8 +2922,8 @@ textarea.field-input {
 }
 
 .status-active {
-    background: #fff7ed;
-    color: #f97316;
+    background: #1cc6aa1a;
+    color: #29225c;
 }
 
 .status-shipped {
@@ -3154,11 +3154,11 @@ textarea.field-input {
 }
 
 .bg-orange-50 {
-    background: #fff7ed;
+    background: #1cc6aa1a;
 }
 
 .text-orange-600 {
-    color: #ea580c;
+    color: #29225C;
 }
 
 .bg-red-50 {
@@ -3182,7 +3182,7 @@ textarea.field-input {
 }
 
 .text-orange-500 {
-    color: #f97316;
+    color: #29225c;
 }
 
 .text-green-500 {
@@ -3528,7 +3528,7 @@ textarea.field-input {
 
 .upload-zone:hover {
     border-color: var(--accent);
-    background: #fff7ed;
+    background: #1cc6aa1a;
 }
 
 .upload-zone p {
@@ -3617,7 +3617,7 @@ textarea.field-input {
 .cat-row-icon {
     width: 40px;
     height: 40px;
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
     border-radius: 12px;
     display: flex;
@@ -3743,7 +3743,7 @@ textarea.field-input {
 }
 
 .wallet-main-card {
-    background: linear-gradient(135deg, #f97316, #ea580c);
+    background: linear-gradient(135deg, #29225c, #29225C);
     border-radius: 22px;
     padding: 1.5rem;
     color: #fff;
@@ -3859,7 +3859,7 @@ textarea.field-input {
 }
 
 .settings-section-icon.orange {
-    background: #fff7ed;
+    background: #1cc6aa1a;
     color: var(--accent);
 }
 

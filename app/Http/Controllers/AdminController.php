@@ -52,6 +52,59 @@ class AdminController extends Controller
         return view('dashbord.dashboard');
     }
 
+    public function users()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('admin.login');
+        }
+        $users = \App\Models\User::all();
+        return view('dashbord.users.index', compact('users'));
+    }
+
+    public function createUser()
+    {
+        return view('dashbord.users.create');
+    }
+
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+
+        \App\Models\User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role ?? 'staff',
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'تمت إضافة المستخدم بنجاح');
+    }
+
+    public function editUser($id)
+    {
+        $user = \App\Models\User::findOrFail($id);
+        return view('dashbord.users.edit', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = \App\Models\User::findOrFail($id);
+        $user->update($request->only('name', 'email', 'role'));
+        return redirect()->route('admin.users')->with('success', 'تم التعديل بنجاح');
+    }
+
+    public function toggleUser($id)
+    {
+        $user = \App\Models\User::findOrFail($id);
+        $user->is_active = !$user->is_active;
+        $user->save();
+        return redirect()->route('admin.users');
+    }
+
     public function logout(Request $request)
     {
         try {

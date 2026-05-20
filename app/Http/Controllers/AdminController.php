@@ -278,4 +278,38 @@ class AdminController extends Controller
         \App\Models\Article::destroy($id);
         return redirect()->route('admin.articles')->with('success', 'تم حذف المقالة');
     }
+
+    // Donation Methods
+    public function donationMethods()
+    {
+        $methods = \App\Models\DonationMethod::latest()->get();
+        return view('dashbord.donation-methods.index', compact('methods'));
+    }
+
+    public function createDonationMethod()
+    {
+        return view('dashbord.donation-methods.create');
+    }
+
+    public function storeDonationMethod(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('donation-methods', 'public');
+        }
+
+        \App\Models\DonationMethod::create($data);
+        return redirect()->route('admin.donation-methods')->with('success', 'تمت إضافة طريقة التبرع');
+    }
+
+    public function destroyDonationMethod($id)
+    {
+        \App\Models\DonationMethod::destroy($id);
+        return redirect()->route('admin.donation-methods')->with('success', 'تم حذف طريقة التبرع');
+    }
 }

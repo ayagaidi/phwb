@@ -48,5 +48,11 @@ Route::prefix('admin')->group(function () {
         Route::put('/articles/{id}', [AdminController::class, 'updateArticle'])->name('admin.articles.update');
         Route::patch('/articles/{id}/toggle', [AdminController::class, 'toggleArticle'])->name('admin.articles.toggle');
         Route::delete('/articles/{id}', [AdminController::class, 'destroyArticle'])->name('admin.articles.destroy');
+
+        // Donation Methods
+        Route::get('/donation-methods', [AdminController::class, 'donationMethods'])->name('admin.donation-methods');
+        Route::get('/donation-methods/create', [AdminController::class, 'createDonationMethod'])->name('admin.donation-methods.create');
+        Route::post('/donation-methods', [AdminController::class, 'storeDonationMethod'])->name('admin.donation-methods.store');
+        Route::delete('/donation-methods/{id}', [AdminController::class, 'destroyDonationMethod'])->name('admin.donation-methods.destroy');
     });
 });

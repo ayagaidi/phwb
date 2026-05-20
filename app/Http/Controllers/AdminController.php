@@ -105,6 +105,86 @@ class AdminController extends Controller
         return redirect()->route('admin.users');
     }
 
+    // Programs
+    public function programs()
+    {
+        $programs = \App\Models\Program::latest()->get();
+        return view('dashbord.programs.index', compact('programs'));
+    }
+
+    public function createProgram()
+    {
+        return view('dashbord.programs.create');
+    }
+
+    public function storeProgram(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image',
+            'video_url' => 'nullable|url',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('programs', 'public');
+        }
+
+        $data['is_published'] = false;
+        \App\Models\Program::create($data);
+
+        return redirect()->route('admin.programs')->with('success', 'تمت إضافة البرنامج');
+    }
+
+    public function editProgram($id)
+    {
+        $program = \App\Models\Program::findOrFail($id);
+        return view('dashbord.programs.edit', compact('program'));
+    }
+
+    public function updateProgram(Request $request, $id)
+    {
+        $program = \App\Models\Program::findOrFail($id);
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image',
+            'video_url' => 'nullable|url',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('programs', 'public');
+        }
+
+        $program->update($data);
+        return redirect()->route('admin.programs');
+    }
+
+    public function toggleProgram($id)
+    {
+        $program = \App\Models\Program::findOrFail($id);
+        $program->is_published = !$program->is_published;
+        $program->save();
+        return redirect()->route('admin.programs');
+    }
+
+    public function destroyProgram($id)
+    {
+        \App\Models\Program::findOrFail($id)->delete();
+        return redirect()->route('admin.programs');
+    }
+
+    public function deleteProgramImage($id)
+    {
+        $program = \App\Models\Program::findOrFail($id);
+        if ($program->image) {
+            \Storage::disk('public')->delete($program->image);
+            $program->image = null;
+            $program->save();
+        }
+        return redirect()->back();
+    }
+
     public function logout(Request $request)
     {
         try {

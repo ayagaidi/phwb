@@ -29,6 +29,7 @@ return [
         'articles' => 'News & Articles',
         'donation_methods' => 'Donation Methods',
         'org_structure' => 'Organizational Structure',
+        'contact_settings' => 'Contact Settings',
         'logout' => 'Logout',
     ],
 
@@ -257,10 +258,33 @@ return [
         'sort_order' => 'Display Order',
         'add_button' => 'Add Unit',
         'save_changes' => 'Save Changes',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
 
         // Flash
         'added' => 'Unit added successfully',
         'updated' => 'Unit updated successfully',
         'deleted' => 'Unit deleted successfully',
+    ],
+
+    // Contact Settings (Bilingual)
+    'contact_settings' => [
+        'title' => 'Contact Settings',
+        'management' => 'Contact Settings',
+
+        // Form labels
+        'phone' => 'Phone Number',
+        'email' => 'Email Address',
+        'address_ar' => 'Address (Arabic)',
+        'address_en' => 'Address (English)',
+        'whatsapp' => 'WhatsApp',
+        'facebook' => 'Facebook',
+        'instagram' => 'Instagram',
+        'working_hours_ar' => 'Working Hours (Arabic)',
+        'working_hours_en' => 'Working Hours (English)',
+        'save_changes' => 'Save Changes',
+
+        // Flash
+        'updated' => 'Contact information saved successfully',
     ],
 ];

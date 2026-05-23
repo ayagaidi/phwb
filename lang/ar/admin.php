@@ -29,6 +29,7 @@ return [
         'articles' => 'الأخبار والمقالات',
         'donation_methods' => 'طرق التبرع',
         'org_structure' => 'الهيكل التنظيمي',
+        'contact_settings' => 'بيانات التواصل',
         'logout' => 'تسجيل الخروج',
     ],
 
@@ -257,10 +258,33 @@ return [
         'sort_order' => 'ترتيب العرض',
         'add_button' => 'إضافة الوحدة',
         'save_changes' => 'حفظ التعديلات',
+        'edit' => 'تعديل',
+        'delete' => 'حذف',
 
         // Flash
         'added' => 'تمت إضافة الوحدة بنجاح',
         'updated' => 'تم التعديل بنجاح',
         'deleted' => 'تم الحذف بنجاح',
+    ],
+
+    // Contact Settings (Bilingual)
+    'contact_settings' => [
+        'title' => 'بيانات التواصل',
+        'management' => 'بيانات التواصل',
+
+        // Form labels
+        'phone' => 'رقم الهاتف',
+        'email' => 'البريد الإلكتروني',
+        'address_ar' => 'العنوان (عربي)',
+        'address_en' => 'العنوان (إنجليزي)',
+        'whatsapp' => 'واتساب',
+        'facebook' => 'فيسبوك',
+        'instagram' => 'إنستغرام',
+        'working_hours_ar' => 'ساعات العمل (عربي)',
+        'working_hours_en' => 'ساعات العمل (إنجليزي)',
+        'save_changes' => 'حفظ التغييرات',
+
+        // Flash
+        'updated' => 'تم حفظ بيانات التواصل بنجاح',
     ],
 ];

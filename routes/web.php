@@ -65,5 +65,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/org-structure/{id}/edit', [AdminController::class, 'editOrgUnit'])->name('admin.org-structure.edit');
         Route::put('/org-structure/{id}', [AdminController::class, 'updateOrgUnit'])->name('admin.org-structure.update');
         Route::delete('/org-structure/{id}', [AdminController::class, 'destroyOrgUnit'])->name('admin.org-structure.destroy');
+
+        // Contact Settings
+        Route::get('/contact-settings', [AdminController::class, 'contactSettings'])->name('admin.contact-settings');
+        Route::post('/contact-settings', [AdminController::class, 'updateContactSettings'])->name('admin.contact-settings.update');
     });
 });

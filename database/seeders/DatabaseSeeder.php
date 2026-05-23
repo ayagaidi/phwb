@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             OrganizationalUnitSeeder::class,
+            ContactSettingSeeder::class,
         ]);
     }
 }

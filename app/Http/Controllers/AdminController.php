@@ -421,6 +421,34 @@ class AdminController extends Controller
         return redirect()->route('admin.org-structure')->with('success', __('admin.org_structure.deleted'));
     }
 
+    // Contact Settings
+    public function contactSettings()
+    {
+        $contact = \App\Models\ContactSetting::firstOrCreate([]);
+        return view('dashbord.contact-settings', compact('contact'));
+    }
+
+    public function updateContactSettings(Request $request)
+    {
+        $contact = \App\Models\ContactSetting::firstOrCreate([]);
+
+        $data = $request->validate([
+            'phone' => 'nullable|string',
+            'email' => 'nullable|email',
+            'address_ar' => 'nullable|string',
+            'address_en' => 'nullable|string',
+            'facebook' => 'nullable|string',
+            'instagram' => 'nullable|string',
+            'whatsapp' => 'nullable|string',
+            'working_hours_ar' => 'nullable|string',
+            'working_hours_en' => 'nullable|string',
+        ]);
+
+        $contact->update($data);
+
+        return redirect()->route('admin.contact-settings')->with('success', __('admin.contact_settings.updated'));
+    }
+
     public function switchLanguage($locale)
     {
         if (in_array($locale, ['en', 'ar'])) {

@@ -85,9 +85,13 @@
          </a>
          <a href="{{ route('admin.org-structure') }}" class="nav-item {{ request()->routeIs('admin.org-structure*') ? 'active' : '' }}">
            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M10 7h4M7 10v4M17 10v4M10 17h4"/></svg>
-           <span class="nav-label">{{ __('admin.nav.org_structure') ?? 'الهيكل التنظيمي' }}</span>
-         </a>
-       </nav>
+            <span class="nav-label">{{ __('admin.nav.org_structure') ?? 'الهيكل التنظيمي' }}</span>
+          </a>
+          <a href="{{ route('admin.contact-settings') }}" class="nav-item {{ request()->routeIs('admin.contact-settings*') ? 'active' : '' }}">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="nav-label">{{ __('admin.nav.contact_settings') ?? 'بيانات التواصل' }}</span>
+          </a>
+        </nav>
 
       <div class="sidebar-footer">
         <form action="{{ route('admin.logout') }}" method="POST">

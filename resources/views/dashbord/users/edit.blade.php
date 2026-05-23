@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'صيادلة بلا حدود | تعديل مستخدم')
-@section('page-title', 'تعديل المستخدم')
+@section('title', __('admin.app_name') . ' | ' . __('admin.users.edit_user'))
+@section('page-title', __('admin.users.edit_user'))
 
 @section('content')
 <div class="form-layout">
@@ -19,12 +19,12 @@
 
     <div class="preview-stats">
       <div class="preview-stat orange">
-        <p>الدور</p>
-        <p>{{ $user->role ?? 'مستخدم' }}</p>
+        <p>{{ __('admin.users.role') }}</p>
+        <p>{{ $user->role ?? __('admin.users.default_role') }}</p>
       </div>
       <div class="preview-stat orange">
-        <p>الحالة</p>
-        <p>{{ $user->is_active ? 'نشط' : 'معطل' }}</p>
+        <p>{{ __('admin.users.status') }}</p>
+        <p>{{ $user->is_active ? __('admin.users.active') : __('admin.users.inactive') }}</p>
       </div>
     </div>
   </div>
@@ -38,30 +38,30 @@
         <div class="form-section-hdr-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         </div>
-        <h3>تعديل البيانات</h3>
+        <h3>{{ __('admin.users.edit_data') }}</h3>
       </div>
 
       <div class="field-grid">
         <div class="field-group">
-          <label>الاسم الكامل</label>
+          <label>{{ __('admin.users.full_name') }}</label>
           <input type="text" name="name" class="field-input" value="{{ $user->name }}" required>
         </div>
 
         <div class="field-group">
-          <label>البريد الإلكتروني</label>
+          <label>{{ __('admin.email') }}</label>
           <input type="email" name="email" class="field-input" value="{{ $user->email }}" required>
         </div>
 
         <div class="field-group">
-          <label>الدور</label>
+          <label>{{ __('admin.users.role') }}</label>
           <select name="role" class="field-input">
-            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>مدير</option>
-            <option value="staff" {{ $user->role == 'staff' ? 'selected' : '' }}>موظف</option>
+            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>{{ __('admin.users.role_admin') }}</option>
+            <option value="staff" {{ $user->role == 'staff' ? 'selected' : '' }}>{{ __('admin.users.role_staff') }}</option>
           </select>
         </div>
       </div>
 
-      <button type="submit" class="btn-primary mt-4">حفظ التعديلات</button>
+      <button type="submit" class="btn-primary mt-4">{{ __('admin.users.save_changes') }}</button>
     </form>
   </div>
 </div>

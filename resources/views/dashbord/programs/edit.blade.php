@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'تعديل البرنامج')
-@section('page-title', 'تعديل البرنامج')
+@section('title', __('admin.programs.edit_program'))
+@section('page-title', __('admin.programs.edit_program'))
 
 @push('scripts')
 <script>
@@ -47,7 +47,7 @@
         <img src="{{ asset('storage/' . $program->image) }}" width="120" style="border-radius:8px; border:1px solid #ddd;">
         <form action="{{ route('admin.programs.delete-image', $program->id) }}" method="POST" style="margin-top:8px;">
           @csrf @method('DELETE')
-          <button type="submit" class="icon-btn danger" style="font-size:12px;">حذف الصورة</button>
+          <button type="submit" class="icon-btn danger" style="font-size:12px;">{{ __('admin.programs.delete_image') }}</button>
         </form>
       </div>
     @endif
@@ -57,28 +57,36 @@
     <form method="POST" action="{{ route('admin.programs.update', $program->id) }}" enctype="multipart/form-data">
       @csrf @method('PUT')
       <div class="field-group">
-        <label>العنوان</label>
+        <label>{{ __('admin.programs.title_ar') }}</label>
         <input type="text" name="title" class="field-input" value="{{ $program->title }}" required>
       </div>
       <div class="field-group">
-        <label>الوصف</label>
+        <label>{{ __('admin.programs.title_en') }}</label>
+        <input type="text" name="title_en" class="field-input" value="{{ $program->title_en }}">
+      </div>
+      <div class="field-group">
+        <label>{{ __('admin.programs.description_ar') }}</label>
         <textarea name="description" class="field-input" rows="4" required>{{ $program->description }}</textarea>
+      </div>
+      <div class="field-group">
+        <label>{{ __('admin.programs.description_en') }}</label>
+        <textarea name="description_en" class="field-input" rows="4">{{ $program->description_en }}</textarea>
       </div>
 
       <div class="field-group">
-        <label>صورة جديدة</label>
+        <label>{{ __('admin.programs.new_image') }}</label>
         <div id="media-dropzone" class="dropzone" style="border:2px dashed #cbd5e1; border-radius:12px; background:#f8fafc; padding:1.5rem; text-align:center; cursor:pointer;">
-          <p>اسحب الصورة هنا أو اضغط للاختيار</p>
+          <p>{{ __('admin.programs.drag_drop') }}</p>
         </div>
         <input type="file" name="image" id="image-input" style="display:none;">
       </div>
 
       <div class="field-group">
-        <label>رابط فيديو</label>
+        <label>{{ __('admin.programs.video_url') }}</label>
         <input type="url" name="video_url" class="field-input" value="{{ $program->video_url }}">
       </div>
 
-      <button type="submit" class="btn btn-primary" style="margin-top:1rem;">حفظ التعديلات</button>
+      <button type="submit" class="btn btn-primary" style="margin-top:1rem;">{{ __('admin.programs.save_changes') }}</button>
     </form>
   </div>
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'لوحة تحكم ')
+@section('title', __('admin.dashboard'))
 
 @section('content')
 <div class="content">

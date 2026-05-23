@@ -16,7 +16,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'showLogin'])->name('admin.login');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-    
+
+    // Language switcher (available even on login page)
+    Route::get('/lang/{locale}', [AdminController::class, 'switchLanguage'])->name('admin.lang');
+
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
@@ -54,5 +57,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/donation-methods/create', [AdminController::class, 'createDonationMethod'])->name('admin.donation-methods.create');
         Route::post('/donation-methods', [AdminController::class, 'storeDonationMethod'])->name('admin.donation-methods.store');
         Route::delete('/donation-methods/{id}', [AdminController::class, 'destroyDonationMethod'])->name('admin.donation-methods.destroy');
+
+        // Organizational Structure
+        Route::get('/org-structure', [AdminController::class, 'orgStructure'])->name('admin.org-structure');
+        Route::get('/org-structure/create', [AdminController::class, 'createOrgUnit'])->name('admin.org-structure.create');
+        Route::post('/org-structure', [AdminController::class, 'storeOrgUnit'])->name('admin.org-structure.store');
+        Route::get('/org-structure/{id}/edit', [AdminController::class, 'editOrgUnit'])->name('admin.org-structure.edit');
+        Route::put('/org-structure/{id}', [AdminController::class, 'updateOrgUnit'])->name('admin.org-structure.update');
+        Route::delete('/org-structure/{id}', [AdminController::class, 'destroyOrgUnit'])->name('admin.org-structure.destroy');
     });
 });

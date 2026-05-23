@@ -26,20 +26,20 @@ class AdminController extends Controller
                     $request->session()->regenerate();
                     return response()->json([
                         'success' => true,
-                        'message' => 'تم تسجيل الدخول بنجاح',
+                        'message' => __('admin.login_success'),
                         'redirect' => route('admin.dashboard')
                     ]);
                 }
                 Auth::logout();
-                return response()->json(['success' => false, 'message' => 'ليس لديك صلاحية الوصول'], 403);
+                return response()->json(['success' => false, 'message' => __('admin.no_permission')], 403);
             }
 
-            return response()->json(['success' => false, 'message' => 'بيانات الدخول غير صحيحة'], 401);
+            return response()->json(['success' => false, 'message' => __('admin.invalid_credentials')], 401);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'خطأ: ' . $e->getMessage()
+                'message' => __('admin.connection_error') . ': ' . $e->getMessage()
             ], 500);
         }
     }
@@ -81,7 +81,7 @@ class AdminController extends Controller
             'role' => $request->role ?? 'staff',
         ]);
 
-        return redirect()->route('admin.users')->with('success', 'تمت إضافة المستخدم بنجاح');
+        return redirect()->route('admin.users')->with('success', __('admin.user_added'));
     }
 
     public function editUser($id)
@@ -94,7 +94,7 @@ class AdminController extends Controller
     {
         $user = \App\Models\User::findOrFail($id);
         $user->update($request->only('name', 'email', 'role'));
-        return redirect()->route('admin.users')->with('success', 'تم التعديل بنجاح');
+        return redirect()->route('admin.users')->with('success', __('admin.user_updated'));
     }
 
     public function toggleUser($id)
@@ -102,7 +102,7 @@ class AdminController extends Controller
         $user = \App\Models\User::findOrFail($id);
         $user->is_active = !$user->is_active;
         $user->save();
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.users')->with('success', __('admin.user_toggled'));
     }
 
     // Programs
@@ -121,7 +121,9 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
+            'title_en' => 'nullable',
             'description' => 'required',
+            'description_en' => 'nullable',
             'image' => 'nullable|image',
             'video_url' => 'nullable|url',
         ]);
@@ -133,7 +135,7 @@ class AdminController extends Controller
         $data['is_published'] = false;
         \App\Models\Program::create($data);
 
-        return redirect()->route('admin.programs')->with('success', 'تمت إضافة البرنامج');
+        return redirect()->route('admin.programs')->with('success', __('admin.programs.added'));
     }
 
     public function editProgram($id)
@@ -147,7 +149,9 @@ class AdminController extends Controller
         $program = \App\Models\Program::findOrFail($id);
         $data = $request->validate([
             'title' => 'required',
+            'title_en' => 'nullable',
             'description' => 'required',
+            'description_en' => 'nullable',
             'image' => 'nullable|image',
             'video_url' => 'nullable|url',
         ]);
@@ -157,7 +161,7 @@ class AdminController extends Controller
         }
 
         $program->update($data);
-        return redirect()->route('admin.programs');
+        return redirect()->route('admin.programs')->with('success', __('admin.programs.updated'));
     }
 
     public function toggleProgram($id)
@@ -165,13 +169,13 @@ class AdminController extends Controller
         $program = \App\Models\Program::findOrFail($id);
         $program->is_published = !$program->is_published;
         $program->save();
-        return redirect()->route('admin.programs');
+        return redirect()->route('admin.programs')->with('success', __('admin.programs.toggled'));
     }
 
     public function destroyProgram($id)
     {
         \App\Models\Program::findOrFail($id)->delete();
-        return redirect()->route('admin.programs');
+        return redirect()->route('admin.programs')->with('success', __('admin.programs.deleted'));
     }
 
     public function deleteProgramImage($id)
@@ -182,7 +186,7 @@ class AdminController extends Controller
             $program->image = null;
             $program->save();
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', __('admin.programs.image_deleted'));
     }
 
     public function logout(Request $request)
@@ -199,13 +203,34 @@ class AdminController extends Controller
 
     public function volunteerContent()
     {
-        return view('dashbord.volunteer-content');
+        $content = \App\Models\VolunteerContent::firstOrCreate([]);
+        return view('dashbord.volunteer-content', compact('content'));
     }
 
     public function updateVolunteerContent(Request $request)
     {
-        // TODO: Save to DB or settings
-        return redirect()->route('admin.volunteer-content')->with('success', 'تم حفظ التغييرات بنجاح');
+        $content = \App\Models\VolunteerContent::firstOrCreate([]);
+
+        $data = $request->validate([
+            'hero_title' => 'nullable|string',
+            'hero_title_en' => 'nullable|string',
+            'hero_desc' => 'nullable|string',
+            'hero_desc_en' => 'nullable|string',
+            'opportunities' => 'nullable|string',
+            'opportunities_en' => 'nullable|string',
+            'banner_image' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('banner_image')) {
+            if ($content->banner_image) {
+                \Storage::disk('public')->delete($content->banner_image);
+            }
+            $data['banner_image'] = $request->file('banner_image')->store('volunteer', 'public');
+        }
+
+        $content->update($data);
+
+        return redirect()->route('admin.volunteer-content')->with('success', __('admin.volunteer.updated'));
     }
 
     // Articles
@@ -228,7 +253,9 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
+            'title_en' => 'nullable',
             'content' => 'required',
+            'content_en' => 'nullable',
             'image' => 'nullable|image',
         ]);
 
@@ -239,7 +266,7 @@ class AdminController extends Controller
         $data['is_published'] = false;
         \App\Models\Article::create($data);
 
-        return redirect()->route('admin.articles')->with('success', 'تمت إضافة المقالة');
+        return redirect()->route('admin.articles')->with('success', __('admin.articles.added'));
     }
 
     public function editArticle($id)
@@ -253,7 +280,9 @@ class AdminController extends Controller
         $article = \App\Models\Article::findOrFail($id);
         $data = $request->validate([
             'title' => 'required',
+            'title_en' => 'nullable',
             'content' => 'required',
+            'content_en' => 'nullable',
             'image' => 'nullable|image',
         ]);
 
@@ -262,7 +291,7 @@ class AdminController extends Controller
         }
 
         $article->update($data);
-        return redirect()->route('admin.articles')->with('success', 'تم تحديث المقالة');
+        return redirect()->route('admin.articles')->with('success', __('admin.articles.updated'));
     }
 
     public function toggleArticle($id)
@@ -270,13 +299,13 @@ class AdminController extends Controller
         $article = \App\Models\Article::findOrFail($id);
         $article->is_published = !$article->is_published;
         $article->save();
-        return redirect()->route('admin.articles');
+        return redirect()->route('admin.articles')->with('success', __('admin.articles.toggled'));
     }
 
     public function destroyArticle($id)
     {
         \App\Models\Article::destroy($id);
-        return redirect()->route('admin.articles')->with('success', 'تم حذف المقالة');
+        return redirect()->route('admin.articles')->with('success', __('admin.articles.deleted'));
     }
 
     // Donation Methods
@@ -295,7 +324,9 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
+            'name_en' => 'nullable',
             'description' => 'required',
+            'description_en' => 'nullable',
             'image' => 'nullable|image',
         ]);
 
@@ -304,12 +335,97 @@ class AdminController extends Controller
         }
 
         \App\Models\DonationMethod::create($data);
-        return redirect()->route('admin.donation-methods')->with('success', 'تمت إضافة طريقة التبرع');
+        return redirect()->route('admin.donation-methods')->with('success', __('admin.donation_methods.added'));
     }
 
     public function destroyDonationMethod($id)
     {
         \App\Models\DonationMethod::destroy($id);
-        return redirect()->route('admin.donation-methods')->with('success', 'تم حذف طريقة التبرع');
+        return redirect()->route('admin.donation-methods')->with('success', __('admin.donation_methods.deleted'));
+    }
+
+    // Organizational Structure
+    public function orgStructure()
+    {
+        $units = \App\Models\OrganizationalUnit::with('children')
+            ->whereNull('parent_id')
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('dashbord.org-structure.index', compact('units'));
+    }
+
+    public function createOrgUnit()
+    {
+        $parents = \App\Models\OrganizationalUnit::orderBy('name')->get();
+        return view('dashbord.org-structure.create', compact('parents'));
+    }
+
+    public function storeOrgUnit(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'name_en' => 'nullable',
+            'title' => 'nullable',
+            'title_en' => 'nullable',
+            'photo' => 'nullable|image',
+            'parent_id' => 'nullable|exists:organizational_units,id',
+            'sort_order' => 'nullable|integer',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('org-structure', 'public');
+        }
+
+        \App\Models\OrganizationalUnit::create($data);
+
+        return redirect()->route('admin.org-structure')->with('success', __('admin.org_structure.added'));
+    }
+
+    public function editOrgUnit($id)
+    {
+        $unit = \App\Models\OrganizationalUnit::findOrFail($id);
+        $parents = \App\Models\OrganizationalUnit::where('id', '!=', $id)->orderBy('name')->get();
+        return view('dashbord.org-structure.edit', compact('unit', 'parents'));
+    }
+
+    public function updateOrgUnit(Request $request, $id)
+    {
+        $unit = \App\Models\OrganizationalUnit::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => 'required',
+            'name_en' => 'nullable',
+            'title' => 'nullable',
+            'title_en' => 'nullable',
+            'photo' => 'nullable|image',
+            'parent_id' => 'nullable|exists:organizational_units,id',
+            'sort_order' => 'nullable|integer',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            if ($unit->photo) {
+                \Storage::disk('public')->delete($unit->photo);
+            }
+            $data['photo'] = $request->file('photo')->store('org-structure', 'public');
+        }
+
+        $unit->update($data);
+
+        return redirect()->route('admin.org-structure')->with('success', __('admin.org_structure.updated'));
+    }
+
+    public function destroyOrgUnit($id)
+    {
+        \App\Models\OrganizationalUnit::destroy($id);
+        return redirect()->route('admin.org-structure')->with('success', __('admin.org_structure.deleted'));
+    }
+
+    public function switchLanguage($locale)
+    {
+        if (in_array($locale, ['en', 'ar'])) {
+            session(['locale' => $locale]);
+        }
+        return redirect()->back();
     }
 }

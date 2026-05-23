@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin123'),
             'role' => 'owner',
         ]);
+
+        $this->call([
+            OrganizationalUnitSeeder::class,
+        ]);
     }
 }

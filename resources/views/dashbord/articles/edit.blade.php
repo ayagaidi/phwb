@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'صيادلة بلا حدود | تعديل مقالة')
-@section('page-title', 'تعديل المقالة')
+@section('title', __('admin.app_name') . ' | ' . __('admin.articles.edit_article'))
+@section('page-title', __('admin.articles.edit_article'))
 
 @section('content')
 <div class="form-layout">
@@ -14,13 +14,16 @@
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
       @endif
     </div>
-    <h3>{{ $article->title }}</h3>
-    <p>مقالة</p>
+    @php
+    $artTitle = app()->getLocale() === 'en' && $article->title_en ? $article->title_en : $article->title;
+  @endphp
+  <h3>{{ $artTitle }}</h3>
+    <p>{{ __('admin.articles.title_label') }}</p>
 
     <div class="preview-stats">
       <div class="preview-stat orange">
-        <p>الحالة</p>
-        <p>{{ $article->is_published ? 'منشور' : 'مسودة' }}</p>
+        <p>{{ __('admin.articles.status') }}</p>
+        <p>{{ $article->is_published ? __('admin.articles.published_badge') : __('admin.articles.draft_badge') }}</p>
       </div>
     </div>
   </div>
@@ -38,27 +41,37 @@
       </div>
 
       <div class="field-group">
-        <label>العنوان</label>
+        <label>{{ __('admin.articles.title_ar') }}</label>
         <input type="text" name="title" class="field-input" value="{{ $article->title }}" required>
       </div>
 
       <div class="field-group">
-        <label>المحتوى</label>
+        <label>{{ __('admin.articles.title_en') }}</label>
+        <input type="text" name="title_en" class="field-input" value="{{ $article->title_en }}">
+      </div>
+
+      <div class="field-group">
+        <label>{{ __('admin.articles.content_ar') }}</label>
         <textarea name="content" class="field-input" rows="8" required>{{ $article->content }}</textarea>
       </div>
 
       <div class="field-group">
-        <label>الصورة</label>
+        <label>{{ __('admin.articles.content_en') }}</label>
+        <textarea name="content_en" class="field-input" rows="8">{{ $article->content_en }}</textarea>
+      </div>
+
+      <div class="field-group">
+        <label>{{ __('admin.articles.new_image') }}</label>
         <div id="image-dropzone" class="dropzone" style="border:2px dashed #cbd5e1; border-radius:12px; background:#f8fafc; padding:2rem; text-align:center; cursor:pointer; min-height:140px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p style="margin:0; color:#64748b; font-size:0.95rem;">اسحب الصورة هنا أو اضغط للاختيار</p>
+          <p style="margin:0; color:#64748b; font-size:0.95rem;">{{ __('admin.articles.drag_drop') }}</p>
         </div>
         <input type="file" name="image" id="image-input" class="field-input" style="display:none;" accept="image/*">
       </div>
 
       <button type="submit" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.65rem 1.35rem; border-radius:20px; background:var(--accent); color:#fff; font-size:0.875rem; font-weight:700; border:none; cursor:pointer; margin-top:1rem;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-        حفظ التعديلات
+        {{ __('admin.articles.save_changes') }}
       </button>
     </form>
   </div>

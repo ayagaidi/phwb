@@ -1,0 +1,266 @@
+<?php
+
+return [
+    // General
+    'app_name' => 'صيادلة بلا حدود',
+    'dashboard' => 'لوحة التحكم',
+    'login' => 'تسجيل الدخول',
+    'logout' => 'تسجيل الخروج',
+
+    // Login Page
+    'login_title' => 'صيادلة بلا حدود | تسجيل الدخول',
+    'login_description' => 'صيادلة بلا حدود — تسجيل الدخول للوحة التحكم',
+    'login_subtitle' => 'سجل الدخول للمتابعة إلى لوحة التحكم',
+    'email' => 'البريد الإلكتروني',
+    'password' => 'كلمة المرور',
+    'login_button' => 'دخول',
+    'logging_in' => 'جاري الدخول...',
+    'login_success' => 'تم تسجيل الدخول بنجاح',
+    'invalid_credentials' => 'بيانات الدخول غير صحيحة',
+    'no_permission' => 'ليس لديك صلاحية الوصول',
+    'connection_error' => 'مشكلة في الاتصال',
+
+    // Sidebar Navigation
+    'nav' => [
+        'home' => 'الرئيسية',
+        'users' => 'المستخدمين',
+        'programs' => 'البرامج',
+        'volunteer_content' => 'محتوى التطوع',
+        'articles' => 'الأخبار والمقالات',
+        'donation_methods' => 'طرق التبرع',
+        'org_structure' => 'الهيكل التنظيمي',
+        'logout' => 'تسجيل الخروج',
+    ],
+
+    // Toolbar
+    'toolbar' => [
+        'search_placeholder' => 'بحث...',
+        'notifications' => 'الإشعارات',
+        'profile' => 'القائمة الشخصية',
+        'home' => 'الرئيسية',
+        'logout' => 'تسجيل الخروج',
+    ],
+
+    // Language
+    'language' => 'اللغة',
+    'arabic' => 'العربية',
+    'english' => 'الإنجليزية',
+
+    // Users Management
+    'users' => [
+        'management' => 'إدارة المستخدمين',
+        'title' => 'إدارة المستخدمين',
+        'add_user' => 'إضافة مستخدم',
+        'total_users' => 'إجمالي المستخدمين',
+        'active' => 'النشطين',
+        'inactive' => 'غير النشطين',
+        'users_list' => 'قائمة المستخدمين',
+        'user' => 'المستخدم',
+        'email' => 'البريد',
+        'role' => 'الدور',
+        'status' => 'الحالة',
+        'actions' => 'الإجراءات',
+        'edit' => 'تعديل',
+        'enable' => 'تفعيل',
+        'disable' => 'تعطيل',
+        'no_users' => 'لا يوجد مستخدمين حتى الآن',
+        'default_role' => 'مستخدم',
+
+        // Create
+        'add_new' => 'إضافة مستخدم جديد',
+        'back' => 'عودة',
+        'new_user' => 'مستخدم جديد',
+        'add_description' => 'إضافة موظف أو مسؤول جديد للنظام.',
+        'user_data' => 'بيانات المستخدم',
+        'full_name' => 'الاسم الكامل',
+        'password' => 'كلمة المرور',
+        'role_admin' => 'مدير',
+        'role_staff' => 'موظف',
+        'add_button' => 'إضافة المستخدم',
+        'role_set_on_create' => 'يحدد عند الإضافة',
+
+        // Edit
+        'edit_user' => 'تعديل المستخدم',
+        'edit_data' => 'تعديل البيانات',
+        'save_changes' => 'حفظ التعديلات',
+    ],
+
+    // Flash messages
+        'user_added' => 'تمت إضافة المستخدم بنجاح',
+        'user_updated' => 'تم التعديل بنجاح',
+        'user_toggled' => 'تم تحديث حالة المستخدم بنجاح',
+
+    // Programs (Bilingual)
+    'programs' => [
+        'management' => 'إدارة البرامج',
+        'title' => 'إدارة البرامج',
+        'add_program' => 'إضافة برنامج',
+        'total_programs' => 'إجمالي البرامج',
+        'published' => 'المنشورة',
+        'unpublished' => 'غير المنشورة',
+        'programs_list' => 'قائمة البرامج',
+        'program' => 'البرنامج',
+        'status' => 'الحالة',
+        'actions' => 'الإجراءات',
+        'edit' => 'تعديل',
+        'publish' => 'نشر',
+        'unpublish' => 'إلغاء النشر',
+        'no_programs' => 'لا توجد برامج بعد',
+        'published_badge' => 'منشور',
+        'unpublished_badge' => 'غير منشور',
+
+        // Create / Edit
+        'add_new' => 'إضافة برنامج جديد',
+        'edit_program' => 'تعديل البرنامج',
+        'new_program' => 'برنامج جديد',
+        'description_hint' => 'أضف صورة أو فيديو للبرنامج',
+        'title_ar' => 'العنوان (عربي)',
+        'title_en' => 'العنوان (إنجليزي)',
+        'description_ar' => 'الوصف (عربي)',
+        'description_en' => 'الوصف (إنجليزي)',
+        'media' => 'الصورة أو الفيديو',
+        'media_hint' => 'يدعم الصور والفيديوهات',
+        'new_image' => 'صورة جديدة',
+        'video_url' => 'رابط فيديو',
+        'drag_drop' => 'اسحب الملف هنا أو اضغط للاختيار',
+        'add_button' => 'إضافة البرنامج',
+        'save_changes' => 'حفظ التعديلات',
+        'delete_image' => 'حذف الصورة',
+        'back' => 'عودة',
+
+        // Flash
+        'added' => 'تمت إضافة البرنامج',
+        'updated' => 'تم تحديث البرنامج بنجاح',
+        'toggled' => 'تم تحديث حالة البرنامج بنجاح',
+        'deleted' => 'تم حذف البرنامج بنجاح',
+        'image_deleted' => 'تم حذف الصورة بنجاح',
+    ],
+
+    // Volunteer Content (Bilingual)
+    'volunteer' => [
+        'title' => 'محتوى صفحة التطوع',
+        'hero_title' => 'عنوان البطل الرئيسي',
+        'hero_title_en' => 'عنوان البطل الرئيسي (إنجليزي)',
+        'hero_desc' => 'وصف البطل',
+        'hero_desc_en' => 'وصف البطل (إنجليزي)',
+        'opportunities' => 'نص فرص التطوع',
+        'opportunities_en' => 'نص فرص التطوع (إنجليزي)',
+        'banner_image' => 'صورة البانر',
+        'drag_drop' => 'اسحب الصورة هنا أو اضغط للاختيار',
+        'save_changes' => 'حفظ التغييرات',
+        'updated' => 'تم حفظ التغييرات بنجاح',
+        'page_title' => 'محتوى صفحة التطوع',
+    ],
+
+    // Articles (Bilingual)
+    'articles' => [
+        'management' => 'الأخبار والمقالات',
+        'title' => 'الأخبار والمقالات',
+        'add_article' => 'إضافة مقالة',
+        'total_articles' => 'إجمالي المقالات',
+        'published' => 'المنشورة',
+        'drafts' => 'المسودات',
+        'articles_list' => 'قائمة الأخبار والمقالات',
+        'title_label' => 'العنوان',
+        'status' => 'الحالة',
+        'date' => 'التاريخ',
+        'actions' => 'الإجراءات',
+        'edit' => 'تعديل',
+        'publish' => 'نشر',
+        'unpublish' => 'إلغاء النشر',
+        'no_articles' => 'لا توجد مقالات بعد',
+        'published_badge' => 'منشور',
+        'draft_badge' => 'مسودة',
+
+        // Create / Edit
+        'add_new' => 'إضافة مقالة جديدة',
+        'edit_article' => 'تعديل المقالة',
+        'title_ar' => 'العنوان (عربي)',
+        'title_en' => 'العنوان (إنجليزي)',
+        'content_ar' => 'المحتوى (عربي)',
+        'content_en' => 'المحتوى (إنجليزي)',
+        'image' => 'الصورة',
+        'new_image' => 'صورة جديدة',
+        'add_button' => 'إضافة المقالة',
+        'save_changes' => 'حفظ التعديلات',
+        'back' => 'عودة',
+        'drag_drop' => 'اسحب الصورة هنا أو اضغط للاختيار',
+
+        // Flash
+        'added' => 'تمت إضافة المقالة',
+        'updated' => 'تم تحديث المقالة بنجاح',
+        'toggled' => 'تم تحديث حالة المقالة بنجاح',
+        'deleted' => 'تم حذف المقالة',
+    ],
+
+    // Donation Methods (Bilingual)
+    'donation_methods' => [
+        'management' => 'طرق التبرع',
+        'title' => 'طرق التبرع',
+        'add_method' => 'إضافة طريقة',
+        'methods_list' => 'طرق التبرع',
+        'method' => 'الطريقة',
+        'description' => 'الوصف',
+        'actions' => 'الإجراءات',
+        'edit' => 'تعديل',
+        'delete' => 'حذف',
+        'no_methods' => 'لا توجد طرق تبرع بعد',
+
+        // Create
+        'add_new' => 'إضافة طريقة تبرع جديدة',
+        'name_ar' => 'الاسم (عربي)',
+        'name_en' => 'الاسم (إنجليزي)',
+        'description_ar' => 'الوصف (عربي)',
+        'description_en' => 'الوصف (إنجليزي)',
+        'image' => 'الصورة',
+        'drag_drop' => 'اسحب الصورة هنا أو اضغط للاختيار',
+        'add_button' => 'إضافة طريقة التبرع',
+
+        // Flash
+        'added' => 'تمت إضافة طريقة التبرع',
+        'deleted' => 'تم حذف طريقة التبرع',
+        'toggled' => 'تم تحديث حالة طريقة التبرع بنجاح',
+    ],
+
+    // Confirmation dialogs (SweetAlert)
+    'confirm' => [
+        'delete_title' => 'هل أنت متأكد؟',
+        'delete_text' => 'لا يمكن التراجع عن هذا الإجراء.',
+        'delete_button' => 'نعم، احذف',
+        'cancel' => 'إلغاء',
+
+        'delete_article' => 'هل أنت متأكد من حذف هذه المقالة؟',
+        'delete_donation' => 'هل أنت متأكد من حذف طريقة التبرع هذه؟',
+    ],
+
+    // Organizational Structure (Bilingual)
+    'org_structure' => [
+        'management' => 'الهيكل التنظيمي',
+        'title' => 'الهيكل التنظيمي',
+        'add_unit' => 'إضافة وحدة',
+        'units_list' => 'الهيكل التنظيمي',
+        'no_units' => 'لا يوجد هيكل تنظيمي بعد. أضف أول وحدة.',
+        'add_first' => 'أضف أول وحدة',
+
+        // Form
+        'add_new' => 'إضافة وحدة جديدة',
+        'edit_unit' => 'تعديل الوحدة',
+        'name_ar' => 'الاسم (عربي)',
+        'name_en' => 'الاسم (إنجليزي)',
+        'title_ar' => 'المسمى الوظيفي (عربي)',
+        'title_en' => 'المسمى الوظيفي (إنجليزي)',
+        'photo' => 'الصورة',
+        'current_photo' => 'الصورة الحالية',
+        'change_photo' => 'تغيير الصورة',
+        'parent' => 'التابع لـ (الرئيس المباشر)',
+        'no_parent' => '-- رئيسية (بدون رئيس) --',
+        'sort_order' => 'ترتيب العرض',
+        'add_button' => 'إضافة الوحدة',
+        'save_changes' => 'حفظ التعديلات',
+
+        // Flash
+        'added' => 'تمت إضافة الوحدة بنجاح',
+        'updated' => 'تم التعديل بنجاح',
+        'deleted' => 'تم الحذف بنجاح',
+    ],
+];

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class DonationMethod extends Model
 {
-    protected $fillable = ['name', 'description', 'image'];
+    protected $fillable = ['name', 'name_en', 'description', 'description_en', 'image'];
 }

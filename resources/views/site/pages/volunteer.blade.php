@@ -18,7 +18,7 @@
 
     <div class="mt-8">
         <a href="{{ route('site.contact') }}" 
-           class="inline-block bg-[#1e3a8a] hover:bg-[#1e40af] text-white px-10 py-4 rounded-3xl font-semibold text-lg">
+           class="inline-block bg-[#29225c] hover:bg-[#372d70] text-white px-10 py-4 rounded-3xl font-semibold text-lg">
             {{ __('site.volunteer.contact_button') }}
         </a>
     </div>

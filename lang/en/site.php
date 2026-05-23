@@ -74,6 +74,7 @@ return [
         'hero_badge' => 'Become Part of the Organization',
         'hero_subtitle' => 'Help build a healthier future for Libya through official membership',
         'why_join_title' => 'Why Join as a Member?',
+        'why_join_desc' => 'Benefit from many advantages and opportunities',
         'benefits' => [
             'professional' => [
                 'title' => 'Professional Development',
@@ -121,11 +122,16 @@ return [
         'full_member' => 'Full Member (Licensed Pharmacist)',
         'student_member' => 'Student Member',
         'supporter' => 'Supporting Member',
+        'choose' => 'Choose',
+        'male' => 'Male',
+        'female' => 'Female',
+        'other' => 'Other',
         'reason' => 'Why do you want to join Pharmacists Without Borders?',
         'contribution_areas' => 'In which areas can you contribute?',
         'available_for_fieldwork' => 'I am ready to participate in field activities and projects',
         'submit' => 'Submit Membership Application',
         'privacy_note' => 'Your data is protected and will only be used for membership purposes in the organization.',
+        'errors_title' => 'Please correct the errors below.',
     ],
 
     // Articles Page

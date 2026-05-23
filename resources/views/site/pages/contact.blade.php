@@ -4,14 +4,14 @@
 
 @section('content')
 <!-- Hero Header -->
-<div class="bg-gradient-to-b from-[#1e3a8a] to-[#1e40af] text-white py-16">
+<div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
     <div class="max-w-4xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-x-2 bg-white/10 px-4 py-1 rounded-full text-sm mb-4">
             <i class="fas fa-headset"></i>
             <span>{{ __('site.contact.hero_badge') }}</span>
         </div>
         <h1 class="text-5xl font-bold tracking-tight">{{ __('site.contact.hero_title') }}</h1>
-        <p class="mt-3 text-xl text-blue-100 max-w-md mx-auto">{{ __('site.contact.hero_subtitle') }}</p>
+        <p class="mt-3 text-xl text-[#1cc6aa] max-w-md mx-auto">{{ __('site.contact.hero_subtitle') }}</p>
     </div>
 </div>
 
@@ -26,13 +26,13 @@
                 <div class="space-y-8 text-[15px]">
                     <!-- Phone -->
                     <div class="flex gap-4">
-                        <div class="w-11 h-11 flex-shrink-0 bg-blue-50 text-[#1e3a8a] rounded-2xl flex items-center justify-center">
+                        <div class="w-11 h-11 flex-shrink-0 bg-[#1cc6aa]/10 text-[#29225c] rounded-2xl flex items-center justify-center">
                             <i class="fas fa-phone text-xl"></i>
                         </div>
                         <div>
                             <div class="text-gray-500 text-sm">{{ __('site.contact.phone') }}</div>
                             <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone ?? '') }}" 
-                               class="font-semibold text-lg text-gray-900 hover:text-[#1e3a8a] transition-colors">
+                               class="font-semibold text-lg text-gray-900 hover:text-[#29225c] transition-colors">
                                 {{ $contact->phone ?? 'غير متوفر' }}
                             </a>
                         </div>
@@ -40,13 +40,13 @@
 
                     <!-- Email -->
                     <div class="flex gap-4">
-                        <div class="w-11 h-11 flex-shrink-0 bg-blue-50 text-[#1e3a8a] rounded-2xl flex items-center justify-center">
+                        <div class="w-11 h-11 flex-shrink-0 bg-[#1cc6aa]/10 text-[#29225c] rounded-2xl flex items-center justify-center">
                             <i class="fas fa-envelope text-xl"></i>
                         </div>
                         <div>
                             <div class="text-gray-500 text-sm">{{ __('site.contact.email') }}</div>
                             <a href="mailto:{{ $contact->email }}" 
-                               class="font-semibold text-lg text-gray-900 hover:text-[#1e3a8a] transition-colors">
+                               class="font-semibold text-lg text-gray-900 hover:text-[#29225c] transition-colors">
                                 {{ $contact->email ?? 'غير متوفر' }}
                             </a>
                         </div>
@@ -68,7 +68,7 @@
 
                     <!-- Address -->
                     <div class="flex gap-4">
-                        <div class="w-11 h-11 flex-shrink-0 bg-blue-50 text-[#1e3a8a] rounded-2xl flex items-center justify-center">
+                        <div class="w-11 h-11 flex-shrink-0 bg-[#1cc6aa]/10 text-[#29225c] rounded-2xl flex items-center justify-center">
                             <i class="fas fa-map-marker-alt text-xl"></i>
                         </div>
                         <div>
@@ -81,7 +81,7 @@
 
                     <!-- Working Hours -->
                     <div class="flex gap-4">
-                        <div class="w-11 h-11 flex-shrink-0 bg-blue-50 text-[#1e3a8a] rounded-2xl flex items-center justify-center">
+                        <div class="w-11 h-11 flex-shrink-0 bg-[#1cc6aa]/10 text-[#29225c] rounded-2xl flex items-center justify-center">
                             <i class="fas fa-clock text-xl"></i>
                         </div>
                         <div>
@@ -97,7 +97,7 @@
                 <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     @if($contact->phone)
                         <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone) }}" 
-                           class="flex items-center justify-center gap-x-2 bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-semibold py-3.5 rounded-2xl transition-all">
+                           class="flex items-center justify-center gap-x-2 bg-[#29225c] hover:bg-[#372d70] text-white font-semibold py-3.5 rounded-2xl transition-all">
                             <i class="fas fa-phone"></i>
                             <span>{{ __('site.contact.call_now') }}</span>
                         </a>

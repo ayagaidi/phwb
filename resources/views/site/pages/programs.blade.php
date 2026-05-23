@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-6xl mx-auto px-6 py-14">
     <div class="text-center mb-12">
-        <span class="px-4 py-1 bg-blue-100 text-[#1e3a8a] text-sm font-medium rounded-full">{{ __('site.programs_label') }}</span>
+        <span class="px-4 py-1 bg-[#1cc6aa]/10 text-[#29225c] text-sm font-medium rounded-full">{{ __('site.programs_label') }}</span>
         <h1 class="text-4xl font-bold mt-3">{{ __('site.programs.subtitle') }}</h1>
     </div>
 
@@ -26,7 +26,7 @@
                     
                     @if($program->video_url)
                         <a href="{{ $program->video_url }}" target="_blank" 
-                           class="inline-flex items-center mt-4 text-sm text-[#1e3a8a] font-medium">
+                           class="inline-flex items-center mt-4 text-sm text-[#29225c] font-medium">
                             <i class="fas fa-play-circle ml-2"></i> {{ app()->getLocale() === 'en' ? 'Watch Video' : 'شاهد الفيديو' }}
                         </a>
                     @endif

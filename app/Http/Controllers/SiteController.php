@@ -71,7 +71,7 @@ class SiteController extends Controller
         MembershipApplication::create($validated);
 
         return redirect()->route('site.membership')
-            ->with('success', 'تم استلام طلب عضويتك بنجاح! سيتم التواصل معك خلال 48 ساعة.');
+            ->with('success', __('site.membership.form_success'));
     }
 
     public function articles()

@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-14">
     <div class="text-center mb-10">
-        <span class="px-4 py-1 bg-blue-100 text-[#1e3a8a] text-sm font-medium rounded-full">{{ __('site.org.badge') }}</span>
+        <span class="px-4 py-1 bg-[#1cc6aa]/10 text-[#29225c] text-sm font-medium rounded-full">{{ __('site.org.badge') }}</span>
         <h1 class="text-4xl font-bold mt-3">{{ __('site.org.title') }}</h1>
         <p class="text-gray-600 mt-2 max-w-md mx-auto">{{ __('site.org.subtitle') }}</p>
     </div>
@@ -76,7 +76,7 @@
 
     .org-photo.placeholder {
         background: #dbeafe;
-        color: #1e40af;
+        color: #29225c;
         font-weight: 700;
         font-size: 22px;
         display: flex;

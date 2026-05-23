@@ -13,7 +13,7 @@
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;900&amp;display=swap');
         
         :root {
-            --primary: #1e3a8a;
+            --primary: #29225c;
             --font: "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
         
@@ -21,16 +21,12 @@
             font-family: var(--font);
         }
 
-        .h-11 {
-            height: 4.75rem;
-        }
-        
         .nav-link {
             transition: all 0.3s ease;
         }
         
         .nav-link:hover {
-            color: #1e40af;
+            color: #372d70;
             transform: translateY(-1px);
         }
         
@@ -46,7 +42,7 @@
             right: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(to left, #1e3a8a, #3b82f6);
+            background: linear-gradient(to left, #29225c, #3b82f6);
             border-radius: 3px;
         }
         
@@ -64,7 +60,7 @@
         }
         
         .hero-gradient {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            background: linear-gradient(135deg, #29225c 0%, #372d70 100%);
         }
     </style>
 </head>
@@ -73,22 +69,22 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-24">
                 <!-- Logo -->
                 <div class="flex items-center gap-x-3">
-                    <img src="{{ asset('logo.png') }}" alt="صيادلة بلا حدود" class="h-11 w-auto">
+                    <img src="{{ asset('logo.png') }}" alt="صيادلة بلا حدود" class="h-[4.75rem] w-auto">
                     
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                    <a href="{{ route('site.home') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.home') }}</a>
-                    <a href="{{ route('site.programs') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.programs') }}</a>
-                    <a href="{{ route('site.volunteer') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.volunteer') }}</a>
-                    <a href="{{ route('site.membership') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.membership') }}</a>
-                    <a href="{{ route('site.articles') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.articles') }}</a>
-                    <a href="{{ route('site.org') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.org') }}</a>
-                    <a href="{{ route('site.contact') }}" class="nav-link text-gray-700 hover:text-[#1e3a8a]">{{ __('site.nav.contact') }}</a>
+                    <a href="{{ route('site.home') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.home') }}</a>
+                    <a href="{{ route('site.programs') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.programs') }}</a>
+                    <a href="{{ route('site.volunteer') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.volunteer') }}</a>
+                    <a href="{{ route('site.membership') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.membership') }}</a>
+                    <a href="{{ route('site.articles') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.articles') }}</a>
+                    <a href="{{ route('site.org') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.org') }}</a>
+                    <a href="{{ route('site.contact') }}" class="nav-link text-gray-700 hover:text-[#29225c]">{{ __('site.nav.contact') }}</a>
                 </div>
 
                 <!-- Right Side -->
@@ -96,13 +92,13 @@
                     <!-- Language Switcher -->
                     <div class="hidden md:flex items-center text-xs font-semibold border border-gray-200 rounded-full overflow-hidden">
                         <a href="{{ route('lang.switch', 'ar') }}" 
-                           class="px-3 py-1 transition {{ app()->getLocale() == 'ar' ? 'bg-[#1e3a8a] text-white' : 'hover:bg-gray-50' }}">AR</a>
+                           class="px-3 py-1 transition {{ app()->getLocale() == 'ar' ? 'bg-[#29225c] text-white' : 'hover:bg-gray-50' }}">AR</a>
                         <a href="{{ route('lang.switch', 'en') }}" 
-                           class="px-3 py-1 border-l transition {{ app()->getLocale() == 'en' ? 'bg-[#1e3a8a] text-white' : 'hover:bg-gray-50' }}">EN</a>
+                           class="px-3 py-1 border-l transition {{ app()->getLocale() == 'en' ? 'bg-[#29225c] text-white' : 'hover:bg-gray-50' }}">EN</a>
                     </div>
 
                     <a href="/admin" 
-                       class="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-2xl bg-[#1e3a8a] text-white hover:bg-[#1e40af] transition-all shadow-sm">
+                       class="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-2xl bg-[#29225c] text-white hover:bg-[#372d70] transition-all shadow-sm">
                         <i class="fas fa-tachometer-alt mr-2"></i>
                         {{ __('site.nav.dashboard') }}
                     </a>
@@ -132,13 +128,13 @@
                 <div class="flex justify-center mb-3">
                     <div class="flex text-xs font-semibold border border-gray-200 rounded-full overflow-hidden">
                         <a href="{{ route('lang.switch', 'ar') }}" 
-                           class="px-4 py-1.5 {{ app()->getLocale() == 'ar' ? 'bg-[#1e3a8a] text-white' : 'hover:bg-gray-100' }}">AR</a>
+                           class="px-4 py-1.5 {{ app()->getLocale() == 'ar' ? 'bg-[#29225c] text-white' : 'hover:bg-gray-100' }}">AR</a>
                         <a href="{{ route('lang.switch', 'en') }}" 
-                           class="px-4 py-1.5 border-l {{ app()->getLocale() == 'en' ? 'bg-[#1e3a8a] text-white' : 'hover:bg-gray-100' }}">EN</a>
+                           class="px-4 py-1.5 border-l {{ app()->getLocale() == 'en' ? 'bg-[#29225c] text-white' : 'hover:bg-gray-100' }}">EN</a>
                     </div>
                 </div>
 
-                <a href="/admin" class="block w-full text-center py-3 bg-[#1e3a8a] text-white rounded-2xl font-semibold">
+                <a href="/admin" class="block w-full text-center py-3 bg-[#29225c] text-white rounded-2xl font-semibold">
                     {{ __('site.nav.dashboard') }}
                 </a>
             </div>
@@ -151,7 +147,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#1e3a8a] text-white mt-16">
+    <footer class="bg-[#29225c] text-white mt-16">
         <div class="max-w-7xl mx-auto px-6 py-14">
             <div class="grid md:grid-cols-4 gap-10">
                 <div>
@@ -159,14 +155,14 @@
                         <img src="{{ asset('logo.png') }}" class="h-9 brightness-0 invert" alt="">
                         <span class="font-bold text-xl">{{ __('site.footer.org_name') }}</span>
                     </div>
-                    <p class="text-sm text-blue-200 leading-relaxed">
+                    <p class="text-sm text-[#1cc6aa]/80 leading-relaxed">
                         {{ __('site.footer.description') }}
                     </p>
                 </div>
 
                 <div>
                     <h5 class="font-semibold mb-4 text-sm tracking-wider">{{ __('site.footer.quick_links') }}</h5>
-                    <div class="space-y-2 text-sm text-blue-200">
+                    <div class="space-y-2 text-sm text-[#1cc6aa]/80">
                         <a href="{{ route('site.programs') }}" class="block hover:text-white">{{ __('site.footer.programs') }}</a>
                         <a href="{{ route('site.volunteer') }}" class="block hover:text-white">{{ __('site.footer.join_volunteer') }}</a>
                         <a href="{{ route('site.articles') }}" class="block hover:text-white">{{ __('site.footer.news') }}</a>
@@ -176,7 +172,7 @@
 
                 <div>
                     <h5 class="font-semibold mb-4 text-sm tracking-wider">{{ __('site.footer.contact_us') }}</h5>
-                    <div class="space-y-2 text-sm text-blue-200">
+                    <div class="space-y-2 text-sm text-[#1cc6aa]/80">
                         <div><i class="fas fa-phone ml-2"></i> {{ $contact->phone ?? '+218 21 444 1234' }}</div>
                         <div><i class="fas fa-envelope ml-2"></i> {{ $contact->email ?? 'info@phwb.org' }}</div>
                     </div>
@@ -199,7 +195,7 @@
                 </div>
             </div>
 
-            <div class="border-t border-white/20 mt-10 pt-6 text-center text-xs text-blue-300">
+            <div class="border-t border-white/20 mt-10 pt-6 text-center text-xs text-[#1cc6aa]/60">
                 © {{ date('Y') }} {{ __('site.footer.org_name') }} - ليبيا. {{ __('site.footer.copyright') }}
             </div>
         </div>

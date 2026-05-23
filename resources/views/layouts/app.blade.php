@@ -46,6 +46,80 @@
     .lang-btn:hover:not(.active) {
       color: #334155;
     }
+
+    .mobile-sidebar-btn {
+      display: none;
+      background: none;
+      border: none;
+      padding: 8px;
+      margin-left: 4px;
+      margin-right: 8px;
+      color: var(--text);
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .mobile-sidebar-btn:hover {
+      background: #f1f5f9;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-sidebar-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .toolbar {
+        padding-left: 8px;
+      }
+    }
+
+    /* ==================== RESPONSIVE DASHBOARD ==================== */
+    @media (max-width: 767px) {
+      .app-layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 260px;
+        height: 100vh;
+        z-index: 999;
+        transition: right 0.3s ease;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .sidebar.mobile-open {
+        right: 0;
+      }
+
+      .main-area {
+        margin-right: 0 !important;
+        width: 100%;
+      }
+
+      .toolbar {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .toolbar-actions {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .toolbar-search {
+        flex: 1;
+        min-width: 160px;
+      }
+
+      .sidebar-toggle-btn {
+        display: flex !important;
+      }
+    }
   </style>
 </head>
 <body class="dashboard-body">
@@ -109,6 +183,15 @@
     <!-- Main Content -->
     <main class="main-area" id="main-area">
       <header class="toolbar">
+        <!-- Mobile Sidebar Toggle -->
+        <button id="mobile-sidebar-toggle" class="mobile-sidebar-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
         <h2 class="toolbar-title">@yield('page-title', __('admin.dashboard'))</h2>
         <div class="toolbar-actions">
           <!-- Search -->
@@ -146,22 +229,29 @@
               </svg>
             </button>
             <div class="dropdown-menu">
-              <div class="dropdown-header">
-                <strong>Admin</strong>
-                <small>admin@pharmacy.com</small>
-              </div>
+<div class="dropdown-header">
+                 <strong>{{ Auth::user()->name }}</strong>
+                 <small>{{ Auth::user()->email }}</small>
+               </div>
               <div class="dropdown-divider"></div>
-              <a href="{{ route('admin.dashboard') }}" class="dropdown-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="7" height="7" />
-                  <rect x="14" y="3" width="7" height="7" />
-                  <rect x="14" y="14" width="7" height="7" />
-                  <rect x="3" y="14" width="7" height="7" />
-                </svg>
-{{ __('admin.toolbar.home') }}
-                 </a>
+<a href="{{ route('admin.dashboard') }}" class="dropdown-item">
+                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                   <rect x="3" y="3" width="7" height="7" />
+                   <rect x="14" y="3" width="7" height="7" />
+                   <rect x="14" y="14" width="7" height="7" />
+                   <rect x="3" y="14" width="7" height="7" />
+                 </svg>
+                 {{ __('admin.toolbar.home') }}
+               </a>
+               <a href="{{ route('admin.profile') }}" class="dropdown-item">
+                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                   <circle cx="12" cy="7" r="4" />
+                 </svg>
+                 {{ __('admin.profile.title') }}
+               </a>
               <div class="dropdown-divider"></div>
-              <button style="background-color: #f5f5f7; border: 1px #f5f5f7;" type="button" class="dropdown-item text-red" onclick="document.getElementById('dropdown-logout-form').submit();">
+              <button style="background-color: #fff; border: 1px #fff;" type="button" class="dropdown-item text-red" onclick="document.getElementById('dropdown-logout-form').submit();">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                   <polyline points="16 17 21 12 16 7" />
@@ -215,17 +305,51 @@
       });
     }
 
-    document.addEventListener('DOMContentLoaded', initDropdowns);
+    document.addEventListener('DOMContentLoaded', function() {
+      initDropdowns();
 
-    // Sidebar Toggle
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const sidebar = document.getElementById('sidebar');
+      // Sidebar elements
+      const sidebarToggle = document.getElementById('sidebar-toggle');
+      const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
+      const sidebar = document.getElementById('sidebar');
 
-    if (sidebarToggle && sidebar) {
-      sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('collapsed');
+      function toggleSidebar() {
+        if (!sidebar) return;
+
+        if (window.innerWidth < 768) {
+          // Mobile: toggle drawer
+          sidebar.classList.toggle('mobile-open');
+        } else {
+          // Desktop: toggle collapse
+          sidebar.classList.toggle('collapsed');
+        }
+      }
+
+      // Desktop sidebar toggle button (inside sidebar)
+      if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', toggleSidebar);
+      }
+
+      // Mobile hamburger button in toolbar
+      if (mobileSidebarToggle) {
+        mobileSidebarToggle.addEventListener('click', function(e) {
+          e.stopImmediatePropagation();
+          toggleSidebar();
+        });
+      }
+
+      // Close drawer when clicking outside (mobile only)
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth < 768 && 
+            sidebar && 
+            sidebar.classList.contains('mobile-open') && 
+            !sidebar.contains(e.target) && 
+            mobileSidebarToggle && 
+            !mobileSidebarToggle.contains(e.target)) {
+          sidebar.classList.remove('mobile-open');
+        }
       });
-    }
+    });
   </script>
 </body>
 </html>

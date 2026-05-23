@@ -287,4 +287,18 @@ return [
         // Flash
         'updated' => 'تم حفظ بيانات التواصل بنجاح',
     ],
+
+    // Profile (Bilingual)
+    'profile' => [
+        'title' => 'الملف الشخصي',
+        'change_password' => 'تغيير كلمة المرور',
+        'current_password' => 'كلمة المرور الحالية',
+        'new_password' => 'كلمة المرور الجديدة',
+        'confirm_new_password' => 'تأكيد كلمة المرور الجديدة',
+        'save' => 'تغيير كلمة المرور',
+
+        // Flash
+        'password_changed' => 'تم تغيير كلمة المرور بنجاح',
+        'current_password_incorrect' => 'كلمة المرور الحالية غير صحيحة',
+    ],
 ];

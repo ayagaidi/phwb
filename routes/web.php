@@ -69,5 +69,9 @@ Route::prefix('admin')->group(function () {
         // Contact Settings
         Route::get('/contact-settings', [AdminController::class, 'contactSettings'])->name('admin.contact-settings');
         Route::post('/contact-settings', [AdminController::class, 'updateContactSettings'])->name('admin.contact-settings.update');
+
+        // Profile
+        Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+        Route::put('/profile/password', [AdminController::class, 'updatePassword'])->name('admin.profile.update-password');
     });
 });

@@ -287,4 +287,18 @@ return [
         // Flash
         'updated' => 'Contact information saved successfully',
     ],
+
+    // Profile (Bilingual)
+    'profile' => [
+        'title' => 'Profile',
+        'change_password' => 'Change Password',
+        'current_password' => 'Current Password',
+        'new_password' => 'New Password',
+        'confirm_new_password' => 'Confirm New Password',
+        'save' => 'Change Password',
+
+        // Flash
+        'password_changed' => 'Password changed successfully',
+        'current_password_incorrect' => 'Current password is incorrect',
+    ],
 ];

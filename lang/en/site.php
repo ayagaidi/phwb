@@ -132,6 +132,13 @@ return [
         'submit' => 'Submit Membership Application',
         'privacy_note' => 'Your data is protected and will only be used for membership purposes in the organization.',
         'errors_title' => 'Please correct the errors below.',
+        'city_placeholder' => 'Tripoli / Benghazi ...',
+        'qualification_placeholder' => 'Bachelor of Pharmacy',
+        'graduation_placeholder' => '2023',
+        'workplace_placeholder' => 'Pharmacy / Hospital ...',
+        'experience_placeholder' => '5 years',
+        'reason_placeholder' => 'Write briefly here...',
+        'contribution_placeholder' => 'e.g. Training, Media, Field Projects, Logistics...',
     ],
 
     // Articles Page
@@ -165,5 +172,10 @@ return [
         'whatsapp_button' => 'Message Us on WhatsApp',
         'follow_us' => 'Follow Us On',
         'location_label' => 'Al-Sarraj District - Tripoli',
+        'not_available' => 'Not available',
+        'facebook' => 'Facebook',
+        'instagram' => 'Instagram',
+        'libya' => 'Libya',
+        'org_name_map' => 'Pharmacists Without Borders - Libya',
     ],
 ];

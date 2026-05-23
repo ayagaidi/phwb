@@ -132,6 +132,13 @@ return [
         'submit' => 'إرسال طلب العضوية',
         'privacy_note' => 'بياناتك محمية ولن تُستخدم إلا لأغراض العضوية في المنظمة.',
         'errors_title' => 'يرجى تصحيح الأخطاء في الحقول أدناه.',
+        'city_placeholder' => 'طرابلس / بنغازي ...',
+        'qualification_placeholder' => 'بكالوريوس صيدلة',
+        'graduation_placeholder' => '2023',
+        'workplace_placeholder' => 'صيدلية / مستشفى ...',
+        'experience_placeholder' => '5 سنوات',
+        'reason_placeholder' => 'أكتب هنا باختصار...',
+        'contribution_placeholder' => 'مثال: التدريب، الإعلام، المشاريع الميدانية، اللوجستيات...',
     ],
 
     // Articles Page
@@ -165,5 +172,10 @@ return [
         'whatsapp_button' => 'راسلنا على واتساب',
         'follow_us' => 'تابعنا على',
         'location_label' => 'حي السراج - طرابلس',
+        'not_available' => 'غير متوفر',
+        'facebook' => 'فيسبوك',
+        'instagram' => 'إنستغرام',
+        'libya' => 'ليبيا',
+        'org_name_map' => 'صيادلة بلا حدود - ليبيا',
     ],
 ];

@@ -3,6 +3,14 @@
 @section('title', __('site.contact.title') . ' | ' . __('site.footer.org_name'))
 
 @section('content')
+@php
+$locale = app()->getLocale();
+$addrKey = 'address_' . $locale;
+$whKey = 'working_hours_' . $locale;
+$addressVal = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.not_available');
+$workingVal = $contact->{$whKey} ?? $contact->working_hours_ar ?? __('site.contact.not_available');
+$mapAddress = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.location_label');
+@endphp
 <!-- Hero Header -->
 <div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
     <div class="max-w-4xl mx-auto px-6 text-center">
@@ -33,7 +41,7 @@
                             <div class="text-gray-500 text-sm">{{ __('site.contact.phone') }}</div>
                             <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone ?? '') }}" 
                                class="font-semibold text-lg text-gray-900 hover:text-[#29225c] transition-colors">
-                                {{ $contact->phone ?? 'غير متوفر' }}
+                                {{ $contact->phone ?? __('site.contact.not_available') }}
                             </a>
                         </div>
                     </div>
@@ -47,7 +55,7 @@
                             <div class="text-gray-500 text-sm">{{ __('site.contact.email') }}</div>
                             <a href="mailto:{{ $contact->email }}" 
                                class="font-semibold text-lg text-gray-900 hover:text-[#29225c] transition-colors">
-                                {{ $contact->email ?? 'غير متوفر' }}
+                                {{ $contact->email ?? __('site.contact.not_available') }}
                             </a>
                         </div>
                     </div>
@@ -61,7 +69,7 @@
                             <div class="text-gray-500 text-sm">{{ __('site.contact.whatsapp') }}</div>
                             <a href="https://wa.me/{{ preg_replace('/\D/', '', $contact->whatsapp ?? '') }}" target="_blank"
                                class="font-semibold text-lg text-gray-900 hover:text-green-600 transition-colors">
-                                {{ $contact->whatsapp ?? 'غير متوفر' }}
+                                {{ $contact->whatsapp ?? __('site.contact.not_available') }}
                             </a>
                         </div>
                     </div>
@@ -72,9 +80,9 @@
                             <i class="fas fa-map-marker-alt text-xl"></i>
                         </div>
                         <div>
-                            <div class="text-gray-500 text-sm">العنوان</div>
+                            <div class="text-gray-500 text-sm">{{ __('site.contact.address') }}</div>
                             <div class="font-semibold text-lg leading-tight text-gray-900">
-                                {{ $contact->address_ar ?? 'غير متوفر' }}
+                                {{ $addressVal }}
                             </div>
                         </div>
                     </div>
@@ -87,7 +95,7 @@
                         <div>
                             <div class="text-gray-500 text-sm">{{ __('site.contact.working_hours') }}</div>
                             <div class="font-semibold text-lg text-gray-900">
-                                {{ $contact->working_hours_ar ?? 'غير متوفر' }}
+                                {{ $workingVal }}
                             </div>
                         </div>
                     </div>
@@ -117,7 +125,7 @@
             <div class="relative bg-gray-100 min-h-[420px] md:min-h-full">
                 <div id="map" class="absolute inset-0 z-10"></div>
                 <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-xl text-xs shadow text-gray-600 z-20">
-                    حي السراج - طرابلس
+                    {{ __('site.contact.location_label') }}
                 </div>
             </div>
 
@@ -133,14 +141,14 @@
                 <a href="{{ $contact->facebook }}" target="_blank"
                    class="inline-flex items-center gap-x-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-medium transition-all">
                     <i class="fab fa-facebook-f"></i>
-                    <span>فيسبوك</span>
+                    <span>{{ __('site.contact.facebook') }}</span>
                 </a>
             @endif
             @if($contact->instagram)
                 <a href="{{ $contact->instagram }}" target="_blank"
                    class="inline-flex items-center gap-x-2 px-6 py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:brightness-110 text-white rounded-2xl text-sm font-medium transition-all">
                     <i class="fab fa-instagram"></i>
-                    <span>إنستغرام</span>
+                    <span>{{ __('site.contact.instagram') }}</span>
                 </a>
             @endif
         </div>
@@ -171,9 +179,9 @@
         const marker = L.marker([lat, lng]).addTo(map);
         marker.bindPopup(`
             <div style="font-size:13px; line-height:1.4; min-width:180px">
-                <strong>صيادلة بلا حدود - ليبيا</strong><br>
-                {{ e($contact->address_ar ?? 'طرابلس، حي السراج') }}<br>
-                <span style="color:#64748b">ليبيا</span>
+                <strong>{{ __('site.contact.org_name_map') }}</strong><br>
+                {{ e($mapAddress) }}<br>
+                <span style="color:#64748b">{{ __('site.contact.libya') }}</span>
             </div>
         `).openPopup();
 

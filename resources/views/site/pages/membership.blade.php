@@ -88,7 +88,7 @@
                     </div>
                 @endif
 
-                <!-- البيانات الشخصية -->
+                <!-- Personal Information -->
                 <div>
                     <h3 class="font-bold text-lg mb-4 text-[#29225c] border-b pb-2">{{ __('site.membership.personal_info') }}</h3>
                     <div class="grid md:grid-cols-2 gap-5">
@@ -141,7 +141,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.city') }} <span class="text-red-500">*</span></label>
-                            <input type="text" name="city" value="{{ old('city') }}" required placeholder="طرابلس / بنغازي ..." class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('city') border-red-400 @enderror">
+                            <input type="text" name="city" value="{{ old('city') }}" required placeholder="{{ __('site.membership.city_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('city') border-red-400 @enderror">
                             @error('city')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -156,13 +156,13 @@
                     </div>
                 </div>
 
-                <!-- البيانات المهنية -->
+                <!-- Professional Information -->
                 <div>
                     <h3 class="font-bold text-lg mb-4 text-[#29225c] border-b pb-2">{{ __('site.membership.professional_info') }}</h3>
                     <div class="grid md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.qualification') }}</label>
-                            <input type="text" name="qualification" value="{{ old('qualification') }}" placeholder="بكالوريوس صيدلة" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('qualification') border-red-400 @enderror">
+                            <input type="text" name="qualification" value="{{ old('qualification') }}" placeholder="{{ __('site.membership.qualification_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('qualification') border-red-400 @enderror">
                             @error('qualification')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -176,7 +176,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.graduation_year') }}</label>
-                            <input type="text" name="graduation_year" value="{{ old('graduation_year') }}" placeholder="2023" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('graduation_year') border-red-400 @enderror">
+                            <input type="text" name="graduation_year" value="{{ old('graduation_year') }}" placeholder="{{ __('site.membership.graduation_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('graduation_year') border-red-400 @enderror">
                             @error('graduation_year')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -190,14 +190,14 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.current_workplace') }}</label>
-                            <input type="text" name="current_workplace" value="{{ old('current_workplace') }}" placeholder="صيدلية / مستشفى ..." class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('current_workplace') border-red-400 @enderror">
+                            <input type="text" name="current_workplace" value="{{ old('current_workplace') }}" placeholder="{{ __('site.membership.workplace_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('current_workplace') border-red-400 @enderror">
                             @error('current_workplace')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.years_experience') }}</label>
-                            <input type="text" name="years_experience" value="{{ old('years_experience') }}" placeholder="5 سنوات" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('years_experience') border-red-400 @enderror">
+                            <input type="text" name="years_experience" value="{{ old('years_experience') }}" placeholder="{{ __('site.membership.experience_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('years_experience') border-red-400 @enderror">
                             @error('years_experience')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -212,7 +212,7 @@
                     </div>
                 </div>
 
-                <!-- معلومات العضوية -->
+                <!-- Membership Information -->
                 <div>
                     <h3 class="font-bold text-lg mb-4 text-[#29225c] border-b pb-2">{{ __('site.membership.membership_info') }}</h3>
 
@@ -230,7 +230,7 @@
 
                     <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.reason') }} <span class="text-red-500">*</span></label>
-                        <textarea name="reason" rows="4" required placeholder="أكتب هنا باختصار..." class="w-full border rounded-3xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('reason') border-red-400 @enderror">{{ old('reason') }}</textarea>
+                        <textarea name="reason" rows="4" required placeholder="{{ __('site.membership.reason_placeholder') }}" class="w-full border rounded-3xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('reason') border-red-400 @enderror">{{ old('reason') }}</textarea>
                         @error('reason')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -238,7 +238,7 @@
 
                     <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.contribution_areas') }}</label>
-                        <textarea name="contribution_areas" rows="3" placeholder="مثال: التدريب، الإعلام، المشاريع الميدانية، اللوجستيات..." class="w-full border rounded-3xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('contribution_areas') border-red-400 @enderror">{{ old('contribution_areas') }}</textarea>
+                        <textarea name="contribution_areas" rows="3" placeholder="{{ __('site.membership.contribution_placeholder') }}" class="w-full border rounded-3xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('contribution_areas') border-red-400 @enderror">{{ old('contribution_areas') }}</textarea>
                         @error('contribution_areas')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror

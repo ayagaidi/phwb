@@ -3,9 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ==================== PUBLIC MODERN SITE ====================
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['ar', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
+Route::get('/', [App\Http\Controllers\SiteController::class, 'home'])->name('site.home');
+Route::get('/programs', [App\Http\Controllers\SiteController::class, 'programs'])->name('site.programs');
+Route::get('/volunteer', [App\Http\Controllers\SiteController::class, 'volunteer'])->name('site.volunteer');
+Route::get('/membership', [App\Http\Controllers\SiteController::class, 'membership'])->name('site.membership');
+Route::post('/membership', [App\Http\Controllers\SiteController::class, 'storeMembership'])->name('site.membership.store');
+Route::get('/articles', [App\Http\Controllers\SiteController::class, 'articles'])->name('site.articles');
+Route::get('/org-structure', [App\Http\Controllers\SiteController::class, 'org'])->name('site.org');
+Route::get('/contact', [App\Http\Controllers\SiteController::class, 'contact'])->name('site.contact');
 
 Route::get('/login', function () {
     return redirect()->route('admin.login');

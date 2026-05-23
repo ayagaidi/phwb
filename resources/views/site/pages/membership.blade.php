@@ -94,7 +94,7 @@
                     <div class="grid md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.full_name') }} <span class="text-red-500">*</span></label>
-                            <input type="text" name="full_name" value="{{ old('full_name') }}" required class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('full_name') border-red-400 @enderror">
+                            <input type="text" name="full_name" value="{{ old('full_name') }}"  class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('full_name') border-red-400 @enderror">
                             @error('full_name')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -120,7 +120,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.phone') }} <span class="text-red-500">*</span></label>
-                            <input type="tel" name="phone" value="{{ old('phone') }}" required class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('phone') border-red-400 @enderror">
+                            <input type="tel" name="phone" value="{{ old('phone') }}"  class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('phone') border-red-400 @enderror">
                             @error('phone')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -134,14 +134,14 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.email') }} <span class="text-red-500">*</span></label>
-                            <input type="email" name="email" value="{{ old('email') }}" required class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('email') border-red-400 @enderror">
+                            <input type="email" name="email" value="{{ old('email') }}"  class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('email') border-red-400 @enderror">
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.city') }} <span class="text-red-500">*</span></label>
-                            <input type="text" name="city" value="{{ old('city') }}" required placeholder="{{ __('site.membership.city_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('city') border-red-400 @enderror">
+                            <input type="text" name="city" value="{{ old('city') }}"  placeholder="{{ __('site.membership.city_placeholder') }}" class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('city') border-red-400 @enderror">
                             @error('city')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -218,7 +218,7 @@
 
                     <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.membership_type') }} <span class="text-red-500">*</span></label>
-                        <select name="membership_type" required class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('membership_type') border-red-400 @enderror">
+                        <select name="membership_type"  class="w-full border rounded-2xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('membership_type') border-red-400 @enderror">
                             <option value="full_member" {{ old('membership_type') == 'full_member' ? 'selected' : '' }}>{{ __('site.membership.full_member') }}</option>
                             <option value="student_member" {{ old('membership_type') == 'student_member' ? 'selected' : '' }}>{{ __('site.membership.student_member') }}</option>
                             <option value="supporter" {{ old('membership_type') == 'supporter' ? 'selected' : '' }}>{{ __('site.membership.supporter') }}</option>
@@ -230,7 +230,7 @@
 
                     <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('site.membership.reason') }} <span class="text-red-500">*</span></label>
-                        <textarea name="reason" rows="4" required placeholder="{{ __('site.membership.reason_placeholder') }}" class="w-full border rounded-3xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('reason') border-red-400 @enderror">{{ old('reason') }}</textarea>
+                        <textarea name="reason" rows="4"  placeholder="{{ __('site.membership.reason_placeholder') }}" class="w-full border rounded-3xl px-4 py-3 focus:outline-none focus:border-[#29225c] @error('reason') border-red-400 @enderror">{{ old('reason') }}</textarea>
                         @error('reason')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror

@@ -51,6 +51,7 @@ return [
         'join_volunteer' => 'Join as Volunteer',
         'news' => 'News & Articles',
         'copyright' => 'All rights reserved.',
+        'location' => 'Libya',
     ],
 
     // Programs Page

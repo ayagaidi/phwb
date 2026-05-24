@@ -372,14 +372,12 @@
 
       function toggleSidebar() {
         if (!sidebar) return;
+        sidebar.classList.toggle('collapsed');
+      }
 
-        if (window.innerWidth < 768) {
-          // Mobile: toggle drawer
-          sidebar.classList.toggle('mobile-open');
-        } else {
-          // Desktop: toggle collapse
-          sidebar.classList.toggle('collapsed');
-        }
+      function toggleMobileDrawer() {
+        if (!sidebar) return;
+        sidebar.classList.toggle('mobile-open');
       }
 
       // Desktop sidebar toggle button (inside sidebar)
@@ -391,14 +389,13 @@
       if (mobileSidebarToggle) {
         mobileSidebarToggle.addEventListener('click', function(e) {
           e.stopImmediatePropagation();
-          toggleSidebar();
+          toggleMobileDrawer();
         });
       }
 
-      // Close drawer when clicking outside (mobile only)
+      // Close mobile drawer when clicking outside
       document.addEventListener('click', function(e) {
-        if (window.innerWidth < 768 && 
-            sidebar && 
+        if (sidebar && 
             sidebar.classList.contains('mobile-open') && 
             !sidebar.contains(e.target) && 
             mobileSidebarToggle && 

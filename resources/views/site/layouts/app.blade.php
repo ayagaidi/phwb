@@ -130,9 +130,7 @@
                     </div>
                 </div>
 
-                <a href="/admin" class="block w-full text-center py-3 bg-[#29225c] text-white rounded-2xl font-semibold">
-                    {{ __('site.nav.dashboard') }}
-                </a>
+               
             </div>
         </div>
     </div>

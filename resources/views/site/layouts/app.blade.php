@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'صيادلة بلا حدود')</title>
+    <icon rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/x-icon">
     
     <!-- Modern Tailwind via CDN for quick beautiful design -->
     <script src="https://cdn.tailwindcss.com"></script>

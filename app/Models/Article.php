@@ -10,10 +10,12 @@ class Article extends Model
         'title', 'title_en',
         'content', 'content_en',
         'image',
+        'images',
         'is_published',
     ];
 
     protected $casts = [
         'is_published' => 'boolean',
+        'images' => 'array',
     ];
 }

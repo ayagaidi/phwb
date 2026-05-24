@@ -45,7 +45,7 @@
             <td>{{ Str::limit($dmDesc, 60) }}</td>
             <td>
               <div class="action-btns">
-                <a href="#" class="icon-btn icon-btn-edit" title="{{ __('admin.donation_methods.edit') }}">
+                <a href="{{ route('admin.donation-methods.edit', $method->id) }}" class="icon-btn icon-btn-edit" title="{{ __('admin.donation_methods.edit') }}">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
                 </a>
                 <form method="POST" action="{{ route('admin.donation-methods.destroy', $method->id) }}" id="delete-form-{{ $method->id }}" style="display:inline;">

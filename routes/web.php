@@ -69,7 +69,19 @@ Route::prefix('admin')->group(function () {
         Route::get('/donation-methods', [AdminController::class, 'donationMethods'])->name('admin.donation-methods');
         Route::get('/donation-methods/create', [AdminController::class, 'createDonationMethod'])->name('admin.donation-methods.create');
         Route::post('/donation-methods', [AdminController::class, 'storeDonationMethod'])->name('admin.donation-methods.store');
+        Route::get('/donation-methods/{id}/edit', [AdminController::class, 'editDonationMethod'])->name('admin.donation-methods.edit');
+        Route::put('/donation-methods/{id}', [AdminController::class, 'updateDonationMethod'])->name('admin.donation-methods.update');
         Route::delete('/donation-methods/{id}', [AdminController::class, 'destroyDonationMethod'])->name('admin.donation-methods.destroy');
+
+        // Membership Applications
+        Route::get('/membership-applications', [AdminController::class, 'membershipApplications'])->name('admin.membership-applications');
+        Route::get('/membership-applications/export', [AdminController::class, 'exportMembershipApplications'])->name('admin.membership-applications.export');
+
+        Route::post('/membership-applications/mark-all-read', [AdminController::class, 'markAllMembershipAsRead'])->name('admin.membership-applications.mark-all-read');
+
+        Route::get('/membership-applications/{id}', [AdminController::class, 'showMembershipApplication'])->name('admin.membership-applications.show');
+        Route::put('/membership-applications/{id}', [AdminController::class, 'updateMembershipApplication'])->name('admin.membership-applications.update');
+        Route::post('/membership-applications/{id}/mark-read', [AdminController::class, 'markMembershipAsRead'])->name('admin.membership-applications.mark-read');
 
         // Organizational Structure
         Route::get('/org-structure', [AdminController::class, 'orgStructure'])->name('admin.org-structure');

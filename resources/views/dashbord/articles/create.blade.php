@@ -4,89 +4,155 @@
 @section('page-title', __('admin.articles.add_new'))
 
 @section('content')
-<div class="form-layout">
-  <!-- Side Preview -->
-  <div class="form-preview">
-    <div class="form-preview-icon" style="background: var(--blue-light); color: var(--blue);">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-    </div>
-    <h3>{{ __('admin.articles.add_new') }}</h3>
-    <p>{{ __('admin.articles.management') }}</p>
+<div class="content-scroll">
+  <div class="content">
 
-    <div class="preview-stats">
-      <div class="preview-stat orange">
-        <p>{{ __('admin.articles.status') }}</p>
-        <p>{{ __('admin.articles.draft_badge') }}</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Form Section -->
-  <div class="form-section">
-    <form method="POST" action="{{ route('admin.articles.store') }}">
-      @csrf
-
-      <div class="form-section-hdr">
-        <div class="form-section-hdr-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <!-- Header -->
+    <div class="page-hdr">
+      <div class="page-hdr-back">
+        <a href="{{ route('admin.articles') }}" class="btn-back">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M15 18l-6-6 6-6"></path>
+          </svg>
+        </a>
+        <div>
+          <h1>{{ __('admin.articles.add_new') }}</h1>
+           <p>{{ __('admin.articles.details_hint') }}</p>
         </div>
-        <h3>{{ __('admin.articles.add_new') }}</h3>
       </div>
+    </div>
 
-      <div class="field-group">
-        <label>{{ __('admin.articles.title_ar') }}</label>
-        <input type="text" name="title" class="field-input" value="{{ old('title') }}" >
-        @error('title')
-          <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-        @enderror
-      </div>
+    <!-- Main Form Card -->
+    <div class="glass-box p-8">
+      <form method="POST" action="{{ route('admin.articles.store') }}" enctype="multipart/form-data">
+        @csrf
 
-      <div class="field-group">
-        <label>{{ __('admin.articles.title_en') }}</label>
-        <input type="text" name="title_en" class="field-input" value="{{ old('title_en') }}" >
-      </div>
+        <div class="form-grid">
 
-      <div class="field-group">
-        <label>{{ __('admin.articles.content_ar') }}</label>
-        <textarea name="content" class="field-input" rows="8" >{{ old('content') }}</textarea>
-        @error('content')
-          <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-        @enderror
-      </div>
+          <!-- Images Upload -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.articles.image') }}</label>
+            <div id="image-dropzone" class="upload-zone">
+              <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <p>{{ __('admin.articles.drag_drop') }}</p>
+              <div id="selected-images-list" style="margin-top: 8px; font-size: 0.8rem; color: var(--muted);"></div>
+            </div>
+            <input type="file" name="images[]" id="image-input" style="display:none;" accept="image/*" multiple>
+            @error('images.*')
+              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
+            @enderror
+          </div>
 
-      <div class="field-group">
-        <label>{{ __('admin.articles.content_en') }}</label>
-        <textarea name="content_en" class="field-input" rows="8" >{{ old('content_en') }}</textarea>
-      </div>
+          <!-- Arabic Title -->
+          <div class="form-group grid-half">
+            <label>{{ __('admin.articles.title_ar') }} <span class="text-red-500">*</span></label>
+            <input type="text" name="title" class="field-input" value="{{ old('title') }}" required>
+            @error('title')
+              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
+            @enderror
+          </div>
 
-      <div class="field-group">
-        <label>{{ __('admin.articles.image') }}</label>
-        <div id="image-dropzone" class="dropzone" style="border:2px dashed #cbd5e1; border-radius:12px; background:#f8fafc; padding:2rem; text-align:center; cursor:pointer; min-height:140px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p style="margin:0; color:#64748b; font-size:0.95rem;">{{ __('admin.articles.drag_drop') }}</p>
+          <!-- English Title -->
+          <div class="form-group grid-half">
+            <label>{{ __('admin.articles.title_en') }}</label>
+            <input type="text" name="title_en" class="field-input" value="{{ old('title_en') }}">
+          </div>
+
+          <!-- Arabic Content -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.articles.content_ar') }} <span class="text-red-500">*</span></label>
+            <textarea name="content" class="field-input" rows="8" required>{{ old('content') }}</textarea>
+            @error('content')
+              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
+            @enderror
+          </div>
+
+          <!-- English Content -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.articles.content_en') }}</label>
+            <textarea name="content_en" class="field-input" rows="8">{{ old('content_en') }}</textarea>
+          </div>
+
         </div>
-        <input type="file" name="image" id="image-input" class="field-input" style="display:none;" accept="image/*">
-        @error('image')
-          <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-        @enderror
-      </div>
-        <button type="submit" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.65rem 1.35rem; border-radius:20px; background:var(--accent); color:#fff; font-size:0.875rem; font-weight:700; border:none; cursor:pointer; margin-top:1rem;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        {{ __('admin.articles.add_button') }}
-      </button>
-      </div>
-           
-          
 
-    
-    </form>
+        <div class="form-footer mt-8">
+          <button type="submit" class="btn btn-save">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            {{ __('admin.articles.add_button') }}
+          </button>
+          <a href="{{ route('admin.articles') }}" class="btn btn-cancel">{{ __('admin.cancel') }}</a>
+        </div>
+
+      </form>
+    </div>
+
   </div>
 </div>
+@endsection
 
 @push('scripts')
 <script>
   const dropzone = document.getElementById('image-dropzone');
   const fileInput = document.getElementById('image-input');
+  const listContainer = document.getElementById('selected-images-list');
+
+  let selectedFiles = [];
+
+  function updateFileList() {
+    listContainer.innerHTML = '';
+    if (selectedFiles.length === 0) return;
+
+    const ul = document.createElement('ul');
+    ul.style.cssText = 'list-style:none; padding:0; margin:8px 0 0; text-align:left; max-width:100%;';
+
+    selectedFiles.forEach((file, index) => {
+      const li = document.createElement('li');
+      li.style.cssText = 'display:flex; align-items:center; justify-content:space-between; background:white; padding:4px 8px; border-radius:6px; margin-bottom:4px; font-size:0.85rem;';
+      li.innerHTML = `
+        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${file.name}</span>
+        <button type="button" style="background:none; border:none; color:#dc2626; cursor:pointer; font-size:14px; padding:0 4px;">×</button>
+      `;
+      li.querySelector('button').onclick = () => {
+        removeSelectedImage(index);
+      };
+      ul.appendChild(li);
+    });
+
+    listContainer.appendChild(ul);
+  }
+
+  function syncToInput() {
+    const dt = new DataTransfer();
+    selectedFiles.forEach(file => dt.items.add(file));
+    fileInput.files = dt.files;
+  }
+
+  // Dedicated function to remove a selected image with confirmation
+  function removeSelectedImage(index) {
+    Swal.fire({
+      title: 'هل أنت متأكد؟',
+      text: 'هل تريد إزالة هذه الصورة من القائمة؟',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'نعم، أزلها',
+      cancelButtonText: '{{ __("admin.confirm.cancel") }}'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        selectedFiles.splice(index, 1);
+        updateFileList();
+        syncToInput();
+      }
+    });
+  }
 
   if (dropzone && fileInput) {
     dropzone.addEventListener('click', () => fileInput.click());
@@ -103,18 +169,25 @@
     dropzone.addEventListener('drop', e => {
       e.preventDefault();
       dropzone.style.borderColor = '#cbd5e1';
-      if (e.dataTransfer.files.length > 0) {
-        fileInput.files = e.dataTransfer.files;
-        dropzone.innerHTML = `<p>تم اختيار: ${e.dataTransfer.files[0].name}</p>`;
-      }
+
+      Array.from(e.dataTransfer.files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+          selectedFiles.push(file);
+        }
+      });
+
+      updateFileList();
+      syncToInput();
     });
 
     fileInput.addEventListener('change', () => {
-      if (fileInput.files.length > 0) {
-        dropzone.innerHTML = `<p>تم اختيار: ${fileInput.files[0].name}</p>`;
-      }
+      Array.from(fileInput.files).forEach(file => {
+        if (!selectedFiles.some(f => f.name === file.name)) {
+          selectedFiles.push(file);
+        }
+      });
+      updateFileList();
     });
   }
 </script>
 @endpush
-@endsection

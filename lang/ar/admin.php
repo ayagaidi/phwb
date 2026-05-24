@@ -27,6 +27,7 @@ return [
         'programs' => 'البرامج',
         'volunteer_content' => 'محتوى التطوع',
         'articles' => 'الأخبار والمقالات',
+        'membership_applications' => 'طلبات العضوية',
         'donation_methods' => 'طرق التبرع',
         'org_structure' => 'الهيكل التنظيمي',
         'contact_settings' => 'بيانات التواصل',
@@ -46,6 +47,7 @@ return [
     'language' => 'اللغة',
     'arabic' => 'العربية',
     'english' => 'الإنجليزية',
+    'cancel' => 'إلغاء',
 
     // Users Management
     'users' => [
@@ -84,12 +86,17 @@ return [
         'edit_user' => 'تعديل المستخدم',
         'edit_data' => 'تعديل البيانات',
         'save_changes' => 'حفظ التعديلات',
+        'change_password' => 'تغيير كلمة المرور',
+        'new_password' => 'كلمة المرور الجديدة',
+        'confirm_password' => 'تأكيد كلمة المرور',
+        'password_help' => 'اتركها فارغة للاحتفاظ بكلمة المرور الحالية',
     ],
 
     // Flash messages
         'user_added' => 'تمت إضافة المستخدم بنجاح',
-        'user_updated' => 'تم التعديل بنجاح',
-        'user_toggled' => 'تم تحديث حالة المستخدم بنجاح',
+    'user_updated' => 'تم التعديل بنجاح',
+    'user_toggled' => 'تم تحديث حالة المستخدم بنجاح',
+    'password_changed' => 'تم تغيير كلمة المرور بنجاح',
 
     // Programs (Bilingual)
     'programs' => [
@@ -186,6 +193,8 @@ return [
         'save_changes' => 'حفظ التعديلات',
         'back' => 'عودة',
         'drag_drop' => 'اسحب الصورة هنا أو اضغط للاختيار',
+        'details_hint' => 'أدخل تفاصيل المقالة باللغتين العربية والإنجليزية',
+        'edit_hint' => 'قم بتحديث بيانات المقالة',
 
         // Flash
         'added' => 'تمت إضافة المقالة',
@@ -216,9 +225,14 @@ return [
         'image' => 'الصورة',
         'drag_drop' => 'اسحب الصورة هنا أو اضغط للاختيار',
         'add_button' => 'إضافة طريقة التبرع',
+        'edit' => 'تعديل',
+        'edit_method' => 'تعديل طريقة التبرع',
+        'save_changes' => 'حفظ التعديلات',
+        'details_hint' => 'أدخل تفاصيل طريقة الدفع باللغتين العربية والإنجليزية',
 
         // Flash
         'added' => 'تمت إضافة طريقة التبرع',
+        'updated' => 'تم تحديث طريقة التبرع بنجاح',
         'deleted' => 'تم حذف طريقة التبرع',
         'toggled' => 'تم تحديث حالة طريقة التبرع بنجاح',
     ],
@@ -258,6 +272,12 @@ return [
         'sort_order' => 'ترتيب العرض',
         'add_button' => 'إضافة الوحدة',
         'save_changes' => 'حفظ التعديلات',
+        'details_hint' => 'أدخل تفاصيل الوحدة باللغتين العربية والإنجليزية',
+        'drag_drop' => 'اسحب الصورة هنا أو اضغط للرفع',
+        'edit_hint' => 'قم بتحديث بيانات الوحدة',
+        'new_photo_optional' => 'صورة جديدة (اختياري)',
+        'delete_photo' => 'حذف الصورة',
+        'delete_photo_confirm' => 'هل تريد حذف هذه الصورة؟',
         'edit' => 'تعديل',
         'delete' => 'حذف',
 
@@ -288,6 +308,56 @@ return [
         'updated' => 'تم حفظ بيانات التواصل بنجاح',
     ],
 
+    // Membership Applications (Bilingual)
+    'membership_applications' => [
+        'title' => 'طلبات العضوية الجديدة',
+        'new_applications' => 'طلبات العضوية الجديدة',
+        'total' => 'إجمالي الطلبات',
+        'full_member_percent' => 'عضو عامل',
+        'student_supporter_percent' => 'طالب / داعم',
+        'applicant' => 'مقدم الطلب',
+        'email' => 'البريد',
+        'phone' => 'الهاتف',
+        'type' => 'نوع العضوية',
+        'date' => 'التاريخ',
+        'actions' => 'الإجراءات',
+        'full_member' => 'عضو عامل',
+        'student_member' => 'عضو طالب',
+        'supporter' => 'عضو داعم',
+        'no_applications' => 'لا توجد طلبات عضوية حالياً.',
+        'success' => 'تم بنجاح!',
+        'details_title' => 'تفاصيل طلب العضوية',
+        'back' => 'رجوع',
+        'personal_data' => 'البيانات الشخصية',
+        'professional_data' => 'البيانات المهنية',
+        'full_name' => 'الاسم الكامل',
+        'date_of_birth' => 'تاريخ الميلاد',
+        'gender' => 'الجنس',
+        'whatsapp' => 'واتساب',
+        'city' => 'المدينة',
+        'qualification' => 'المؤهل العلمي',
+        'university' => 'الجامعة',
+        'graduation_year' => 'سنة التخرج',
+        'license_number' => 'رقم الترخيص',
+        'current_workplace' => 'مكان العمل',
+        'years_experience' => 'سنوات الخبرة',
+        'membership_info' => 'معلومات العضوية',
+        'reason' => 'سبب الانضمام',
+        'contribution_areas' => 'مجالات المساهمة',
+        'available_for_fieldwork' => 'متاح للعمل الميداني',
+        'yes' => 'نعم',
+        'no' => 'لا',
+        'admin_actions' => 'إجراءات الإدارة',
+        'status' => 'حالة الطلب',
+        'pending' => 'قيد المراجعة',
+        'approved' => 'مقبول',
+        'rejected' => 'مرفوض',
+        'admin_notes' => 'ملاحظات الإدارة',
+        'admin_notes_placeholder' => 'اكتب ملاحظاتك هنا...',
+        'save_changes' => 'حفظ التغييرات',
+        'updated_success' => 'تم تحديث الطلب بنجاح',
+    ],
+
     // Profile (Bilingual)
     'profile' => [
         'title' => 'الملف الشخصي',
@@ -300,5 +370,48 @@ return [
         // Flash
         'password_changed' => 'تم تغيير كلمة المرور بنجاح',
         'current_password_incorrect' => 'كلمة المرور الحالية غير صحيحة',
+    ],
+
+    // Dashboard Overview (static content)
+    'dash' => [
+        'welcome' => 'مرحباً بك في لوحة التحكم',
+        'subtitle' => 'نظرة عامة على نشاط منظمة صيادلة بلا حدود',
+        'stats' => [
+            'total_users' => 'إجمالي المستخدمين',
+            'total_programs' => 'البرامج',
+            'total_articles' => 'المقالات والأخبار',
+            'pending_memberships' => 'طلبات العضوية المعلقة',
+        ],
+        'alerts' => [
+            'title' => 'تنبيهات هامة',
+            'pending_memberships' => 'طلبات عضوية معلقة (:count)',
+            'pending_desc' => 'يرجى مراجعة الطلبات الجديدة.',
+            'volunteer' => 'محتوى التطوع',
+            'volunteer_desc' => 'تأكد من تحديث صفحة فرص التطوع.',
+        ],
+        'recent_applications' => 'أحدث طلبات العضوية',
+        'view_all' => 'عرض الكل',
+        'table' => [
+            'name' => 'الاسم',
+            'email' => 'البريد',
+            'type' => 'النوع',
+            'date' => 'التاريخ',
+            'status' => 'الحالة',
+        ],
+        'no_applications' => 'لا توجد طلبات عضوية بعد.',
+        'charts' => [
+            'monthly_applications' => 'طلبات العضوية الشهرية',
+            'membership_distribution' => 'توزيع أنواع العضوية',
+            'total' => 'الإجمالي',
+        ],
+        'published_content' => 'المحتوى المنشور',
+        'programs_label' => 'البرامج',
+        'articles_label' => 'المقالات',
+        'status' => [
+            'new' => 'جديد',
+            'pending' => 'قيد المراجعة',
+            'approved' => 'معتمد',
+            'rejected' => 'مرفوض',
+        ],
     ],
 ];

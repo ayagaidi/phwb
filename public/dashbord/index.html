@@ -1,274 +1,497 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>صيادلة بلا حدود | لوحة التحكم</title>
+  <meta name="description" content="دوشة — لوحة التحكم الرئيسية، ملخص الأداء والإحصائيات" />
+  <title>دوشة | الرئيسية</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;900&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dashboard-body">
 
-  <div class="app-layout">
-    
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+<body>
+
+  <div class="app">
+
+    <!-- ===================================================================
+       Sidebar
+       =================================================================== -->
+    <aside class="sidebar" id="sidebar" aria-label="القائمة الجانبية">
+
+      <!-- Brand / logo -->
       <div class="sidebar-header">
-        <div class="sidebar-logo">D</div>
-        <span class="sidebar-brand">صيادلة بلا حدود</span>
+        <div class="sidebar-logo" aria-hidden="true">D</div>
+        <span class="sidebar-brand">Dawsha</span>
       </div>
 
-      <nav class="sidebar-nav">
-        <a href="index.html" class="nav-item" data-page="index.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <!-- Navigation -->
+      <nav class="sidebar-nav" aria-label="التنقل الرئيسي">
+        <!-- الرئيسية -->
+        <button class="nav-item" data-page="index.html" onclick="location.href='index.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
           <span class="nav-label">الرئيسية</span>
-        </a>
-        <a href="orders.html" class="nav-item" data-page="orders.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-          <span class="nav-label">الطلبات</span>
-        </a>
-        <a href="products.html" class="nav-item" data-page="products.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.27 6.96 8.73 5.04 8.73-5.04"></path><path d="M12 22.08V12"></path></svg>
-          <span class="nav-label">المنتجات</span>
-        </a>
-        <a href="inventory.html" class="nav-item" data-page="inventory.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
-          <span class="nav-label">المخزون</span>
-        </a>
-        <a href="categories.html" class="nav-item" data-page="categories.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </button>
+        <!-- المستخدمين -->
+        <button class="nav-item" data-page="users.html" onclick="location.href='users.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <span class="nav-label">المستخدمين</span>
+        </button>
+        <!-- المدن -->
+        <button class="nav-item" data-page="cities.html" onclick="location.href='cities.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span class="nav-label">المدن</span>
+        </button>
+        <!-- التصنيفات -->
+        <button class="nav-item" data-page="categories.html" onclick="location.href='categories.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
           <span class="nav-label">التصنيفات</span>
-        </a>
-         <a href="customers.html" class="nav-item" data-page="customers.html">
-           <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-           <span class="nav-label">العملاء</span>
-         </a>
-          <a href="users.html" class="nav-item" data-page="users.html">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            <span class="nav-label">المستخدمين</span>
-          </a>
-          <a href="volunteers.html" class="nav-item" data-page="volunteers.html">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            <span class="nav-label">المتطوعين</span>
-          </a>
-        <a href="coupons.html" class="nav-item" data-page="coupons.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg>
-          <span class="nav-label">الكوبونات</span>
-        </a>
-        <a href="ads.html" class="nav-item" data-page="ads.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
-          <span class="nav-label">الإعلانات</span>
-        </a>
-        <a href="reviews.html" class="nav-item" data-page="reviews.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span class="nav-label">التقييمات</span>
-        </a>
-        <a href="financials.html" class="nav-item" data-page="financials.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4Z"></path></svg>
-          <span class="nav-label">المالية</span>
-        </a>
-        <a href="reports.html" class="nav-item" data-page="reports.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
-          <span class="nav-label">التقارير</span>
-        </a>
-        <a href="settings.html" class="nav-item" data-page="settings.html">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          <span class="nav-label">الإعدادات</span>
-        </a>
+        </button>
+        <!-- أقسام فرعية -->
+        <button class="nav-item" data-page="subcategories.html" onclick="location.href='subcategories.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+            <path d="M7 7h.01" />
+          </svg>
+          <span class="nav-label">أقسام فرعية</span>
+        </button>
+        <!-- الاشتراكات -->
+        <button class="nav-item" data-page="subscriptions.html" onclick="location.href='subscriptions.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+            <path d="M2 10h20" />
+          </svg>
+          <span class="nav-label">الاشتراكات</span>
+        </button>
+        <!-- الإيصالات -->
+        <button class="nav-item" data-page="receipts.html" onclick="location.href='receipts.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z" />
+            <path d="M14 8H8" />
+            <path d="M16 12H8" />
+            <path d="M13 16H8" />
+          </svg>
+          <span class="nav-label">الإيصالات</span>
+        </button>
+        <!-- المتاجر -->
+        <button class="nav-item" data-page="stores.html" onclick="location.href='stores.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+            <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+            <path d="M2 7h20" />
+            <path
+              d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
+          </svg>
+          <span class="nav-label">المتاجر</span>
+        </button>
+        <!-- المناديب -->
+        <button class="nav-item" data-page="representatives.html" onclick="location.href='representatives.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" />
+            <rect x="9" y="11" width="14" height="10" rx="1" />
+            <circle cx="12" cy="16" r="1" />
+            <circle cx="20" cy="12" r="1" />
+          </svg>
+          <span class="nav-label">المناديب</span>
+        </button>
+        <!-- التسعير -->
+        <button class="nav-item" data-page="prices.html" onclick="location.href='prices.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          <span class="nav-label">التسعير</span>
+        </button>
       </nav>
 
+      <!-- Footer: logout + collapse toggle -->
       <div class="sidebar-footer">
-        <button class="nav-item text-danger" id="logout-btn">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <button class="sidebar-logout" id="logout-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
           <span class="nav-label">تسجيل الخروج</span>
         </button>
-        <button class="sidebar-toggle-btn" id="sidebar-toggle">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="m9 18 6-6-6-6"></path></svg>
+        <!-- Collapse arrow button -->
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="تصغير القائمة">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
         </button>
       </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="main-area" id="main-area">
+    <!-- ===================================================================
+       Main content area
+       =================================================================== -->
+    <div class="main" id="main-area">
+
+      <!-- Top toolbar -->
       <header class="toolbar">
-        <h2 class="toolbar-title" id="toolbar-title">الرئيسية</h2>
+        <span class="toolbar-title" id="toolbar-title">الرئيسية</span>
         <div class="toolbar-actions">
-          <div class="search-box">
-            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" placeholder="بحث..." />
+          <!-- Search -->
+          <div class="toolbar-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" placeholder="بحث..." aria-label="بحث" />
           </div>
-          <button class="icon-btn">
-            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
-            <span class="badge"></span>
+          <!-- Notifications -->
+          <button class="toolbar-icon-btn" aria-label="الإشعارات">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <span class="notif-dot" aria-hidden="true"></span>
           </button>
-          <div class="user-avatar">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <!-- Avatar -->
+          <div class="toolbar-avatar" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
           </div>
         </div>
       </header>
 
-      <div class="content-scroll">
-        <div class="content">
-          
-          <div class="view active" id="overview">
-            <div class="welcome-header">
-              <h1>مرحباً بك في متجرك</h1>
-              <p>إليك نظرة عامة على أداء متجرك اليوم</p>
+      <!-- Page content -->
+      <div class="page-scroll">
+        <div class="page-inner">
+
+          <!-- Page header -->
+          <div class="page-hdr">
+            <div>
+              <h1>ملخص الأداء</h1>
+              <p>نظرة سريعة على إحصائيات متجرك لهذا الأسبوع.</p>
             </div>
-
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-              <div class="stat-card">
-                <div class="stat-icon bg-blue-50 text-blue-600">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                </div>
-                <div class="stat-info">
-                  <span class="stat-label">الطلبات الجديدة</span>
-                  <div class="stat-row">
-                    <span class="stat-value">12</span>
-                    <span class="stat-trend trend-up">+15%</span>
-                  </div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon bg-yellow-50 text-yellow-600">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                </div>
-                <div class="stat-info">
-                  <span class="stat-label">قيد المعالجة</span>
-                  <div class="stat-row">
-                    <span class="stat-value">5</span>
-                    <span class="stat-trend trend-down">-2%</span>
-                  </div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon bg-green-50 text-green-600">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                </div>
-                <div class="stat-info">
-                  <span class="stat-label">الطلبات المكتملة</span>
-                  <div class="stat-row">
-                    <span class="stat-value">148</span>
-                    <span class="stat-trend trend-up">+8%</span>
-                  </div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon bg-orange-50 text-orange-600">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                </div>
-                <div class="stat-info">
-                  <span class="stat-label">مبيعات اليوم</span>
-                  <div class="stat-row">
-                    <span class="stat-value">2,450 د.ل</span>
-                    <span class="stat-trend trend-up">+12%</span>
-                  </div>
-                </div>
-              </div>
+            <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+              <!-- Week selector button -->
+              <button class="btn btn-ghost"
+                style="gap:0.5rem; font-size:0.8125rem; border-radius:10px; height:36px; padding:0 1rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                هذا الأسبوع
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              <!-- Export button -->
+              <button class="btn-orange"
+                style="border-radius:10px; padding:0 1rem; height:36px; font-size:0.8125rem; gap:0.5rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                تصدير تقرير
+              </button>
             </div>
+          </div>
 
-            <div class="merchant-split">
-              <!-- Alerts & Pending -->
-              <div class="merchant-sidebar-info">
-                <div class="glass-box p-6 mb-6">
-                  <h3 class="box-title text-gray-800">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" class="text-orange-500"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                    تنبيهات هامة
-                  </h3>
-                  <div class="alert-list">
-                    <div class="alert-item bg-red-50 text-red-800 border-red-100">
-                      <div class="alert-dot bg-red-500"></div>
-                      <div>
-                        <p class="alert-title">نفاد مخزون (3 منتجات)</p>
-                        <p class="alert-desc">يرجى تحديث الكميات للمنتجات النافدة.</p>
-                      </div>
-                    </div>
-                    <div class="alert-item bg-yellow-50 text-yellow-800 border-yellow-100">
-                      <div class="alert-dot bg-yellow-500"></div>
-                      <div>
-                        <p class="alert-title">طلبات متأخرة (طلبين)</p>
-                        <p class="alert-desc">تجاوزت هذه الطلبات الوقت المحدد.</p>
-                      </div>
-                    </div>
-                    <div class="alert-item bg-blue-50 text-blue-800 border-blue-100">
-                      <div class="alert-dot bg-blue-500"></div>
-                      <div>
-                        <p class="alert-title">تقييمات جديدة (5 تقييمات)</p>
-                        <p class="alert-desc">لديك تقييمات جديدة بانتظار الرد.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="merchant-wallet-card">
-                  <span class="wallet-label">رصيد المحفظة</span>
-                  <div class="wallet-amount">12,450 <small>د.ل</small></div>
-                  <button class="wallet-btn">طلب سحب رصيد</button>
+          <!-- Metric cards (صافي الإيرادات، الطلبات، العملاء النشطين، المتاجر) -->
+          <div class="metrics-grid">
+            <!-- صافي الإيرادات -->
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">صافي الإيرادات</span>
+                <div class="metric-icon icon-orange">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                    <polyline points="16 7 22 7 22 13" />
+                  </svg>
                 </div>
               </div>
-
-              <!-- Recent Orders -->
-              <div class="merchant-main-table">
-                <div class="glass-box no-p overflow-hidden">
-                  <div class="table-header-row">
-                    <h3 class="box-title">أحدث الطلبات</h3>
-                    <a href="orders.html" class="text-link">عرض الكل</a>
-                  </div>
-                  <table class="data-table">
-                    <thead>
-                      <tr>
-                        <th>رقم الطلب</th>
-                        <th>العميل</th>
-                        <th>المبلغ</th>
-                        <th>الحالة</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="font-bold">#1005</td>
-                        <td>عميل افتراضي 1</td>
-                        <td class="font-bold">450 د.ل</td>
-                        <td><span class="status-pill status-new">جديد</span></td>
-                      </tr>
-                      <tr>
-                        <td class="font-bold">#1004</td>
-                        <td>عميل افتراضي 2</td>
-                        <td class="font-bold">120 د.ل</td>
-                        <td><span class="status-pill status-active">قيد المعالجة</span></td>
-                      </tr>
-                      <tr>
-                        <td class="font-bold">#1003</td>
-                        <td>عميل افتراضي 3</td>
-                        <td class="font-bold">890 د.ل</td>
-                        <td><span class="status-pill status-shipped">تم الشحن</span></td>
-                      </tr>
-                      <tr>
-                        <td class="font-bold">#1002</td>
-                        <td>عميل افتراضي 4</td>
-                        <td class="font-bold">250 د.ل</td>
-                        <td><span class="status-pill status-completed">مكتمل</span></td>
-                      </tr>
-                      <tr>
-                        <td class="font-bold">#1001</td>
-                        <td>عميل افتراضي 5</td>
-                        <td class="font-bold">60 د.ل</td>
-                        <td><span class="status-pill status-completed">مكتمل</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="metric-value">12,540 د.ل</div>
+              <div class="metric-trend">
+                <span class="trend-up">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                  15.2%
+                </span>
+                <span style="color:var(--muted)">عن الشهر الماضي</span>
               </div>
             </div>
 
-          </div><!-- /view -->
-        </div>
-      </div>
-    </main>
-  </div>
+            <!-- الطلبات -->
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">الطلبات</span>
+                <div class="metric-icon icon-blue">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value">482</div>
+              <div class="metric-trend">
+                <span class="trend-up">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                  8.2%
+                </span>
+                <span style="color:var(--muted)">نمو إيجابي</span>
+              </div>
+            </div>
 
-  <script src="script.js"></script>
+            <!-- العملاء النشطين -->
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">العملاء النشطين</span>
+                <div class="metric-icon icon-purple">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value">1,204</div>
+              <div class="metric-trend">
+                <span class="trend-up">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                  12.4%
+                </span>
+                <span style="color:var(--muted)">تفاعل ممتاز</span>
+              </div>
+            </div>
+
+            <!-- المتاجر -->
+            <div class="metric-card">
+              <div class="metric-card-top">
+                <span class="metric-card-label">المتاجر</span>
+                <div class="metric-icon icon-red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                    <path d="M2 7h20" />
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value">34</div>
+              <div class="metric-trend">
+                <span class="trend-dn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <line x1="7" y1="7" x2="17" y2="17" />
+                    <polyline points="17 7 17 17 7 17" />
+                  </svg>
+                  2.1%
+                </span>
+                <span style="color:var(--muted)">انخفاض طفيف</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts row -->
+          <div class="charts-grid">
+            <!-- Bar chart — تحليل المبيعات -->
+            <div class="chart-card">
+              <div class="chart-card-hdr">
+                <span class="chart-card-title">تحليل المبيعات</span>
+                <button class="chart-more" aria-label="المزيد">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="19" cy="12" r="1" />
+                    <circle cx="5" cy="12" r="1" />
+                  </svg>
+                </button>
+              </div>
+              <!-- CSS bar chart (representative data) -->
+              <div class="bar-chart" aria-label="مخطط المبيعات الأسبوعية">
+                <div class="bar" style="height:65%" title="السبت"></div>
+                <div class="bar" style="height:80%" title="الأحد"></div>
+                <div class="bar" style="height:45%" title="الاثنين"></div>
+                <div class="bar" style="height:90%" title="الثلاثاء"></div>
+                <div class="bar" style="height:60%" title="الأربعاء"></div>
+                <div class="bar" style="height:75%" title="الخميس"></div>
+                <div class="bar dim" style="height:30%" title="الجمعة"></div>
+              </div>
+              <div class="bar-labels" aria-hidden="true">
+                <span class="bar-label">سبت</span>
+                <span class="bar-label">أحد</span>
+                <span class="bar-label">اثن</span>
+                <span class="bar-label">ثلا</span>
+                <span class="bar-label">أرب</span>
+                <span class="bar-label">خمس</span>
+                <span class="bar-label">جمع</span>
+              </div>
+            </div>
+
+            <!-- Donut chart — التصنيفات -->
+            <div class="chart-card">
+              <h3 class="chart-card-title" style="margin-bottom:1rem;">التصنيفات</h3>
+              <div class="donut-wrap" aria-label="توزع التصنيفات">
+                <svg class="donut-svg" viewBox="0 0 100 100" aria-hidden="true">
+                  <!-- Circle: Electronics 85% -->
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#F97316" stroke-width="12"
+                    stroke-dasharray="202 238" stroke-dashoffset="0" stroke-linecap="round" />
+                  <!-- Other slices -->
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#34C759" stroke-width="12"
+                    stroke-dasharray="24 416" stroke-dashoffset="-202" stroke-linecap="round" />
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#007AFF" stroke-width="12"
+                    stroke-dasharray="12 428" stroke-dashoffset="-226" stroke-linecap="round" />
+                </svg>
+                <div class="donut-center">
+                  <span class="donut-center-val">85%</span>
+                  <span class="donut-center-lbl">إلكترونيات</span>
+                </div>
+              </div>
+              <div class="cat-legend">
+                <div class="cat-legend-item">
+                  <div style="display:flex;align-items:center;">
+                    <span class="cat-dot" style="background:#F97316;"></span>إلكترونيات
+                  </div>
+                  <span style="font-weight:700;color:var(--muted)">85%</span>
+                </div>
+                <div class="cat-legend-item">
+                  <div style="display:flex;align-items:center;">
+                    <span class="cat-dot" style="background:#34C759;"></span>ملابس
+                  </div>
+                  <span style="font-weight:700;color:var(--muted)">10%</span>
+                </div>
+                <div class="cat-legend-item">
+                  <div style="display:flex;align-items:center;">
+                    <span class="cat-dot" style="background:#007AFF;"></span>أخرى
+                  </div>
+                  <span style="font-weight:700;color:var(--muted)">5%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent transactions table -->
+          <div class="table-card">
+            <div class="table-card-hdr">
+              <span class="table-card-title">العمليات الأخيرة</span>
+              <button class="table-card-link">عرض الكل</button>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>رقم العملية</th>
+                    <th>الجهة</th>
+                    <th class="tc">الحالة</th>
+                    <th class="tl">المبلغ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="trx-id">#TRX-8491</span></td>
+                    <td><strong>متجر الرواد</strong></td>
+                    <td class="tc"><span class="badge badge-green"><span
+                          style="width:6px;height:6px;border-radius:50%;background:#34C759;display:inline-block;"></span>مكتملة</span>
+                    </td>
+                    <td class="tl" style="font-weight:900;">4,250 د.ل</td>
+                  </tr>
+                  <tr>
+                    <td><span class="trx-id">#TRX-8492</span></td>
+                    <td><strong>متجر الرواد</strong></td>
+                    <td class="tc"><span class="badge badge-green"><span
+                          style="width:6px;height:6px;border-radius:50%;background:#34C759;display:inline-block;"></span>مكتملة</span>
+                    </td>
+                    <td class="tl" style="font-weight:900;">4,250 د.ل</td>
+                  </tr>
+                  <tr>
+                    <td><span class="trx-id">#TRX-8493</span></td>
+                    <td><strong>متجر الرواد</strong></td>
+                    <td class="tc"><span class="badge badge-green"><span
+                          style="width:6px;height:6px;border-radius:50%;background:#34C759;display:inline-block;"></span>مكتملة</span>
+                    </td>
+                    <td class="tl" style="font-weight:900;">4,250 د.ل</td>
+                  </tr>
+                  <tr>
+                    <td><span class="trx-id">#TRX-8494</span></td>
+                    <td><strong>متجر الرواد</strong></td>
+                    <td class="tc"><span class="badge badge-green"><span
+                          style="width:6px;height:6px;border-radius:50%;background:#34C759;display:inline-block;"></span>مكتملة</span>
+                    </td>
+                    <td class="tl" style="font-weight:900;">4,250 د.ل</td>
+                  </tr>
+                  <tr>
+                    <td><span class="trx-id">#TRX-8495</span></td>
+                    <td><strong>متجر الرواد</strong></td>
+                    <td class="tc"><span class="badge badge-green"><span
+                          style="width:6px;height:6px;border-radius:50%;background:#34C759;display:inline-block;"></span>مكتملة</span>
+                    </td>
+                    <td class="tl" style="font-weight:900;">4,250 د.ل</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div><!-- /page-inner -->
+      </div><!-- /page-scroll -->
+    </div><!-- /main -->
+  </div><!-- /app -->
+
+  <script src="script.js" defer></script>
 </body>
+
 </html>

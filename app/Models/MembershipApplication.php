@@ -12,6 +12,6 @@ class MembershipApplication extends Model
         'qualification', 'university', 'graduation_year', 'license_number',
         'current_workplace', 'years_experience', 'specialization',
         'membership_type', 'reason', 'contribution_areas', 'available_for_fieldwork',
-        'status', 'admin_notes',
+        'status', 'admin_notes', 'read_at',
     ];
 }

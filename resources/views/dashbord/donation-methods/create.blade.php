@@ -4,85 +4,135 @@
 @section('page-title', __('admin.donation_methods.add_new'))
 
 @section('content')
-<div class="form-layout">
-  <!-- Side Preview -->
-  <div class="form-preview">
-    <div class="form-preview-icon" style="background: var(--blue-light); color: var(--blue);">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20m10-10H2"/></svg>
-    </div>
-    <h3>{{ __('admin.donation_methods.add_new') }}</h3>
-    <p>{{ __('admin.donation_methods.management') }}</p>
+<div class="content-scroll">
+  <div class="content">
 
-    <div class="preview-stats">
-      <div class="preview-stat orange">
-        <p>{{ __('admin.donation_methods.method') }}</p>
-        <p>{{ __('admin.donation_methods.add_new') }}</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Form Section -->
-  <div class="form-section">
-    <form method="POST" action="{{ route('admin.donation-methods.store') }}">
-      @csrf
-
-      <div class="form-section-hdr">
-        <div class="form-section-hdr-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <!-- Header -->
+    <div class="page-hdr">
+      <div class="page-hdr-back">
+        <a href="{{ route('admin.donation-methods') }}" class="btn-back">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M15 18l-6-6 6-6"></path>
+          </svg>
+        </a>
+        <div>
+          <h1>{{ __('admin.donation_methods.add_new') }}</h1>
+          <p>{{ __('admin.donation_methods.details_hint') }}</p>
         </div>
-        <h3>{{ __('admin.donation_methods.add_new') }}</h3>
       </div>
+    </div>
 
-      <div class="field-group">
-        <label>{{ __('admin.donation_methods.name_ar') }}</label>
-        <input type="text" name="name" class="field-input" value="{{ old('name') }}" required>
-        @error('name')
-          <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-        @enderror
-      </div>
+    <!-- Main Form Card -->
+    <div class="glass-box p-8">
+      <form method="POST" action="{{ route('admin.donation-methods.store') }}" enctype="multipart/form-data">
+        @csrf
 
-      <div class="field-group">
-        <label>{{ __('admin.donation_methods.name_en') }}</label>
-        <input type="text" name="name_en" class="field-input" value="{{ old('name_en') }}">
-      </div>
+        <div class="form-grid">
 
-      <div class="field-group">
-        <label>{{ __('admin.donation_methods.description_ar') }}</label>
-        <textarea name="description" class="field-input" rows="6" required>{{ old('description') }}</textarea>
-        @error('description')
-          <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-        @enderror
-      </div>
+          <!-- Image Upload (single) -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.donation_methods.image') }}</label>
+            <div id="image-dropzone" class="upload-zone">
+              <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <p>{{ __('admin.donation_methods.drag_drop') }}</p>
+              <div id="selected-images-list" style="margin-top: 8px; font-size: 0.8rem; color: var(--muted);"></div>
+            </div>
+            <input type="file" name="image" id="image-input" style="display:none;" accept="image/*">
+            @error('image')
+              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
+            @enderror
+          </div>
 
-      <div class="field-group">
-        <label>{{ __('admin.donation_methods.description_en') }}</label>
-        <textarea name="description_en" class="field-input" rows="6">{{ old('description_en') }}</textarea>
-      </div>
+          <!-- Arabic Name -->
+          <div class="form-group grid-half">
+            <label>{{ __('admin.donation_methods.name_ar') }} <span class="text-red-500">*</span></label>
+            <input type="text" name="name" class="field-input" value="{{ old('name') }}" required>
+            @error('name')
+              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
+            @enderror
+          </div>
 
-      <div class="field-group">
-        <label>{{ __('admin.donation_methods.image') }}</label>
-        <div id="image-dropzone" class="dropzone" style="border:2px dashed #cbd5e1; border-radius:12px; background:#f8fafc; padding:2rem; text-align:center; cursor:pointer; min-height:140px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p style="margin:0; color:#64748b; font-size:0.95rem;">{{ __('admin.donation_methods.drag_drop') }}</p>
+          <!-- English Name -->
+          <div class="form-group grid-half">
+            <label>{{ __('admin.donation_methods.name_en') }}</label>
+            <input type="text" name="name_en" class="field-input" value="{{ old('name_en') }}">
+          </div>
+
+          <!-- Arabic Description -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.donation_methods.description_ar') }} <span class="text-red-500">*</span></label>
+            <textarea name="description" class="field-input" rows="6" required>{{ old('description') }}</textarea>
+            @error('description')
+              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
+            @enderror
+          </div>
+
+          <!-- English Description -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.donation_methods.description_en') }}</label>
+            <textarea name="description_en" class="field-input" rows="6">{{ old('description_en') }}</textarea>
+          </div>
+
         </div>
-        <input type="file" name="image" id="image-input" class="field-input" style="display:none;" accept="image/*">
-        @error('image')
-          <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-        @enderror
-      </div>
 
-      <button type="submit" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.65rem 1.35rem; border-radius:20px; background:var(--accent); color:#fff; font-size:0.875rem; font-weight:700; border:none; cursor:pointer; margin-top:1rem;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        {{ __('admin.donation_methods.add_button') }}
-      </button>
-    </form>
+        <div class="form-footer mt-8">
+          <button type="submit" class="btn btn-save">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            {{ __('admin.donation_methods.add_button') }}
+          </button>
+          <a href="{{ route('admin.donation-methods') }}" class="btn btn-cancel">{{ __('admin.cancel') }}</a>
+        </div>
+
+      </form>
+    </div>
+
   </div>
 </div>
+@endsection
 
 @push('scripts')
 <script>
   const dropzone = document.getElementById('image-dropzone');
   const fileInput = document.getElementById('image-input');
+  const listContainer = document.getElementById('selected-images-list');
+
+  let selectedFile = null;
+
+  function updateFileList() {
+    listContainer.innerHTML = '';
+    if (!selectedFile) return;
+
+    const ul = document.createElement('ul');
+    ul.style.cssText = 'list-style:none; padding:0; margin:8px 0 0; text-align:left; max-width:100%;';
+
+    const li = document.createElement('li');
+    li.style.cssText = 'display:flex; align-items:center; justify-content:space-between; background:white; padding:4px 8px; border-radius:6px; margin-bottom:4px; font-size:0.85rem;';
+    li.innerHTML = `
+      <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${selectedFile.name}</span>
+      <button type="button" style="background:none; border:none; color:#dc2626; cursor:pointer; font-size:14px; padding:0 4px;">×</button>
+    `;
+    li.querySelector('button').onclick = () => {
+      selectedFile = null;
+      updateFileList();
+      syncToInput();
+    };
+    ul.appendChild(li);
+
+    listContainer.appendChild(ul);
+  }
+
+  function syncToInput() {
+    const dt = new DataTransfer();
+    if (selectedFile) dt.items.add(selectedFile);
+    fileInput.files = dt.files;
+  }
 
   if (dropzone && fileInput) {
     dropzone.addEventListener('click', () => fileInput.click());
@@ -99,18 +149,27 @@
     dropzone.addEventListener('drop', e => {
       e.preventDefault();
       dropzone.style.borderColor = '#cbd5e1';
+
       if (e.dataTransfer.files.length > 0) {
-        fileInput.files = e.dataTransfer.files;
-        dropzone.innerHTML = `<p>تم اختيار: ${e.dataTransfer.files[0].name}</p>`;
+        const f = e.dataTransfer.files[0];
+        if (f.type.startsWith('image/')) {
+          selectedFile = f;
+        }
       }
+
+      updateFileList();
+      syncToInput();
     });
 
     fileInput.addEventListener('change', () => {
       if (fileInput.files.length > 0) {
-        dropzone.innerHTML = `<p>تم اختيار: ${fileInput.files[0].name}</p>`;
+        const f = fileInput.files[0];
+        if (f.type.startsWith('image/')) {
+          selectedFile = f;
+        }
       }
+      updateFileList();
     });
   }
 </script>
 @endpush
-@endsection

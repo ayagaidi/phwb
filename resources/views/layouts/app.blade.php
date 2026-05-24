@@ -121,6 +121,9 @@
       }
     }
   </style>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="dashboard-body">
 
@@ -150,8 +153,13 @@
           <span class="nav-label">{{ __('admin.nav.volunteer_content') }}</span>
         </a>
         <a href="{{ route('admin.articles') }}" class="nav-item {{ request()->routeIs('admin.articles*') ? 'active' : '' }}">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <span class="nav-label">{{ __('admin.nav.articles') }}</span>
+            <i class="nav-icon fas fa-newspaper"></i>
+            <span class="nav-label">{{ __('admin.nav.articles') }}</span>
+        </a>
+
+        <a href="{{ route('admin.membership-applications') }}" class="nav-item {{ request()->routeIs('admin.membership-applications*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-plus"></i>
+            <span class="nav-label">{{ __('admin.nav.membership_applications') }}</span>
         </a>
         <a href="{{ route('admin.donation-methods') }}" class="nav-item {{ request()->routeIs('admin.donation-methods*') ? 'active' : '' }}">
           <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20m10-10H2"/></svg>
@@ -159,11 +167,11 @@
          </a>
          <a href="{{ route('admin.org-structure') }}" class="nav-item {{ request()->routeIs('admin.org-structure*') ? 'active' : '' }}">
            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M10 7h4M7 10v4M17 10v4M10 17h4"/></svg>
-            <span class="nav-label">{{ __('admin.nav.org_structure') ?? 'الهيكل التنظيمي' }}</span>
+             <span class="nav-label">{{ __('admin.nav.org_structure') }}</span>
           </a>
           <a href="{{ route('admin.contact-settings') }}" class="nav-item {{ request()->routeIs('admin.contact-settings*') ? 'active' : '' }}">
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span class="nav-label">{{ __('admin.nav.contact_settings') ?? 'بيانات التواصل' }}</span>
+             <span class="nav-label">{{ __('admin.nav.contact_settings') }}</span>
           </a>
         </nav>
 
@@ -209,18 +217,73 @@
              <a href="{{ route('admin.lang', 'en') }}" class="lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}" title="{{ __('admin.english') }}">EN</a>
            </div>
 
-           <!-- Notifications -->
-          <div class="toolbar-notifications dropdown">
-            <button class="toolbar-icon-btn" type="button" aria-label="{{ __('admin.toolbar.notifications') }}">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-              </svg>
-              <span class="notif-badge">3</span>
-            </button>
-          </div>
+              <!-- Notifications -->
+              <div class="toolbar-notifications dropdown">
+                @php
+                  $unreadQuery = \App\Models\MembershipApplication::where(function($q){
+                      $q->whereNull('status')->orWhere('status', 'pending');
+                  })->whereNull('read_at');
 
-          <!-- Avatar -->
+                  $pendingCount = $unreadQuery->count();
+
+                  $recentPending = $unreadQuery->latest()->take(5)->get();
+                @endphp
+
+                <button class="toolbar-icon-btn" type="button" aria-label="{{ __('admin.toolbar.notifications') }}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                  </svg>
+                  @if($pendingCount > 0)
+                    <span class="notif-badge">{{ $pendingCount }}</span>
+                  @endif
+                </button>
+
+                <div class="dropdown-menu" style="right:auto; min-width:300px; max-width:340px; padding:4px 0;">
+                  <div class="dropdown-header" style="display:flex; justify-content:space-between; align-items:center; padding:8px 14px;">
+                    <strong>الإشعارات</strong>
+                    @if($pendingCount > 0)
+                      <span style="font-size:11px; background:#fee2e2; color:#b91c1c; padding:1px 6px; border-radius:999px; font-weight:600;">{{ $pendingCount }} جديد</span>
+                    @endif
+                  </div>
+
+                  @forelse($recentPending as $app)
+                    <div class="dropdown-item" style="display:flex; align-items:center; justify-content:space-between; padding:8px 14px; gap:8px;">
+                      <a href="{{ route('admin.membership-applications.show', $app->id) }}" style="flex:1; text-decoration:none; color:inherit;">
+                        <div style="font-weight:600; font-size:13.5px; color:#111;">{{ $app->full_name }}</div>
+                        <div style="font-size:11.5px; color:#64748b; margin-top:1px;">
+                          {{ str_replace('_', ' ', $app->membership_type) }} • {{ $app->created_at->diffForHumans() }}
+                        </div>
+                      </a>
+                      <form method="POST" action="{{ route('admin.membership-applications.mark-read', $app->id) }}" style="margin:0;">
+                        @csrf
+                        <button type="submit" title="وضع كمقروء" style="background:none; border:none; color:#64748b; cursor:pointer; font-size:13px; padding:2px 6px;">✓</button>
+                      </form>
+                    </div>
+                  @empty
+                    <div class="dropdown-item" style="color:#64748b; padding:10px 14px; font-size:13px;">
+                      لا توجد طلبات عضوية جديدة
+                    </div>
+                  @endforelse
+
+                  @if($pendingCount > 0)
+                    <div style="height:1px; background:#eee; margin:4px 0;"></div>
+
+                    <form method="POST" action="{{ route('admin.membership-applications.mark-all-read') }}" style="margin:0;">
+                      @csrf
+                      <button type="submit" class="dropdown-item" style="font-weight:600; color:#b91c1c; width:100%; text-align:left; border:none; background:none; cursor:pointer; padding:8px 14px;">
+                        وضع الكل كمقروء
+                      </button>
+                    </form>
+
+                    <a href="{{ route('admin.membership-applications') }}" class="dropdown-item" style="font-weight:600; color:var(--accent); padding:8px 14px;">
+                      عرض كل طلبات العضوية →
+                    </a>
+                  @endif
+                </div>
+               </div>
+ 
+           <!-- Avatar -->
           <div class="toolbar-avatar dropdown" aria-hidden="true">
             <button class="toolbar-avatar-btn" type="button" aria-label="{{ __('admin.toolbar.profile') }}">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -50,7 +51,29 @@ class AdminController extends Controller
         if (!Auth::check()) {
             return redirect()->route('admin.login');
         }
-        return view('dashbord.dashboard');
+
+        $stats = [
+            'total_users' => \App\Models\User::count(),
+            'total_programs' => \App\Models\Program::count(),
+            'total_articles' => \App\Models\Article::count(),
+            'pending_memberships' => \App\Models\MembershipApplication::where('status', 'pending')->orWhereNull('status')->count(),
+        ];
+
+        $recentApplications = \App\Models\MembershipApplication::latest()->take(5)->get();
+
+        // Chart data
+        $membershipByType = \App\Models\MembershipApplication::selectRaw('membership_type, COUNT(*) as count')
+            ->groupBy('membership_type')
+            ->pluck('count', 'membership_type');
+
+        // Last 6 months applications
+        $monthlyApps = \App\Models\MembershipApplication::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month, COUNT(*) as count")
+            ->where('created_at', '>=', now()->subMonths(6))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('count', 'month');
+
+        return view('dashbord.dashboard', compact('stats', 'recentApplications', 'membershipByType', 'monthlyApps'));
     }
 
     public function users()
@@ -58,7 +81,7 @@ class AdminController extends Controller
         if (!Auth::check()) {
             return redirect()->route('admin.login');
         }
-        $users = \App\Models\User::all();
+        $users = \App\Models\User::where('id','!=',1)->latest()->get();
         return view('dashbord.users.index', compact('users'));
     }
 
@@ -94,8 +117,31 @@ class AdminController extends Controller
     public function updateUser(Request $request, $id)
     {
         $user = \App\Models\User::findOrFail($id);
-        $user->update($request->only('name', 'email', 'role'));
-        return redirect()->route('admin.users')->with('success', __('admin.user_updated'));
+
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'role' => 'required|in:admin,staff',
+            'password' => 'nullable|min:6|confirmed',
+        ];
+
+        $validated = $request->validate($rules);
+
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->role = $validated['role'];
+
+        if (!empty($validated['password'])) {
+            $user->password = bcrypt($validated['password']);
+        }
+
+        $user->save();
+
+        $message = $request->filled('password') 
+            ? __('admin.password_changed') 
+            : __('admin.user_updated');
+
+        return redirect()->route('admin.users')->with('success', $message);
     }
 
     public function toggleUser($id)
@@ -155,10 +201,25 @@ class AdminController extends Controller
             'description_en' => 'nullable',
             'image' => 'nullable|image',
             'video_url' => 'nullable|url',
+            'remove_image' => 'nullable|string',
         ]);
 
+        $currentImage = $program->image;
+
+        // Handle explicit removal of current image
+        if ($request->filled('remove_image') && $request->remove_image === $currentImage) {
+            Storage::disk('public')->delete($currentImage);
+            $currentImage = null;
+        }
+
         if ($request->hasFile('image')) {
+            // Replace: delete old if exists
+            if ($currentImage) {
+                Storage::disk('public')->delete($currentImage);
+            }
             $data['image'] = $request->file('image')->store('programs', 'public');
+        } elseif ($currentImage) {
+            $data['image'] = $currentImage;
         }
 
         $program->update($data);
@@ -257,14 +318,20 @@ class AdminController extends Controller
             'title_en' => 'nullable',
             'content' => 'required',
             'content_en' => 'nullable',
-            'image' => 'nullable|image',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('articles', 'public');
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $imagePaths[] = $file->store('articles', 'public');
+            }
         }
 
+        $data['images'] = $imagePaths;
         $data['is_published'] = false;
+
         \App\Models\Article::create($data);
 
         return redirect()->route('admin.articles')->with('success', __('admin.articles.added'));
@@ -279,17 +346,39 @@ class AdminController extends Controller
     public function updateArticle(Request $request, $id)
     {
         $article = \App\Models\Article::findOrFail($id);
+
         $data = $request->validate([
             'title' => 'required',
             'title_en' => 'nullable',
             'content' => 'required',
             'content_en' => 'nullable',
-            'image' => 'nullable|image',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'remove_images' => 'nullable|array',
         ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('articles', 'public');
+        $currentImages = $article->images ?? [];
+
+        // Remove selected images (actual deletion from storage + DB array)
+        $removeImages = $request->input('remove_images', []);
+        if (!empty($removeImages)) {
+            foreach ($removeImages as $imgToRemove) {
+                if (($key = array_search($imgToRemove, $currentImages)) !== false) {
+                    Storage::disk('public')->delete($imgToRemove);
+                    unset($currentImages[$key]);
+                }
+            }
+            $currentImages = array_values($currentImages);
         }
+
+        // Add new images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $currentImages[] = $file->store('articles', 'public');
+            }
+        }
+
+        $data['images'] = $currentImages;
 
         $article->update($data);
         return redirect()->route('admin.articles')->with('success', __('admin.articles.updated'));
@@ -339,10 +428,144 @@ class AdminController extends Controller
         return redirect()->route('admin.donation-methods')->with('success', __('admin.donation_methods.added'));
     }
 
+    public function editDonationMethod($id)
+    {
+        $method = \App\Models\DonationMethod::findOrFail($id);
+        return view('dashbord.donation-methods.edit', compact('method'));
+    }
+
+    public function updateDonationMethod(Request $request, $id)
+    {
+        $method = \App\Models\DonationMethod::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => 'required',
+            'name_en' => 'nullable',
+            'description' => 'required',
+            'description_en' => 'nullable',
+            'image' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($method->image) {
+                \Storage::disk('public')->delete($method->image);
+            }
+            $data['image'] = $request->file('image')->store('donation-methods', 'public');
+        }
+
+        $method->update($data);
+        return redirect()->route('admin.donation-methods')->with('success', __('admin.donation_methods.updated'));
+    }
+
     public function destroyDonationMethod($id)
     {
         \App\Models\DonationMethod::destroy($id);
         return redirect()->route('admin.donation-methods')->with('success', __('admin.donation_methods.deleted'));
+    }
+
+    // Membership Applications
+    public function membershipApplications()
+    {
+        $query = \App\Models\MembershipApplication::query();
+
+        $status = request('status');
+        if ($status && in_array($status, ['pending', 'approved', 'rejected'])) {
+            $query->where('status', $status);
+        }
+
+        $applications = $query->latest()->get();
+
+        // Always get all for the stats cards
+        $allApplications = \App\Models\MembershipApplication::all();
+
+        return view('dashbord.membership-applications.index', compact('applications', 'allApplications', 'status'));
+    }
+
+    public function showMembershipApplication($id)
+    {
+        $application = \App\Models\MembershipApplication::findOrFail($id);
+        return view('dashbord.membership-applications.show', compact('application'));
+    }
+
+    public function updateMembershipApplication(Request $request, $id)
+    {
+        $application = \App\Models\MembershipApplication::findOrFail($id);
+
+        $validated = $request->validate([
+            'status' => 'required|in:pending,approved,rejected',
+            'admin_notes' => 'nullable|string|max:2000',
+        ]);
+
+        $application->update($validated);
+
+        return redirect()->route('admin.membership-applications.show', $application->id)
+            ->with('success', __('admin.membership_applications.updated_success'));
+    }
+
+    public function markMembershipAsRead($id)
+    {
+        $application = \App\Models\MembershipApplication::findOrFail($id);
+        if (is_null($application->read_at)) {
+            $application->read_at = now();
+            $application->save();
+        }
+
+        return back();
+    }
+
+    public function markAllMembershipAsRead()
+    {
+        \App\Models\MembershipApplication::whereNull('read_at')
+            ->where(function($q) {
+                $q->whereNull('status')->orWhere('status', 'pending');
+            })
+            ->update(['read_at' => now()]);
+
+        return back();
+    }
+
+    public function exportMembershipApplications()
+    {
+        $query = \App\Models\MembershipApplication::query();
+
+        if ($status = request('status')) {
+            if (in_array($status, ['pending', 'approved', 'rejected'])) {
+                $query->where('status', $status);
+            }
+        }
+
+        $applications = $query->latest()->get();
+
+        $filename = "طلبات-العضوية-" . now()->format('Y-m-d') . ".xls";
+
+        header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+
+        // UTF-8 BOM for Arabic support in Excel
+        echo "\xEF\xBB\xBF";
+
+        // CSV Headers (Arabic)
+        echo "الاسم الكامل,البريد الإلكتروني,رقم الهاتف,الواتساب,المدينة,نوع العضوية,الحالة,تاريخ التقديم,ملاحظات\n";
+
+        foreach ($applications as $app) {
+            $row = [
+                $app->full_name,
+                $app->email,
+                $app->phone,
+                $app->whatsapp ?? '',
+                $app->city,
+                $app->membership_type,
+                $app->status ?? 'pending',
+                $app->created_at->format('Y-m-d H:i'),
+                str_replace(["\n", "\r"], ' ', $app->admin_notes ?? '')
+            ];
+
+            echo '"' . implode('","', array_map(fn($v) => str_replace('"', '""', $v), $row)) . '"' . "\n";
+        }
+
+        exit;
     }
 
     // Organizational Structure
@@ -402,13 +625,25 @@ class AdminController extends Controller
             'photo' => 'nullable|image',
             'parent_id' => 'nullable|exists:organizational_units,id',
             'sort_order' => 'nullable|integer',
+            'remove_photo' => 'nullable|string',
         ]);
 
+        $currentPhoto = $unit->photo;
+
+        // Handle explicit removal of current photo
+        if ($request->filled('remove_photo') && $request->remove_photo === $currentPhoto) {
+            \Storage::disk('public')->delete($currentPhoto);
+            $currentPhoto = null;
+        }
+
         if ($request->hasFile('photo')) {
-            if ($unit->photo) {
-                \Storage::disk('public')->delete($unit->photo);
+            // Replace: delete old if exists
+            if ($currentPhoto) {
+                \Storage::disk('public')->delete($currentPhoto);
             }
             $data['photo'] = $request->file('photo')->store('org-structure', 'public');
+        } elseif ($currentPhoto) {
+            $data['photo'] = $currentPhoto;
         }
 
         $unit->update($data);

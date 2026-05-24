@@ -93,6 +93,9 @@
                 <a href="{{ route('admin.users.edit', $user->id) }}" class="icon-btn icon-btn-edit" title="{{ __('admin.users.edit') }}">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
                 </a>
+                <a href="{{ route('admin.users.edit', $user->id) }}" class="icon-btn" title="{{ __('admin.users.change_password') }}" style="color:#f59e0b;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </a>
                 <form method="POST" action="{{ route('admin.users.toggle', $user->id) }}" style="display:inline;">
                   @csrf @method('PATCH')
                   <button type="submit" class="icon-btn {{ $user->is_active ? 'icon-btn-accept' : 'icon-btn-reject' }}" title="{{ $user->is_active ? __('admin.users.disable') : __('admin.users.enable') }}">

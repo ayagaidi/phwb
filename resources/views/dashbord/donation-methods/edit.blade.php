@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('admin.org_structure.add_new'))
-@section('page-title', __('admin.org_structure.add_new'))
+@section('title', __('admin.app_name') . ' | ' . __('admin.donation_methods.edit_method'))
+@section('page-title', __('admin.donation_methods.edit_method'))
 
 @section('content')
 <div class="content-scroll">
@@ -10,47 +10,54 @@
     <!-- Header -->
     <div class="page-hdr">
       <div class="page-hdr-back">
-        <a href="{{ route('admin.org-structure') }}" class="btn-back">
+        <a href="{{ route('admin.donation-methods') }}" class="btn-back">
           <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
             <path d="M15 18l-6-6 6-6"></path>
           </svg>
         </a>
         <div>
-          <h1>{{ __('admin.org_structure.add_new') }}</h1>
-          <p>{{ __('admin.org_structure.details_hint') }}</p>
+          <h1>{{ __('admin.donation_methods.edit_method') }}</h1>
+          <p>{{ __('admin.donation_methods.details_hint') }}</p>
         </div>
       </div>
     </div>
 
     <!-- Main Form Card -->
     <div class="glass-box p-8">
-      <form method="POST" action="{{ route('admin.org-structure.store') }}" enctype="multipart/form-data">
-        @csrf
+      <form method="POST" action="{{ route('admin.donation-methods.update', $method->id) }}" enctype="multipart/form-data">
+        @csrf @method('PUT')
 
         <div class="form-grid">
 
-          <!-- Photo Upload (single) -->
+          <!-- Image Upload -->
           <div class="form-group grid-full">
-            <label>{{ __('admin.org_structure.photo') }}</label>
+            <label>{{ __('admin.donation_methods.image') }}</label>
+
+            @if($method->image)
+              <div style="margin-bottom: 12px;">
+                <img src="{{ asset('storage/' . $method->image) }}" style="max-height: 120px; border-radius: 8px; border: 1px solid #e2e8f0;">
+              </div>
+            @endif
+
             <div id="image-dropzone" class="upload-zone">
               <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none">
                 <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                 <polyline points="21 15 16 10 5 21"></polyline>
               </svg>
-              <p>{{ __('admin.org_structure.drag_drop') }}</p>
+              <p>{{ __('admin.donation_methods.drag_drop') }}</p>
               <div id="selected-images-list" style="margin-top: 8px; font-size: 0.8rem; color: var(--muted);"></div>
             </div>
-            <input type="file" name="photo" id="image-input" style="display:none;" accept="image/*">
-            @error('photo')
+            <input type="file" name="image" id="image-input" style="display:none;" accept="image/*">
+            @error('image')
               <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
             @enderror
           </div>
 
           <!-- Arabic Name -->
           <div class="form-group grid-half">
-            <label>{{ __('admin.org_structure.name_ar') }} <span class="text-red-500">*</span></label>
-            <input type="text" name="name" class="field-input" value="{{ old('name') }}" required>
+            <label>{{ __('admin.donation_methods.name_ar') }} <span class="text-red-500">*</span></label>
+            <input type="text" name="name" class="field-input" value="{{ old('name', $method->name) }}" required>
             @error('name')
               <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
             @enderror
@@ -58,46 +65,23 @@
 
           <!-- English Name -->
           <div class="form-group grid-half">
-            <label>{{ __('admin.org_structure.name_en') }}</label>
-            <input type="text" name="name_en" class="field-input" value="{{ old('name_en') }}">
+            <label>{{ __('admin.donation_methods.name_en') }}</label>
+            <input type="text" name="name_en" class="field-input" value="{{ old('name_en', $method->name_en) }}">
           </div>
 
-          <!-- Arabic Title -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.org_structure.title_ar') }}</label>
-            <input type="text" name="title" class="field-input" value="{{ old('title') }}">
-            @error('title')
+          <!-- Arabic Description -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.donation_methods.description_ar') }} <span class="text-red-500">*</span></label>
+            <textarea name="description" class="field-input" rows="6" required>{{ old('description', $method->description) }}</textarea>
+            @error('description')
               <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
             @enderror
           </div>
 
-          <!-- English Title -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.org_structure.title_en') }}</label>
-            <input type="text" name="title_en" class="field-input" value="{{ old('title_en') }}">
-          </div>
-
-          <!-- Parent -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.org_structure.parent') }}</label>
-            <select name="parent_id" class="field-input">
-              <option value="">{{ __('admin.org_structure.no_parent') }}</option>
-              @foreach($parents as $p)
-                <option value="{{ $p->id }}" {{ old('parent_id') == $p->id ? 'selected' : '' }}>{{ $p->name }}</option>
-              @endforeach
-            </select>
-            @error('parent_id')
-              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <!-- Sort Order -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.org_structure.sort_order') }}</label>
-            <input type="number" name="sort_order" class="field-input" value="{{ old('sort_order', 0) }}">
-            @error('sort_order')
-              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-            @enderror
+          <!-- English Description -->
+          <div class="form-group grid-full">
+            <label>{{ __('admin.donation_methods.description_en') }}</label>
+            <textarea name="description_en" class="field-input" rows="6">{{ old('description_en', $method->description_en) }}</textarea>
           </div>
 
         </div>
@@ -108,9 +92,9 @@
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            {{ __('admin.org_structure.add_button') }}
+            {{ __('admin.donation_methods.save_changes') ?? __('admin.donation_methods.add_button') }}
           </button>
-          <a href="{{ route('admin.org-structure') }}" class="btn btn-cancel">{{ __('admin.cancel') }}</a>
+          <a href="{{ route('admin.donation-methods') }}" class="btn btn-cancel">{{ __('admin.cancel') }}</a>
         </div>
 
       </form>

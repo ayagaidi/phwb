@@ -59,6 +59,22 @@
             <option value="staff" {{ $user->role == 'staff' ? 'selected' : '' }}>{{ __('admin.users.role_staff') }}</option>
           </select>
         </div>
+
+        <!-- Change Password Section -->
+        <div class="field-group" style="grid-column: 1 / -1; margin-top: .75rem; padding-top: .75rem; border-top: 1px solid #eee;">
+          <div style="font-weight:600; color:#374151; margin-bottom:.25rem;">{{ __('admin.users.change_password') }}</div>
+          <small style="color:#6b7280; display:block; margin-bottom:.5rem;">{{ __('admin.users.password_help') }}</small>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div>
+              <label>{{ __('admin.users.new_password') }}</label>
+              <input type="password" name="password" class="field-input" placeholder="{{ __('admin.users.new_password') }}">
+            </div>
+            <div>
+              <label>{{ __('admin.users.confirm_password') }}</label>
+              <input type="password" name="password_confirmation" class="field-input" placeholder="{{ __('admin.users.confirm_password') }}">
+            </div>
+          </div>
+        </div>
       </div>
 
       <button type="submit" class="btn-primary mt-4">{{ __('admin.users.save_changes') }}</button>

@@ -27,6 +27,7 @@ return [
         'programs' => 'Programs',
         'volunteer_content' => 'Volunteer Content',
         'articles' => 'News & Articles',
+        'membership_applications' => 'Membership Applications',
         'donation_methods' => 'Donation Methods',
         'org_structure' => 'Organizational Structure',
         'contact_settings' => 'Contact Settings',
@@ -46,6 +47,7 @@ return [
     'language' => 'Language',
     'arabic' => 'Arabic',
     'english' => 'English',
+    'cancel' => 'Cancel',
 
     // Users Management
     'users' => [
@@ -84,12 +86,17 @@ return [
         'edit_user' => 'Edit User',
         'edit_data' => 'Edit Data',
         'save_changes' => 'Save Changes',
+        'change_password' => 'Change Password',
+        'new_password' => 'New Password',
+        'confirm_password' => 'Confirm New Password',
+        'password_help' => 'Leave blank to keep current password',
     ],
 
     // Flash messages
         'user_added' => 'User added successfully',
-        'user_updated' => 'User updated successfully',
-        'user_toggled' => 'User status updated successfully',
+    'user_updated' => 'User updated successfully',
+    'user_toggled' => 'User status updated successfully',
+    'password_changed' => 'Password changed successfully',
 
     // Programs (Bilingual)
     'programs' => [
@@ -186,6 +193,8 @@ return [
         'save_changes' => 'Save Changes',
         'back' => 'Back',
         'drag_drop' => 'Drag image here or click to select',
+        'details_hint' => 'Enter the article details in both Arabic and English',
+        'edit_hint' => 'Update the article details',
 
         // Flash
         'added' => 'Article added successfully',
@@ -216,9 +225,14 @@ return [
         'image' => 'Image',
         'drag_drop' => 'Drag image here or click to select',
         'add_button' => 'Add Donation Method',
+        'edit' => 'Edit',
+        'edit_method' => 'Edit Donation Method',
+        'save_changes' => 'Save Changes',
+        'details_hint' => 'Enter the donation method details in both Arabic and English',
 
         // Flash
         'added' => 'Donation method added successfully',
+        'updated' => 'Donation method updated successfully',
         'deleted' => 'Donation method deleted successfully',
         'toggled' => 'Donation method status updated successfully',
     ],
@@ -258,6 +272,12 @@ return [
         'sort_order' => 'Display Order',
         'add_button' => 'Add Unit',
         'save_changes' => 'Save Changes',
+        'details_hint' => 'Enter the unit details in both Arabic and English',
+        'drag_drop' => 'Drag image here or click to select',
+        'edit_hint' => 'Update the unit details',
+        'new_photo_optional' => 'New Photo (optional)',
+        'delete_photo' => 'Delete Photo',
+        'delete_photo_confirm' => 'Do you want to delete this photo?',
         'edit' => 'Edit',
         'delete' => 'Delete',
 
@@ -288,6 +308,56 @@ return [
         'updated' => 'Contact information saved successfully',
     ],
 
+    // Membership Applications (Bilingual)
+    'membership_applications' => [
+        'title' => 'New Membership Applications',
+        'new_applications' => 'New Membership Applications',
+        'total' => 'Total Applications',
+        'full_member_percent' => 'Full Member',
+        'student_supporter_percent' => 'Student / Supporter',
+        'applicant' => 'Applicant',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'type' => 'Membership Type',
+        'date' => 'Date',
+        'actions' => 'Actions',
+        'full_member' => 'Full Member',
+        'student_member' => 'Student Member',
+        'supporter' => 'Supporter',
+        'no_applications' => 'No membership applications currently.',
+        'success' => 'Success!',
+        'details_title' => 'Membership Application Details',
+        'back' => 'Back',
+        'personal_data' => 'Personal Information',
+        'professional_data' => 'Professional Information',
+        'full_name' => 'Full Name',
+        'date_of_birth' => 'Date of Birth',
+        'gender' => 'Gender',
+        'whatsapp' => 'WhatsApp',
+        'city' => 'City',
+        'qualification' => 'Academic Qualification',
+        'university' => 'University',
+        'graduation_year' => 'Graduation Year',
+        'license_number' => 'License Number',
+        'current_workplace' => 'Current Workplace',
+        'years_experience' => 'Years of Experience',
+        'membership_info' => 'Membership Information',
+        'reason' => 'Reason for Joining',
+        'contribution_areas' => 'Areas of Contribution',
+        'available_for_fieldwork' => 'Available for Fieldwork',
+        'yes' => 'Yes',
+        'no' => 'No',
+        'admin_actions' => 'Admin Actions',
+        'status' => 'Application Status',
+        'pending' => 'Under Review',
+        'approved' => 'Approved',
+        'rejected' => 'Rejected',
+        'admin_notes' => 'Admin Notes',
+        'admin_notes_placeholder' => 'Write your notes here...',
+        'save_changes' => 'Save Changes',
+        'updated_success' => 'Application updated successfully',
+    ],
+
     // Profile (Bilingual)
     'profile' => [
         'title' => 'Profile',
@@ -300,5 +370,48 @@ return [
         // Flash
         'password_changed' => 'Password changed successfully',
         'current_password_incorrect' => 'Current password is incorrect',
+    ],
+
+    // Dashboard Overview (static content)
+    'dash' => [
+        'welcome' => 'Welcome to the Dashboard',
+        'subtitle' => 'Overview of Pharmacists Without Borders activity',
+        'stats' => [
+            'total_users' => 'Total Users',
+            'total_programs' => 'Programs',
+            'total_articles' => 'News & Articles',
+            'pending_memberships' => 'Pending Membership Applications',
+        ],
+        'alerts' => [
+            'title' => 'Important Alerts',
+            'pending_memberships' => 'Pending membership applications (:count)',
+            'pending_desc' => 'Please review the new applications.',
+            'volunteer' => 'Volunteer Content',
+            'volunteer_desc' => 'Make sure to update the volunteer opportunities page.',
+        ],
+        'recent_applications' => 'Recent Membership Applications',
+        'view_all' => 'View All',
+        'table' => [
+            'name' => 'Name',
+            'email' => 'Email',
+            'type' => 'Type',
+            'date' => 'Date',
+            'status' => 'Status',
+        ],
+        'no_applications' => 'No membership applications yet.',
+        'charts' => [
+            'monthly_applications' => 'Monthly Membership Applications',
+            'membership_distribution' => 'Membership Types Distribution',
+            'total' => 'Total',
+        ],
+        'published_content' => 'Published Content',
+        'programs_label' => 'Programs',
+        'articles_label' => 'Articles',
+        'status' => [
+            'new' => 'New',
+            'pending' => 'Under Review',
+            'approved' => 'Approved',
+            'rejected' => 'Rejected',
+        ],
     ],
 ];

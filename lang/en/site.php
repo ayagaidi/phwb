@@ -2,8 +2,8 @@
 
 return [
     // Hero
-    'hero_title' => 'Pharmacists Without Borders<br>Libya',
-    'hero_subtitle' => 'A non-governmental organization working to strengthen health services and empower volunteers in Libya',
+    'hero_title' => 'Pharmacists Without Borders',
+    'hero_subtitle' => 'A non-governmental organization working to strengthen health services and empower volunteers',
 
     // Buttons
     'join_member' => 'Join as Member',
@@ -25,7 +25,7 @@ return [
 
     // CTA
     'cta_title' => 'Want to be part of the change?',
-    'cta_subtitle' => 'Join our volunteer team and help improve the lives of thousands in Libya.',
+    'cta_subtitle' => 'Join our volunteer team and help improve the lives of thousands.',
     'cta_button' => 'Register as Volunteer Now',
 
     // Navigation
@@ -43,7 +43,7 @@ return [
     // Footer
     'footer' => [
         'org_name' => 'Pharmacists Without Borders',
-        'description' => 'A non-governmental organization working to improve health services in Libya through volunteering and development programs.',
+        'description' => 'A non-governmental organization working to improve health services through volunteering and development programs.',
         'quick_links' => 'Quick Links',
         'follow_us' => 'Follow Us',
         'contact_us' => 'Contact Us',
@@ -51,7 +51,7 @@ return [
         'join_volunteer' => 'Join as Volunteer',
         'news' => 'News & Articles',
         'copyright' => 'All rights reserved.',
-        'location' => 'Libya',
+        'location' => '',
     ],
 
     // Programs Page
@@ -64,7 +64,7 @@ return [
     // Volunteer Page
     'volunteer' => [
         'title' => 'Join as Volunteer',
-        'subtitle' => 'Contribute to improving public health in Libya',
+        'subtitle' => 'Contribute to improving public health',
         'opportunities_title' => 'Available Volunteering Opportunities:',
         'contact_button' => 'Contact Us to Volunteer',
     ],
@@ -73,7 +73,7 @@ return [
     'membership' => [
         'title' => 'Join as Member',
         'hero_badge' => 'Become Part of the Organization',
-        'hero_subtitle' => 'Help build a healthier future for Libya through official membership',
+        'hero_subtitle' => 'Help build a healthier future through official membership',
         'why_join_title' => 'Why Join as a Member?',
         'why_join_desc' => 'Benefit from many advantages and opportunities',
         'benefits' => [
@@ -83,7 +83,7 @@ return [
             ],
             'network' => [
                 'title' => 'Professional Network',
-                'desc' => 'Connect with pharmacists and health specialists from across Libya and the world',
+                'desc' => 'Connect with pharmacists and health specialists from across the world',
             ],
             'impact' => [
                 'title' => 'Real Impact',
@@ -92,7 +92,7 @@ return [
         ],
         'who_can_join_title' => 'Who Can Join?',
         'eligibility' => [
-            'pharmacists' => 'Licensed pharmacists in Libya',
+            'pharmacists' => 'Licensed pharmacists',
             'students' => 'Pharmacy students in advanced years',
             'health_workers' => 'Health workers interested in the organization\'s goals',
             'supporters' => 'Anyone who believes in improving health services',
@@ -146,12 +146,14 @@ return [
     'articles' => [
         'title' => 'News & Articles',
         'no_articles' => 'No news or articles available at the moment.',
+        'hero_badge' => 'Our News',
+        'hero_subtitle' => 'Follow the latest news and articles from Pharmacists Without Borders',
     ],
 
     // Org Structure Page
     'org' => [
         'title' => 'Organizational Structure',
-        'subtitle' => 'Learn about the leadership and management structure of Pharmacists Without Borders - Libya',
+        'subtitle' => 'Learn about the leadership and management structure of Pharmacists Without Borders',
         'badge' => 'Our Team',
         'no_data' => 'No data available in the organizational structure at the moment.',
     ],
@@ -176,7 +178,6 @@ return [
         'not_available' => 'Not available',
         'facebook' => 'Facebook',
         'instagram' => 'Instagram',
-        'libya' => 'Libya',
-        'org_name_map' => 'Pharmacists Without Borders - Libya',
+        'org_name_map' => 'Pharmacists Without Borders',
     ],
 ];

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'صيادلة بلا حدود - ليبيا')</title>
+    <title>@yield('title', 'صيادلة بلا حدود')</title>
     
     <!-- Modern Tailwind via CDN for quick beautiful design -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -196,7 +196,7 @@
             </div>
 
             <div class="border-t border-white/20 mt-10 pt-6 text-center text-xs text-[#1cc6aa]/60">
-                © {{ date('Y') }} {{ __('site.footer.org_name') }} - ليبيا. {{ __('site.footer.copyright') }}
+                © {{ date('Y') }} {{ __('site.footer.org_name') }}. {{ __('site.footer.copyright') }}
             </div>
         </div>
     </footer>

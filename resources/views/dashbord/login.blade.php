@@ -101,7 +101,7 @@
             </svg>
           </button>
         </form>
-      <p class="login-version">{{ __('admin.app_name') }} — ليبيا</p>
+      <p class="login-version">{{ __('admin.app_name') }}</p>
     </div>
   </div>
 

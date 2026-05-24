@@ -162,7 +162,7 @@ $mapAddress = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.l
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Coordinates for Al-Sarraj, Tripoli, Libya (approx)
+        // Coordinates for Al-Sarraj, Tripoli (approx)
         const lat = 32.8872;
         const lng = 13.1913;
 

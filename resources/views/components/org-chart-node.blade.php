@@ -39,7 +39,7 @@
   @if($unit->children->count() > 0)
     <div class="org-children-row">
       @foreach($unit->children as $child)
-        <x-org-chart-node :unit="$child" />
+        <x-org-chart-node :unit="$child" :readonly="$readonly" />
       @endforeach
     </div>
   @endif

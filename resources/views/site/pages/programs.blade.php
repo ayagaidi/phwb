@@ -3,12 +3,19 @@
 @section('title', __('site.programs.title') . ' | ' . __('site.footer.org_name'))
 
 @section('content')
-<div class="max-w-6xl mx-auto px-6 py-14">
-    <div class="text-center mb-12">
-        <span class="px-4 py-1 bg-[#1cc6aa]/10 text-[#29225c] text-sm font-medium rounded-full">{{ __('site.programs_label') }}</span>
-        <h1 class="text-4xl font-bold mt-3">{{ __('site.programs.subtitle') }}</h1>
+<!-- Hero -->
+<div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-x-2 bg-white/10 px-4 py-1 rounded-full text-sm mb-4">
+            <i class="fas fa-project-diagram"></i>
+            <span>{{ __('site.programs.hero_badge') }}</span>
+        </div>
+        <h1 class="text-5xl font-bold tracking-tight">{{ __('site.programs.title') }}</h1>
+        <p class="mt-3 text-xl text-[#1cc6aa] max-w-xl mx-auto">{{ __('site.programs.hero_subtitle') }}</p>
     </div>
+</div>
 
+<div class="max-w-6xl mx-auto px-6  pb-16">
     @if($programs->count() > 0)
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         @foreach($programs as $program)
@@ -27,7 +34,7 @@
                     @if($program->video_url)
                         <a href="{{ $program->video_url }}" target="_blank" 
                            class="inline-flex items-center mt-4 text-sm text-[#29225c] font-medium">
-                            <i class="fas fa-play-circle ml-2"></i> {{ app()->getLocale() === 'en' ? 'Watch Video' : 'شاهد الفيديو' }}
+                             <i class="fas fa-play-circle ml-2"></i> {{ app()->getLocale() === 'en' ? 'Watch Video' : 'شاهد الفيديو' }}
                         </a>
                     @endif
                 </div>

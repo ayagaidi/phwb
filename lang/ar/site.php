@@ -58,13 +58,17 @@ return [
         'title' => 'برامجنا',
         'subtitle' => 'برامجنا التنموية',
         'no_programs' => 'لا توجد برامج حالياً.',
+        'hero_badge' => 'برامجنا',
+        'hero_subtitle' => 'تعرف على برامجنا التنموية والمشاريع المجتمعية',
     ],
 
     // Volunteer Page
     'volunteer' => [
         'title' => 'انضم كمتطوع',
         'subtitle' => 'ساهم في تحسين الصحة العامة',
-        'opportunities_title' => 'فرص التطوع المتاحة:',
+        'hero_badge' => 'التطوع',
+        'hero_subtitle' => 'ساهم معنا في تحسين الخدمات الصحية وخدمة المجتمع',
+        'opportunities_title' => 'الفرص المتاحة',
         'contact_button' => 'تواصل معنا للتطوع',
     ],
 

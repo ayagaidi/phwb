@@ -59,13 +59,17 @@ return [
         'title' => 'Our Programs',
         'subtitle' => 'Our Development Programs',
         'no_programs' => 'No programs available at the moment.',
+        'hero_badge' => 'Our Programs',
+        'hero_subtitle' => 'Explore our development programs and community projects',
     ],
 
     // Volunteer Page
     'volunteer' => [
         'title' => 'Join as Volunteer',
         'subtitle' => 'Contribute to improving public health',
-        'opportunities_title' => 'Available Volunteering Opportunities:',
+        'hero_badge' => 'Volunteer',
+        'hero_subtitle' => 'Join us in strengthening health services and serving the community',
+        'opportunities_title' => 'Available Opportunities',
         'contact_button' => 'Contact Us to Volunteer',
     ],
 

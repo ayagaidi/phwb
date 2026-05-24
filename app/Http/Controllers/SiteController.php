@@ -9,6 +9,7 @@ use App\Models\OrganizationalUnit;
 use App\Models\ContactSetting;
 use App\Models\VolunteerContent;
 use App\Models\MembershipApplication;
+use App\Models\DonationMethod;
 
 class SiteController extends Controller
 {
@@ -30,8 +31,9 @@ class SiteController extends Controller
     public function volunteer()
     {
         $content = VolunteerContent::first();
+        $donationMethods = DonationMethod::all();
         $contact = ContactSetting::first();
-        return view('site.pages.volunteer', compact('content', 'contact'));
+        return view('site.pages.volunteer', compact('content', 'donationMethods', 'contact'));
     }
 
     public function membership()

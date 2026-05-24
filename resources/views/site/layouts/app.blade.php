@@ -97,11 +97,7 @@
                            class="px-3 py-1 border-l transition {{ app()->getLocale() == 'en' ? 'bg-[#29225c] text-white' : 'hover:bg-gray-50' }}">EN</a>
                     </div>
 
-                    <a href="/admin" 
-                       class="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-2xl bg-[#29225c] text-white hover:bg-[#372d70] transition-all shadow-sm">
-                        <i class="fas fa-tachometer-alt mr-2"></i>
-                        {{ __('site.nav.dashboard') }}
-                    </a>
+                   
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="md:hidden text-gray-700 p-2">

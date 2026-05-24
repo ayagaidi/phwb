@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             ContactSettingSeeder::class,
             VolunteerContentSeeder::class,
             DonationMethodSeeder::class,
+            ProgramSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }

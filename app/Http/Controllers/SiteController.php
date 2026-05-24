@@ -28,6 +28,16 @@ class SiteController extends Controller
         return view('site.pages.programs', compact('programs', 'contact'));
     }
 
+    public function showProgram(Program $program)
+    {
+        if (!$program->is_published) {
+            abort(404);
+        }
+
+        $contact = ContactSetting::first();
+        return view('site.pages.program', compact('program', 'contact'));
+    }
+
     public function volunteer()
     {
         $content = VolunteerContent::first();
@@ -81,6 +91,16 @@ class SiteController extends Controller
         $articles = Article::where('is_published', true)->latest()->get();
         $contact = ContactSetting::first();
         return view('site.pages.articles', compact('articles', 'contact'));
+    }
+
+    public function showArticle(Article $article)
+    {
+        if (!$article->is_published) {
+            abort(404);
+        }
+
+        $contact = ContactSetting::first();
+        return view('site.pages.article', compact('article', 'contact'));
     }
 
     public function org()

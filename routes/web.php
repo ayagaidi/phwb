@@ -13,10 +13,12 @@ Route::get('/lang/{locale}', function ($locale) {
 
 Route::get('/', [App\Http\Controllers\SiteController::class, 'home'])->name('site.home');
 Route::get('/programs', [App\Http\Controllers\SiteController::class, 'programs'])->name('site.programs');
+Route::get('/programs/{program}', [App\Http\Controllers\SiteController::class, 'showProgram'])->name('site.programs.show');
 Route::get('/volunteer', [App\Http\Controllers\SiteController::class, 'volunteer'])->name('site.volunteer');
 Route::get('/membership', [App\Http\Controllers\SiteController::class, 'membership'])->name('site.membership');
 Route::post('/membership', [App\Http\Controllers\SiteController::class, 'storeMembership'])->name('site.membership.store');
 Route::get('/articles', [App\Http\Controllers\SiteController::class, 'articles'])->name('site.articles');
+Route::get('/articles/{article}', [App\Http\Controllers\SiteController::class, 'showArticle'])->name('site.articles.show');
 Route::get('/org-structure', [App\Http\Controllers\SiteController::class, 'org'])->name('site.org');
 Route::get('/contact', [App\Http\Controllers\SiteController::class, 'contact'])->name('site.contact');
 

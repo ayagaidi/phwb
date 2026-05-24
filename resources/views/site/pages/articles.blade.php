@@ -19,15 +19,32 @@
     @if($articles->count() > 0)
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         @foreach($articles as $article)
-            <div class="bg-white border rounded-3xl p-7 modern-card">
-                <h3 class="font-bold text-2xl mb-3">
-                    {{ app()->getLocale() === 'en' && $article->title_en ? $article->title_en : $article->title }}
-                </h3>
-                <div class="prose prose-sm text-gray-600">
-                    {!! nl2br(e(Str::limit($article->content, 280))) !!}
-                </div>
-                <div class="mt-4 text-xs text-gray-400">
-                    {{ $article->created_at->format('Y/m/d') }}
+            <div class="bg-white border rounded-3xl overflow-hidden modern-card flex flex-col">
+                @if($article->image)
+                    <img src="{{ asset('storage/' . $article->image) }}" 
+                         class="w-full h-48 object-cover" alt="">
+                @endif
+                
+                <div class="p-7 flex-1 flex flex-col">
+                    <h3 class="font-bold text-2xl mb-3">
+                        {{ app()->getLocale() === 'en' && $article->title_en ? $article->title_en : $article->title }}
+                    </h3>
+                    
+                    <div class="prose prose-sm text-gray-600 flex-1">
+                        {!! nl2br(e(Str::limit($article->content, 220))) !!}
+                    </div>
+                    
+                    <div class="mt-6 flex items-center justify-between">
+                        <div class="text-xs text-gray-400">
+                            {{ $article->created_at->format('Y/m/d') }}
+                        </div>
+                        
+                        <a href="{{ route('site.articles.show', $article->id) }}" 
+                           class="inline-flex items-center text-sm font-medium text-[#29225c] hover:text-[#1cc6aa] transition">
+                            {{ app()->getLocale() === 'en' ? 'Read More' : 'عرض المزيد' }}
+                            <i class="fas fa-arrow-left mr-2 text-xs"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         @endforeach

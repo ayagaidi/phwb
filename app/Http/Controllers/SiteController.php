@@ -10,15 +10,17 @@ use App\Models\ContactSetting;
 use App\Models\VolunteerContent;
 use App\Models\MembershipApplication;
 use App\Models\DonationMethod;
+use App\Models\Slider;
 
 class SiteController extends Controller
 {
     public function home()
     {
+        $sliders = \App\Models\Slider::where('is_published', true)->orderBy('sort_order')->latest()->get();
         $programs = Program::where('is_published', true)->latest()->take(3)->get();
         $contact = ContactSetting::first();
 
-        return view('site.pages.home', compact('programs', 'contact'));
+        return view('site.pages.home', compact('sliders', 'programs', 'contact'));
     }
 
     public function programs()

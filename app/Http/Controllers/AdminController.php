@@ -152,6 +152,102 @@ class AdminController extends Controller
         return redirect()->route('admin.users')->with('success', __('admin.user_toggled'));
     }
 
+    // Sliders
+    public function sliders()
+    {
+        $sliders = \App\Models\Slider::orderBy('sort_order')->latest()->get();
+        return view('dashbord.sliders.index', compact('sliders'));
+    }
+
+    public function createSlider()
+    {
+        return view('dashbord.sliders.create');
+    }
+
+    public function storeSlider(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'title_en' => 'nullable',
+            'description' => 'nullable',
+            'description_en' => 'nullable',
+            'image' => 'required|image',
+            'link' => 'nullable|string',
+            'link_text' => 'nullable|string',
+            'link_text_en' => 'nullable|string',
+            'sort_order' => 'nullable|integer',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('sliders', 'public');
+        }
+
+        $data['is_published'] = false;
+        \App\Models\Slider::create($data);
+
+        return redirect()->route('admin.sliders')->with('success', __('admin.sliders.added'));
+    }
+
+    public function editSlider($id)
+    {
+        $slider = \App\Models\Slider::findOrFail($id);
+        return view('dashbord.sliders.edit', compact('slider'));
+    }
+
+    public function updateSlider(Request $request, $id)
+    {
+        $slider = \App\Models\Slider::findOrFail($id);
+        $data = $request->validate([
+            'title' => 'required',
+            'title_en' => 'nullable',
+            'description' => 'nullable',
+            'description_en' => 'nullable',
+            'image' => 'nullable|image',
+            'link' => 'nullable|string',
+            'link_text' => 'nullable|string',
+            'link_text_en' => 'nullable|string',
+            'sort_order' => 'nullable|integer',
+            'remove_image' => 'nullable|string',
+        ]);
+
+        $currentImage = $slider->image;
+
+        if ($request->filled('remove_image') && $request->remove_image === $currentImage) {
+            \Storage::disk('public')->delete($currentImage);
+            $currentImage = null;
+        }
+
+        if ($request->hasFile('image')) {
+            if ($currentImage) {
+                \Storage::disk('public')->delete($currentImage);
+            }
+            $data['image'] = $request->file('image')->store('sliders', 'public');
+        } elseif ($currentImage) {
+            $data['image'] = $currentImage;
+        }
+
+        $slider->update($data);
+        return redirect()->route('admin.sliders')->with('success', __('admin.sliders.updated'));
+    }
+
+    public function toggleSlider($id)
+    {
+        $slider = \App\Models\Slider::findOrFail($id);
+        $slider->is_published = !$slider->is_published;
+        $slider->save();
+        return redirect()->route('admin.sliders')->with('success', __('admin.sliders.toggled'));
+    }
+
+    public function destroySlider($id)
+    {
+        $slider = \App\Models\Slider::findOrFail($id);
+        if ($slider->image) {
+            \Storage::disk('public')->delete($slider->image);
+        }
+        $slider->delete();
+        return redirect()->route('admin.sliders')->with('success', __('admin.sliders.deleted'));
+    }
+
     // Programs
     public function programs()
     {

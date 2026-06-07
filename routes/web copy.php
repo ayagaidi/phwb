@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function () {
         Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
         Route::patch('/users/{id}/toggle', [AdminController::class, 'toggleUser'])->name('admin.users.toggle');
 
-         // Sliders
+        // Sliders
         Route::get('/sliders', [AdminController::class, 'sliders'])->name('admin.sliders');
         Route::get('/sliders/create', [AdminController::class, 'createSlider'])->name('admin.sliders.create');
         Route::post('/sliders', [AdminController::class, 'storeSlider'])->name('admin.sliders.store');
@@ -55,7 +55,7 @@ Route::prefix('admin')->group(function () {
 
         // Programs
         Route::get('/programs', [AdminController::class, 'programs'])->name('admin.programs');
-        Route::get('/programs/create', [AdminController::class, 'createProgram'])->name('admin.programs.create');
+       
         Route::post('/programs', [AdminController::class, 'storeProgram'])->name('admin.programs.store');
         Route::get('/programs/{id}/edit', [AdminController::class, 'editProgram'])->name('admin.programs.edit');
         Route::put('/programs/{id}', [AdminController::class, 'updateProgram'])->name('admin.programs.update');

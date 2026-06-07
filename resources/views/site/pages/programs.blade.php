@@ -4,6 +4,8 @@
 
 @section('content')
 
+
+
 <!-- Hero Section -->
 <div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
     <div class="max-w-4xl mx-auto px-6 text-center">

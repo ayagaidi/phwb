@@ -22,7 +22,7 @@
         body {
             font-family: var(--font);
         }
-
+        
         .nav-link {
             transition: all 0.3s ease;
         }
@@ -48,33 +48,33 @@
             border-radius: 3px;
         }
         
-.org-chart {
-             font-size: 0.95rem;
-         }
-         
-         .modern-card {
-             transition: transform 0.3s ease, box-shadow 0.3s ease;
-         }
-         
-         .modern-card:hover {
-             transform: translateY(-8px);
-             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-         }
-         
-         .hero-gradient {
-             background: linear-gradient(135deg, #1cc6aa 0%, #1cc6aa 100%);
-         }
-         
-         .to-\[#372d70\] {
-             --tw-gradient-to: #372d70 var(--tw-gradient-to-position);
-         }
-         
-         .from-\[#29225c\] {
-             --tw-gradient-from: #29225c var(--tw-gradient-from-position);
-             --tw-gradient-to: rgb(41 34 92 / 0) var(--tw-gradient-to-position);
-             --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-         }
-     </style>
+        .org-chart {
+            font-size: 0.95rem;
+        }
+        
+        .modern-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1cc6aa 0%, #1cc6aa 100%);
+        }
+        
+        .to-\[#372d70\] {
+            --tw-gradient-to: #372d70 var(--tw-gradient-to-position);
+        }
+        
+        .from-\[#29225c\] {
+            --tw-gradient-from: #29225c var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(41 34 92 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -101,16 +101,15 @@
 
                 <!-- Right Side -->
                 <div class="flex items-center gap-x-4">
-<!-- Language Switcher -->
-                     <div class="hidden md:flex items-center text-xs font-semibold border border-gray-200 rounded-full overflow-hidden">
-                         <a href="{{ route('lang.switch', 'ar') }}" 
-                            class="px-3 py-1 transition {{ app()->getLocale() == 'ar' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-50' }}">AR</a>
-                         <a href="{{ route('lang.switch', 'en') }}" 
-                            class="px-3 py-1 border-l transition {{ app()->getLocale() == 'en' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-50' }}">EN</a>
-                     </div>
+                    <!-- Language Switcher -->
+                    <div class="hidden md:flex items-center text-xs font-semibold border border-gray-200 rounded-full overflow-hidden">
+                        <a href="{{ route('lang.switch', 'ar') }}" 
+                           class="px-3 py-1 transition {{ app()->getLocale() == 'ar' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-50' }}">AR</a>
+                        <a href="{{ route('lang.switch', 'en') }}" 
+                           class="px-3 py-1 border-l transition {{ app()->getLocale() == 'en' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-50' }}">EN</a>
+                    </div>
 
-                   
-
+                    
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="md:hidden text-gray-700 p-2">
                         <i class="fas fa-bars text-xl"></i>
@@ -132,17 +131,17 @@
             <a href="{{ route('site.contact') }}" class="py-3 px-4 hover:bg-gray-100 rounded-xl">{{ __('site.nav.contact') }}</a>
             
             <div class="pt-4 border-t mt-2">
-<!-- Mobile Language Switch -->
-                 <div class="flex justify-center mb-3">
-                     <div class="flex text-xs font-semibold border border-gray-200 rounded-full overflow-hidden">
-                         <a href="{{ route('lang.switch', 'ar') }}" 
-                            class="px-4 py-1.5 {{ app()->getLocale() == 'ar' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-100' }}">AR</a>
-                         <a href="{{ route('lang.switch', 'en') }}" 
-                            class="px-4 py-1.5 border-l {{ app()->getLocale() == 'en' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-100' }}">EN</a>
-                     </div>
-                 </div>
+                <!-- Mobile Language Switch -->
+                <div class="flex justify-center mb-3">
+                    <div class="flex text-xs font-semibold border border-gray-200 rounded-full overflow-hidden">
+                        <a href="{{ route('lang.switch', 'ar') }}" 
+                           class="px-4 py-1.5 {{ app()->getLocale() == 'ar' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-100' }}">AR</a>
+                        <a href="{{ route('lang.switch', 'en') }}" 
+                           class="px-4 py-1.5 border-l {{ app()->getLocale() == 'en' ? 'bg-[rgb(28,198,170)] text-white' : 'hover:bg-gray-100' }}">EN</a>
+                    </div>
+                </div>
 
-               
+                
             </div>
         </div>
     </div>

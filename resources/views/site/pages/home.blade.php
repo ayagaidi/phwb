@@ -15,6 +15,12 @@
                     </div>
                     @endforeach
                 </div>
+                <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition z-10">
+                    <i class="fas fa-chevron-left text-[#29225c]"></i>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition z-10">
+                    <i class="fas fa-chevron-right text-[#29225c]"></i>
+                </button>
             </div>
             
             <div class="max-w-3xl mx-auto text-center">
@@ -48,7 +54,7 @@
     </section>
 
     <script>
-        // Auto-slide only
+        // Slider with manual controls
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slider-slide');
         
@@ -57,6 +63,14 @@
                 slide.classList.toggle('hidden', i !== index);
             });
             currentSlide = index;
+        }
+        
+        function nextSlide() {
+            showSlide((currentSlide + 1) % slides.length);
+        }
+        
+        function prevSlide() {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
         }
         
         if (slides.length > 1) {

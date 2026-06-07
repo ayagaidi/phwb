@@ -3,7 +3,8 @@
 @section('title', __('site.programs.title') . ' | ' . __('site.footer.org_name'))
 
 @section('content')
-<!-- Hero -->
+
+<!-- Hero Section -->
 <div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
     <div class="max-w-4xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-x-2 bg-white/10 px-4 py-1 rounded-full text-sm mb-4">
@@ -15,7 +16,8 @@
     </div>
 </div>
 
-<div class="max-w-6xl mx-auto px-6  pb-16">
+
+<div class="max-w-6xl mx-auto px-6 pb-16">
     @if($programs->count() > 0)
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         @foreach($programs as $program)

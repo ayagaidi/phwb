@@ -25,9 +25,10 @@ class SiteController extends Controller
 
     public function programs()
     {
+        $sliders = \App\Models\Slider::where('is_published', true)->latest()->get();
         $programs = Program::where('is_published', true)->latest()->get();
         $contact = ContactSetting::first();
-        return view('site.pages.programs', compact('programs', 'contact'));
+        return view('site.pages.programs', compact('sliders', 'programs', 'contact'));
     }
 
     public function showProgram(Program $program)

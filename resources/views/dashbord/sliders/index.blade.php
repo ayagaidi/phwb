@@ -49,7 +49,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>{{ __('admin.sliders.slider') }}</th>
+          <th>{{ __('admin.sliders.image') }}</th>
           <th>{{ __('admin.sliders.status') }}</th>
           <th class="tl">{{ __('admin.sliders.actions') }}</th>
         </tr>
@@ -59,21 +59,11 @@
           <tr>
             <td>{{ $index + 1 }}</td>
             <td>
-              <div class="cell-name">
-                @if($slider->image)
-                  <img src="{{ asset('storage/' . $slider->image) }}" width="60" height="40" style="object-fit:cover; border-radius:8px; margin-left:8px;">
-                @else
-                  <div class="cell-icon" style="background:var(--accent-light); color:var(--accent);">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                  </div>
-                @endif
-                <div>
-                  <strong>{{ app()->getLocale() === 'en' && $slider->title_en ? $slider->title_en : $slider->title }}</strong>
-                  @if($slider->link)
-                    <small class="block text-gray-500">{{ $slider->link }}</small>
-                  @endif
-                </div>
-              </div>
+              @if($slider->image)
+                <img src="{{ asset('storage/' . $slider->image) }}" width="120" height="80" style="object-fit:cover; border-radius:8px;">
+              @else
+                <span style="color:var(--muted);">{{ __('admin.sliders.no_image') }}</span>
+              @endif
             </td>
             <td>
               @if($slider->is_published)

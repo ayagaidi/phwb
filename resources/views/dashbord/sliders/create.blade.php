@@ -47,56 +47,7 @@
             @enderror
           </div>
 
-          <!-- Arabic Title -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.sliders.title_ar') }} <span class="text-red-500">*</span></label>
-            <input type="text" name="title" class="field-input" value="{{ old('title') }}" required>
-            @error('title')
-              <span style="color:#dc2626; font-size:0.875rem;">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <!-- English Title -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.sliders.title_en') }}</label>
-            <input type="text" name="title_en" class="field-input" value="{{ old('title_en') }}">
-          </div>
-
-          <!-- Arabic Description -->
-          <div class="form-group grid-full">
-            <label>{{ __('admin.sliders.description_ar') }}</label>
-            <textarea name="description" class="field-input" rows="3">{{ old('description') }}</textarea>
-          </div>
-
-          <!-- English Description -->
-          <div class="form-group grid-full">
-            <label>{{ __('admin.sliders.description_en') }}</label>
-            <textarea name="description_en" class="field-input" rows="3">{{ old('description_en') }}</textarea>
-          </div>
-
-          <!-- Link URL -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.sliders.link_url') }}</label>
-            <input type="text" name="link" class="field-input" value="{{ old('link') }}" placeholder="https://...">
-          </div>
-
-          <!-- Arabic Link Text -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.sliders.link_text_ar') }}</label>
-            <input type="text" name="link_text" class="field-input" value="{{ old('link_text') }}">
-          </div>
-
-          <!-- English Link Text -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.sliders.link_text_en') }}</label>
-            <input type="text" name="link_text_en" class="field-input" value="{{ old('link_text_en') }}">
-          </div>
-
-          <!-- Sort Order -->
-          <div class="form-group grid-half">
-            <label>{{ __('admin.sliders.sort_order') }}</label>
-            <input type="number" name="sort_order" class="field-input" value="{{ old('sort_order', 0) }}" min="0">
-          </div>
+          
 
         </div>
 

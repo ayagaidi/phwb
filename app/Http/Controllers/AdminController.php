@@ -155,7 +155,7 @@ class AdminController extends Controller
     // Sliders
     public function sliders()
     {
-        $sliders = \App\Models\Slider::orderBy('sort_order')->latest()->get();
+        $sliders = \App\Models\Slider::latest()->get();
         return view('dashbord.sliders.index', compact('sliders'));
     }
 
@@ -167,15 +167,7 @@ class AdminController extends Controller
     public function storeSlider(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required',
-            'title_en' => 'nullable',
-            'description' => 'nullable',
-            'description_en' => 'nullable',
             'image' => 'required|image',
-            'link' => 'nullable|string',
-            'link_text' => 'nullable|string',
-            'link_text_en' => 'nullable|string',
-            'sort_order' => 'nullable|integer',
         ]);
 
         if ($request->hasFile('image')) {
@@ -198,15 +190,7 @@ class AdminController extends Controller
     {
         $slider = \App\Models\Slider::findOrFail($id);
         $data = $request->validate([
-            'title' => 'required',
-            'title_en' => 'nullable',
-            'description' => 'nullable',
-            'description_en' => 'nullable',
             'image' => 'nullable|image',
-            'link' => 'nullable|string',
-            'link_text' => 'nullable|string',
-            'link_text_en' => 'nullable|string',
-            'sort_order' => 'nullable|integer',
             'remove_image' => 'nullable|string',
         ]);
 

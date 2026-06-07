@@ -247,7 +247,8 @@ return [
         'published' => 'المنشورة',
         'unpublished' => 'غير المنشورة',
         'sliders_list' => 'قائمة السلايدرات',
-        'slider' => 'السلايدر',
+        'image' => 'الصورة',
+        'no_image' => 'لا توجد صورة',
         'status' => 'الحالة',
         'actions' => 'الإجراءات',
         'edit' => 'تعديل',
@@ -261,11 +262,7 @@ return [
         // Create / Edit
         'add_new' => 'إضافة سلايدر جديد',
         'edit_slider' => 'تعديل السلايدر',
-        'description_hint' => 'أضف صورة ومحتوى للسلايدر',
-        'title_ar' => 'العنوان (عربي)',
-        'title_en' => 'العنوان (إنجليزي)',
-        'description_ar' => 'الوصف (عربي)',
-        'description_en' => 'الوصف (إنجليزي)',
+        'description_hint' => 'أضف صورة للسلايدر',
         'media' => 'الصورة',
         'drag_drop' => 'اسحب الصورة هنا أو اضغط للاختيار',
         'add_button' => 'إضافة السلايدر',
@@ -274,10 +271,6 @@ return [
         'current_image' => 'الصورة الحالية',
         'new_image' => 'صورة جديدة (اختياري)',
         'delete_image' => 'حذف الصورة',
-        'link_url' => 'رابط الزر',
-        'link_text_ar' => 'نص الزر (عربي)',
-        'link_text_en' => 'نص الزر (إنجليزي)',
-        'sort_order' => 'ترتيب العرض',
 
         // Flash
         'added' => 'تمت إضافة السلايدر بنجاح',

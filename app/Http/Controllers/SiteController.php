@@ -16,7 +16,7 @@ class SiteController extends Controller
 {
     public function home()
     {
-        $sliders = \App\Models\Slider::where('is_published', true)->orderBy('sort_order')->latest()->get();
+        $sliders = \App\Models\Slider::where('is_published', true)->latest()->get();
         $programs = Program::where('is_published', true)->latest()->take(3)->get();
         $contact = ContactSetting::first();
 

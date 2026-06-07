@@ -10,43 +10,11 @@
             <div class="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-16">
                 <div id="slider-container" class="h-full">
                     @foreach($sliders as $index => $slider)
-                    <div class="slider-slide {{ $index === 0 ? '' : 'hidden' }} h-full relative">
-                        <img src="{{ asset('storage/' . $slider->image) }}" alt="{{ app()->getLocale() === 'en' && $slider->title_en ? $slider->title_en : $slider->title }}" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
-                            <div class="p-8 md:p-12 text-white max-w-2xl">
-                                <h2 class="text-3xl md:text-4xl font-bold mb-3">
-                                    {{ app()->getLocale() === 'en' && $slider->title_en ? $slider->title_en : $slider->title }}
-                                </h2>
-                                @if($slider->description || $slider->description_en)
-                                <p class="text-lg text-gray-200 mb-4">
-                                    {{ app()->getLocale() === 'en' && $slider->description_en ? $slider->description_en : $slider->description }}
-                                </p>
-                                @endif
-                                @if($slider->link)
-                                <a href="{{ $slider->link }}" class="inline-block bg-white text-[#29225c] font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition">
-                                    {{ app()->getLocale() === 'en' && $slider->link_text_en ? $slider->link_text_en : ($slider->link_text ?? __('site.read_more')) }}
-                                </a>
-                                @endif
-                            </div>
-                        </div>
+                    <div class="slider-slide {{ $index === 0 ? '' : 'hidden' }} h-full">
+                        <img src="{{ asset('storage/' . $slider->image) }}" alt="Slider image" class="w-full h-full object-cover">
                     </div>
                     @endforeach
                 </div>
-                
-                @if($sliders->count() > 1)
-                <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                    @foreach($sliders as $index => $slider)
-                    <button class="slider-dot w-3 h-3 rounded-full transition {{ $index === 0 ? 'bg-white' : 'bg-white/40' }}" data-index="{{ $index }}"></button>
-                    @endforeach
-                </div>
-                @endif
             </div>
             
             <div class="max-w-3xl mx-auto text-center">
@@ -80,43 +48,17 @@
     </section>
 
     <script>
-        // Slider functionality
+        // Auto-slide only
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slider-slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        const prevBtn = document.getElementById('slider-prev');
-        const nextBtn = document.getElementById('slider-next');
         
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 slide.classList.toggle('hidden', i !== index);
             });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('bg-white', i === index);
-                dot.classList.toggle('bg-white/40', i !== index);
-            });
             currentSlide = index;
         }
         
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                showSlide((currentSlide - 1 + slides.length) % slides.length);
-            });
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                showSlide((currentSlide + 1) % slides.length);
-            });
-        }
-        
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                showSlide(parseInt(dot.dataset.index));
-            });
-        });
-        
-        // Auto-slide
         if (slides.length > 1) {
             setInterval(() => {
                 showSlide((currentSlide + 1) % slides.length);

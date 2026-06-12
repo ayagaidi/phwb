@@ -51,7 +51,7 @@
             <h2 class="text-3xl font-bold mt-3">اختر طريقة التطوع المناسبة لك</h2>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             @foreach($donationMethods as $method)
                 <div class="bg-white border rounded-3xl overflow-hidden shadow-sm modern-card">
                     @if($method->image)

@@ -798,4 +798,56 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+
+    public function permissions($id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('admin.login');
+        }
+
+        $user = \App\Models\User::findOrFail($id);
+        $sections = [
+            'dashboard' => ['view'],
+            'users' => ['view', 'create', 'edit', 'delete'],
+            'programs' => ['view', 'create', 'edit', 'delete'],
+            'sliders' => ['view', 'create', 'edit', 'delete'],
+            'volunteer-content' => ['view', 'update'],
+            'articles' => ['view', 'create', 'edit', 'delete'],
+            'membership-applications' => ['view', 'export', 'update'],
+            'donation-methods' => ['view', 'create', 'edit', 'delete'],
+            'org-structure' => ['view', 'create', 'edit', 'delete'],
+            'contact-settings' => ['view', 'update'],
+        ];
+
+        $userPermissions = $user->permissions ?? [];
+        if (!is_array($userPermissions)) {
+            $userPermissions = json_decode($userPermissions, true) ?? [];
+        }
+
+        return view('dashbord.users.permissions', compact('user', 'sections', 'userPermissions'));
+    }
+
+    public function updatePermissions(Request $request, $id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('admin.login');
+        }
+
+        $user = \App\Models\User::findOrFail($id);
+
+        if ($user->role === 'owner') {
+            return redirect()->route('admin.users')->with('error', __('admin.permissions.cannot_modify_owner'));
+        }
+
+        $permissions = $request->validate([
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'array',
+            'permissions.*.*' => 'string',
+        ]);
+
+        $user->permissions = $permissions['permissions'] ?? [];
+        $user->save();
+
+        return redirect()->route('admin.users')->with('success', __('admin.permissions.updated'));
+    }
 }

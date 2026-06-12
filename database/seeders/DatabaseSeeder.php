@@ -22,6 +22,18 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@phwb.org',
             'password' => bcrypt('admin123'),
             'role' => 'owner',
+            'permissions' => [
+                'dashboard' => ['view'],
+                'users' => ['view', 'create', 'edit', 'delete'],
+                'programs' => ['view', 'create', 'edit', 'delete'],
+                'sliders' => ['view', 'create', 'edit', 'delete'],
+                'volunteer-content' => ['view', 'update'],
+                'articles' => ['view', 'create', 'edit', 'delete'],
+                'membership-applications' => ['view', 'export', 'update'],
+                'donation-methods' => ['view', 'create', 'edit', 'delete'],
+                'org-structure' => ['view', 'create', 'edit', 'delete'],
+                'contact-settings' => ['view', 'update'],
+            ],
         ]);
 
         $this->call([
@@ -31,6 +43,7 @@ class DatabaseSeeder extends Seeder
             DonationMethodSeeder::class,
             ProgramSeeder::class,
             ArticleSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }

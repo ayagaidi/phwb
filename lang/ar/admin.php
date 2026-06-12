@@ -99,6 +99,24 @@ return [
     'user_toggled' => 'تم تحديث حالة المستخدم بنجاح',
     'password_changed' => 'تم تغيير كلمة المرور بنجاح',
 
+    // Permissions Management
+    'permissions' => [
+        'title' => 'إدارة الصلاحيات',
+        'assign_for' => 'تحديد الصلاحيات لـ :name',
+        'owner_all_permissions' => 'هذا المستخدم من نوع "المالك" ولديه جميع الصلاحيات ولا يمكن تعديلها.',
+        'actions' => [
+            'view' => 'عرض',
+            'create' => 'إضافة',
+            'edit' => 'تعديل',
+            'delete' => 'حذف',
+            'update' => 'تحديث',
+            'export' => 'تصدير',
+        ],
+        'save' => 'حفظ الصلاحيات',
+        'updated' => 'تم تحديث الصلاحيات بنجاح',
+        'cannot_modify_owner' => 'لا يمكن تعديل صلاحيات المستخدم المالك',
+    ],
+
     // Programs (Bilingual)
     'programs' => [
         'management' => 'إدارة البرامج',

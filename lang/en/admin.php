@@ -99,6 +99,24 @@ return [
     'user_toggled' => 'User status updated successfully',
     'password_changed' => 'Password changed successfully',
 
+    // Permissions Management
+    'permissions' => [
+        'title' => 'Manage Permissions',
+        'assign_for' => 'Assign permissions for :name',
+        'owner_all_permissions' => 'This user is an "Owner" and has all permissions. Permissions cannot be modified.',
+        'actions' => [
+            'view' => 'View',
+            'create' => 'Create',
+            'edit' => 'Edit',
+            'delete' => 'Delete',
+            'update' => 'Update',
+            'export' => 'Export',
+        ],
+        'save' => 'Save Permissions',
+        'updated' => 'Permissions updated successfully',
+        'cannot_modify_owner' => 'Cannot modify owner permissions',
+    ],
+
     // Programs (Bilingual)
     'programs' => [
         'management' => 'Programs Management',

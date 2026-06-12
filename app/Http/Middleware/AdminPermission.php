@@ -16,7 +16,7 @@ class AdminPermission
             return redirect()->route('admin.login');
         }
 
-        if ($user->role === 'owner') {
+        if ($user->role === 'owner' || $user->role === 'admin') {
             return $next($request);
         }
 

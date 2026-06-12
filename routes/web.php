@@ -45,6 +45,7 @@ Route::prefix('admin')->group(function () {
         Route::patch('/users/{id}/toggle', [AdminController::class, 'toggleUser'])->middleware('admin.permission:users,edit')->name('admin.users.toggle');
         Route::get('/users/{id}/permissions', [AdminController::class, 'permissions'])->middleware('admin.permission:users,edit')->name('admin.users.permissions');
         Route::put('/users/{id}/permissions', [AdminController::class, 'updatePermissions'])->middleware('admin.permission:users,edit')->name('admin.users.permissions.update');
+        Route::get('/permissions', [AdminController::class, 'permissionsIndex'])->middleware('admin.permission:users,view')->name('admin.permissions');
 
          // Sliders
         Route::get('/sliders', [AdminController::class, 'sliders'])->middleware('admin.permission:sliders,view')->name('admin.sliders');

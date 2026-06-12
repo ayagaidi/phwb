@@ -24,7 +24,7 @@ class AdminController extends Controller
 
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
-                if (isset($user->role) && $user->role === 'owner') {
+                if (in_array($user->role ?? '', ['owner', 'admin', 'staff'])) {
                     $request->session()->regenerate();
                     return response()->json([
                         'success' => true,
@@ -87,7 +87,19 @@ class AdminController extends Controller
 
     public function createUser()
     {
-        return view('dashbord.users.create');
+        $sections = [
+            'dashboard' => ['view'],
+            'users' => ['view', 'create', 'edit', 'delete'],
+            'programs' => ['view', 'create', 'edit', 'delete'],
+            'sliders' => ['view', 'create', 'edit', 'delete'],
+            'volunteer-content' => ['view', 'update'],
+            'articles' => ['view', 'create', 'edit', 'delete'],
+            'membership-applications' => ['view', 'export', 'update'],
+            'donation-methods' => ['view', 'create', 'edit', 'delete'],
+            'org-structure' => ['view', 'create', 'edit', 'delete'],
+            'contact-settings' => ['view', 'update'],
+        ];
+        return view('dashbord.users.create', compact('sections'));
     }
 
     public function storeUser(Request $request)
@@ -96,14 +108,34 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'role' => 'required|in:admin,staff',
         ]);
 
-        \App\Models\User::create([
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $request->role ?? 'staff',
-        ]);
+            'role' => $request->role,
+        ];
+
+        if ($request->role === 'staff') {
+            $rawPermissions = $request->input('permissions', []);
+            $normalized = [];
+
+            if (is_array($rawPermissions)) {
+                foreach ($rawPermissions as $section => $actions) {
+                    if (is_array($actions)) {
+                        $normalized[$section] = array_values(array_unique(array_filter($actions)));
+                    } elseif (is_string($section)) {
+                        $normalized[$section] = ['view'];
+                    }
+                }
+            }
+
+            $data['permissions'] = $normalized;
+        }
+
+        \App\Models\User::create($data);
 
         return redirect()->route('admin.users')->with('success', __('admin.user_added'));
     }
@@ -799,6 +831,51 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function permissionsIndex(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('admin.login');
+        }
+
+        $sections = [
+            'dashboard' => ['view'],
+            'programs' => ['view', 'create', 'edit', 'delete'],
+            'sliders' => ['view', 'create', 'edit', 'delete'],
+            'volunteer-content' => ['view', 'update'],
+            'articles' => ['view', 'create', 'edit', 'delete'],
+            'membership-applications' => ['view', 'export', 'update'],
+            'donation-methods' => ['view', 'create', 'edit', 'delete'],
+            'org-structure' => ['view', 'create', 'edit', 'delete'],
+            'contact-settings' => ['view', 'update'],
+        ];
+
+        return view('dashbord.permissions.index', compact('sections'));
+    }
+
+    public function updatePermissions(Request $request, $id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('admin.login');
+        }
+
+        $user = \App\Models\User::findOrFail($id);
+
+        if ($user->role === 'owner') {
+            return redirect()->route('admin.users')->with('error', __('admin.permissions.cannot_modify_owner'));
+        }
+
+        $permissions = $request->validate([
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'array',
+            'permissions.*.*' => 'string',
+        ]);
+
+        $user->permissions = $permissions['permissions'] ?? [];
+        $user->save();
+
+        return redirect()->route('admin.users')->with('success', __('admin.permissions.updated'));
+    }
+
     public function permissions($id)
     {
         if (!Auth::check()) {
@@ -825,29 +902,5 @@ class AdminController extends Controller
         }
 
         return view('dashbord.users.permissions', compact('user', 'sections', 'userPermissions'));
-    }
-
-    public function updatePermissions(Request $request, $id)
-    {
-        if (!Auth::check()) {
-            return redirect()->route('admin.login');
-        }
-
-        $user = \App\Models\User::findOrFail($id);
-
-        if ($user->role === 'owner') {
-            return redirect()->route('admin.users')->with('error', __('admin.permissions.cannot_modify_owner'));
-        }
-
-        $permissions = $request->validate([
-            'permissions' => 'nullable|array',
-            'permissions.*' => 'array',
-            'permissions.*.*' => 'string',
-        ]);
-
-        $user->permissions = $permissions['permissions'] ?? [];
-        $user->save();
-
-        return redirect()->route('admin.users')->with('success', __('admin.permissions.updated'));
     }
 }

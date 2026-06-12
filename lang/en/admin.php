@@ -24,6 +24,7 @@ return [
     'nav' => [
         'home' => 'Home',
         'users' => 'Users',
+        'permissions' => 'Permissions',
         'programs' => 'Programs',
         'sliders' => 'Sliders',
         'volunteer_content' => 'Volunteer Content',
@@ -102,6 +103,8 @@ return [
     // Permissions Management
     'permissions' => [
         'title' => 'Manage Permissions',
+        'manage' => 'Manage Permissions',
+        'description' => 'View and manage the available permission sections and actions across the system. Use these to control what staff can access in the dashboard.',
         'assign_for' => 'Assign permissions for :name',
         'owner_all_permissions' => 'This user is an "Owner" and has all permissions. Permissions cannot be modified.',
         'actions' => [
@@ -115,6 +118,13 @@ return [
         'save' => 'Save Permissions',
         'updated' => 'Permissions updated successfully',
         'cannot_modify_owner' => 'Cannot modify owner permissions',
+        'edit' => 'Edit',
+        'owner' => 'Owner',
+        'none' => 'No Permissions',
+        'admin_sections' => 'Admin Sections',
+        'staff_hint' => 'Select the dashboard sections this staff member can access.',
+        'select_sections' => 'Select Sections',
+        'multiselect_help' => 'Hold Ctrl (or Cmd) to select multiple sections.',
     ],
 
     // Programs (Bilingual)

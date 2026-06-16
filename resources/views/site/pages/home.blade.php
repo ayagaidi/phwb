@@ -22,7 +22,7 @@
                 <h1 class="text-5xl md:text-6xl font-bold leading-tight tracking-tighter mb-6">
                     {!! __('site.hero_title') !!}
                 </h1>
-                <p class="text-xl md:text-2xl text-[rgb(45,37,98)] mb-10 max-w-2xl mx-auto">
+                <p class="text-xl md:text-2xl text-[rgb(45,37,98)] mb-10 max-w-2xl mx-auto" style="color: white;">
                     {{ __('site.hero_subtitle') }}
                 </p>
 

@@ -71,7 +71,7 @@ return [
         'methods_badge' => 'طرق المتبرع',
         'methods_title' => 'اختر طريقة التبرع المناسبة لك',
         'opportunities_title' => 'الفرص المتاحة',
-        'contact_button' => 'تواصل معنا للمتبرع',
+        'contact_button' => '            تواصل معنا للتبرع',
     ],
 
     // Membership Page

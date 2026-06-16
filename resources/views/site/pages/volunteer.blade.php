@@ -47,8 +47,8 @@
     @if($donationMethods->count() > 0)
     <div class="mb-16">
         <div class="text-center mb-10">
-            <span class="px-4 py-1 bg-[#1cc6aa]/10 text-[#29225c] text-sm font-medium rounded-full">طرق التطوع</span>
-            <h2 class="text-3xl font-bold mt-3">اختر طريقة التطوع المناسبة لك</h2>
+            <span class="px-4 py-1 bg-[#1cc6aa]/10 text-[#29225c] text-sm font-medium rounded-full">{{ __('site.volunteer.methods_badge') }}</span>
+            <h2 class="text-3xl font-bold mt-3">{{ __('site.volunteer.methods_title') }}</h2>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">

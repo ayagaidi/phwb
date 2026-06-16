@@ -69,6 +69,8 @@ return [
         'subtitle' => 'Contribute to improving public health',
         'hero_badge' => 'Volunteer',
         'hero_subtitle' => 'Join us in strengthening health services and serving the community',
+        'methods_badge' => 'Ways to Volunteer',
+        'methods_title' => 'Choose the donation method that suits you',
         'opportunities_title' => 'Available Opportunities',
         'contact_button' => 'Contact Us to Volunteer',
     ],

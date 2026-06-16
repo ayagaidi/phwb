@@ -68,6 +68,8 @@ return [
         'subtitle' => 'ساهم في تحسين الصحة العامة',
         'hero_badge' => 'التطوع',
         'hero_subtitle' => 'ساهم معنا في تحسين الخدمات الصحية وخدمة المجتمع',
+        'methods_badge' => 'طرق التطوع',
+        'methods_title' => 'اختر طريقة التبرع المناسبة لك',
         'opportunities_title' => 'الفرص المتاحة',
         'contact_button' => 'تواصل معنا للتطوع',
     ],

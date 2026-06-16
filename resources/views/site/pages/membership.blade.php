@@ -4,14 +4,14 @@
 
 @section('content')
 <!-- Hero -->
-<div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
+<div class="bg-gradient-to-b from-[#1cc6aa] to-[#1cc6aa] text-white py-16">
     <div class="max-w-4xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-x-2 bg-white/10 px-4 py-1 rounded-full text-sm mb-4">
             <i class="fas fa-user-plus"></i>
             <span>{{ __('site.membership.hero_badge') }}</span>
         </div>
         <h1 class="text-5xl font-bold tracking-tight">{{ __('site.membership.title') }}</h1>
-        <p class="mt-4 text-xl text-[#1cc6aa] max-w-lg mx-auto">
+        <p class="mt-4 text-xl text-[rgb(45,37,98)] max-w-lg mx-auto">
             {{ __('site.membership.hero_subtitle') }}
         </p>
     </div>

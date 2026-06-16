@@ -4,14 +4,14 @@
 
 @section('content')
 <!-- Hero Header -->
-<div class="bg-gradient-to-b from-[#29225c] to-[#372d70] text-white py-16">
+<div class="bg-gradient-to-b from-[#1cc6aa] to-[#1cc6aa] text-white py-16">
     <div class="max-w-4xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-x-2 bg-white/10 px-4 py-1 rounded-full text-sm mb-4">
             <i class="fas fa-sitemap"></i>
             <span>{{ __('site.org.badge') }}</span>
         </div>
         <h1 class="text-5xl font-bold tracking-tight">{{ __('site.org.title') }}</h1>
-        <p class="mt-3 text-xl text-[#1cc6aa] max-w-xl mx-auto">{{ __('site.org.subtitle') }}</p>
+        <p class="mt-3 text-xl text-[rgb(45,37,98)] max-w-xl mx-auto">{{ __('site.org.subtitle') }}</p>
     </div>
 </div>
 

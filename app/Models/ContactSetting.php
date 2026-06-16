@@ -11,5 +11,6 @@ class ContactSetting extends Model
         'address_ar', 'address_en',
         'facebook', 'instagram', 'whatsapp',
         'working_hours_ar', 'working_hours_en',
+        'latitude', 'longitude',
     ];
 }

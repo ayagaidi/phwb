@@ -7,9 +7,12 @@
 $locale = app()->getLocale();
 $addrKey = 'address_' . $locale;
 $whKey = 'working_hours_' . $locale;
-$addressVal = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.not_available');
+$addressVal = $contact->{$addrKey} ?: __('site.contact.map_location');
 $workingVal = $contact->{$whKey} ?? $contact->working_hours_ar ?? __('site.contact.not_available');
-$mapAddress = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.location_label');
+$mapAddress = 'Hay Alandalus Gate Complex, V4HV+JXV, Tripoli';
+$mapLat = 32.8790022;
+$mapLng = 13.1449707;
+$mapUrl = 'https://www.google.com/maps/dir//Hay+Alandalus+Gate+Complex,+V4HV%2BJXV,+Tripoli/@32.8829369,13.1883358,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x13a8ed1c263e25c1:0xe322646ccf012a2!2m2!1d13.1449707!2d32.8790022?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D';
 @endphp
 <!-- Hero Header -->
 <div class="bg-gradient-to-b from-[#1cc6aa] to-[#1cc6aa] text-white py-16">
@@ -118,15 +121,21 @@ $mapAddress = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.l
                             <span>{{ __('site.contact.whatsapp_button') }}</span>
                         </a>
                     @endif
+
+                    <a href="{{ $mapUrl }}" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center justify-center gap-x-2 bg-[#1cc6aa] hover:bg-[#17a990] text-white font-semibold py-3.5 rounded-2xl transition-all">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ __('site.contact.open_in_maps') }}</span>
+                    </a>
                 </div>
             </div>
 
             <!-- Map -->
             <div class="relative bg-gray-100 min-h-[420px] md:min-h-full">
                 <div id="map" class="absolute inset-0 z-10"></div>
-                <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-xl text-xs shadow text-gray-600 z-20">
-                    {{ __('site.contact.location_label') }}
-                </div>
+                <a href="{{ $mapUrl }}" target="_blank" rel="noopener noreferrer" class="absolute bottom-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-xl text-xs shadow text-gray-600 z-20 hover:text-[#29225c] transition-colors">
+                    <i class="fas fa-external-link-alt ml-1"></i> {{ __('site.contact.location_label') }}
+                </a>
             </div>
 
         </div>
@@ -162,9 +171,8 @@ $mapAddress = $contact->{$addrKey} ?? $contact->address_ar ?? __('site.contact.l
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Coordinates for Al-Sarraj, Tripoli (approx)
-        const lat = 32.8872;
-        const lng = 13.1913;
+        const lat = {{ $mapLat }};
+        const lng = {{ $mapLng }};
 
         const map = L.map('map', {
             zoomControl: false,

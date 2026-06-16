@@ -790,6 +790,8 @@ class AdminController extends Controller
             'whatsapp' => 'nullable|string',
             'working_hours_ar' => 'nullable|string',
             'working_hours_en' => 'nullable|string',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $contact->update($data);

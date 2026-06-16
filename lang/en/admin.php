@@ -362,6 +362,8 @@ return [
         'instagram' => 'Instagram',
         'working_hours_ar' => 'Working Hours (Arabic)',
         'working_hours_en' => 'Working Hours (English)',
+        'latitude' => 'Latitude',
+        'longitude' => 'Longitude',
         'save_changes' => 'Save Changes',
 
         // Flash

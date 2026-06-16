@@ -374,6 +374,8 @@ return [
         'instagram' => 'إنستغرام',
         'working_hours_ar' => 'ساعات العمل (عربي)',
         'working_hours_en' => 'ساعات العمل (إنجليزي)',
+        'latitude' => 'خط العرض',
+        'longitude' => 'خط الطول',
         'save_changes' => 'حفظ التغييرات',
 
         // Flash

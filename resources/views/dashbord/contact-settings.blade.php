@@ -61,12 +61,22 @@
         <input type="text" name="working_hours_ar" class="field-input" value="{{ $contact->working_hours_ar }}">
       </div>
 
-      <div class="field-group">
+<div class="field-group">
         <label>{{ __('admin.contact_settings.working_hours_en') }}</label>
         <input type="text" name="working_hours_en" class="field-input" value="{{ $contact->working_hours_en }}">
-      </div>
+    </div>
 
-      <button type="submit" class="btn btn-primary" style="margin-top:1rem;">
+    <div class="field-group">
+        <label>{{ __('admin.contact_settings.latitude') }}</label>
+        <input type="text" name="latitude" class="field-input" value="{{ $contact->latitude }}" placeholder="32.8790022">
+    </div>
+
+    <div class="field-group">
+        <label>{{ __('admin.contact_settings.longitude') }}</label>
+        <input type="text" name="longitude" class="field-input" value="{{ $contact->longitude }}" placeholder="13.1449707">
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top:1rem;">
         {{ __('admin.contact_settings.save_changes') }}
       </button>
     </form>

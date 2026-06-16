@@ -109,7 +109,7 @@
     </section>
     @endif
 
-    <!-- Stats -->
+    {{-- <!-- Stats -->
     <section class="max-w-5xl mx-auto px-6 -mt-8" style="margin-top: 2rem;">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="bg-white rounded-3xl p-6 shadow-sm border">
@@ -129,7 +129,7 @@
                 <div class="text-sm text-gray-500 mt-1">{{ __('site.stats.years') }}</div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Programs Preview -->
     <section class="max-w-6xl mx-auto px-6 mt-16">

@@ -5,29 +5,24 @@
 @section('content')
     @if($sliders->count() > 0)
     <!-- Hero Section with Slider -->
-    <section class="hero-gradient text-white py-0 md:py-0">
-        <div class="max-w-6xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-28">
-            <div class="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-16">
-                <div id="slider-container" class="h-full">
-                    @foreach($sliders as $index => $slider)
-                    <div class="slider-slide {{ $index === 0 ? '' : 'hidden' }} h-full">
-                        <img src="{{ asset('storage/' . $slider->image) }}" alt="Slider image" class="w-full h-full object-cover">
-                    </div>
-                    @endforeach
+    <section class="hero-gradient relative overflow-hidden text-white">
+        <div class="absolute inset-0 z-0">
+            <div id="slider-container" class="h-full">
+                @foreach($sliders as $index => $slider)
+                <div class="slider-slide {{ $index === 0 ? '' : 'hidden' }} absolute inset-0 h-full">
+                    <img src="{{ asset('storage/' . $slider->image) }}" alt="Slider image" class="w-full h-full object-cover">
                 </div>
-                <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition z-10">
-                    <i class="fas fa-chevron-left text-[#29225c]"></i>
-                </button>
-                <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition z-10">
-                    <i class="fas fa-chevron-right text-[#29225c]"></i>
-                </button>
+                @endforeach
             </div>
-            
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 pt-40 pb-20 md:pt-56 md:pb-28">
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-5xl md:text-6xl font-bold leading-tight tracking-tighter mb-6">
                     {!! __('site.hero_title') !!}
                 </h1>
-                <p class="text-xl md:text-2xl text-[rgb(41,34,92)] mb-10 max-w-2xl mx-auto">
+                <p class="text-xl md:text-2xl text-[rgb(45,37,98)] mb-10 max-w-2xl mx-auto">
                     {{ __('site.hero_subtitle') }}
                 </p>
 
@@ -115,7 +110,7 @@
     @endif
 
     <!-- Stats -->
-    <section class="max-w-5xl mx-auto px-6 -mt-8">
+    <section class="max-w-5xl mx-auto px-6 -mt-8" style="margin-top: 2rem;">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="bg-white rounded-3xl p-6 shadow-sm border">
                 <div class="text-4xl font-bold text-[#29225c]">+120</div>

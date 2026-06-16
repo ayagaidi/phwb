@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="max-w-5xl mx-auto px-6 -mt-8 pb-20">
+<div class="max-w-5xl mx-auto px-6 -mt-8 pb-20" style="margin-top: 3rem;">
 
     <!-- Opportunities from volunteer_contents (only dynamic data) -->
     <div class="mb-12">

@@ -197,6 +197,11 @@
                                 <i class="fab fa-instagram"></i>
                             </a>
                         @endif
+                        @if($contact->whatsapp)
+                            <a href="https://wa.me/{{ $contact->whatsapp }}" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
